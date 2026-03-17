@@ -3,7 +3,6 @@ import { Link } from "react-router";
 export function HeroSection() {
   return (
     <section className="relative py-16 md:py-20 overflow-hidden">
-      {/* Декоративный фон */}
       <div className="absolute top-0 right-0 w-1/3 h-full opacity-5">
         <svg viewBox="0 0 400 400" className="w-full h-full">
           <circle cx="200" cy="200" r="150" fill="#7BAF8E" />
@@ -14,7 +13,6 @@ export function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
 
-          {/* Текстовый блок */}
           <div className="space-y-6">
             <h1 className="font-['Nunito',sans-serif] font-extrabold text-5xl md:text-6xl text-[#0c0805] leading-tight">
               Тёплое место рядом с домом, куда дети хотят возвращаться
@@ -25,35 +23,27 @@ export function HeroSection() {
               развитие, танцы и не только. Ботанический район, рядом с домом.
             </p>
 
-            {/* Три факта */}
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">📍</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">
-                  Ботанический район
-                </span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">Ботанический район</span>
               </div>
               <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">👥</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">
-                  Группы до 10 детей
-                </span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">Группы до 10 детей</span>
               </div>
               <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">⭐</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">
-                  Первое занятие бесплатно
-                </span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">Первое занятие бесплатно</span>
               </div>
             </div>
 
-            {/* Кнопки */}
             <div className="flex flex-wrap gap-4 items-center">
               
-                href="#reviews"
+                href="#contacts"
                 onClick={(e) => {
                   e.preventDefault();
-                  document.getElementById("reviews")?.scrollIntoView({ behavior: "smooth" });
+                  document.getElementById("contacts")?.scrollIntoView({ behavior: "smooth" });
                 }}
                 className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg"
               >
@@ -68,7 +58,6 @@ export function HeroSection() {
             </div>
           </div>
 
-          {/* Фото */}
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img
@@ -76,10 +65,8 @@ export function HeroSection() {
                 alt="Занятия в Академии Панды"
                 className="w-full h-full object-cover aspect-square"
               />
-              {/* Тёплый оверлей снизу */}
               <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-[#F0EDD8]/60 to-transparent" />
             </div>
-            {/* Декоративные элементы */}
             <div className="absolute -top-4 -right-4 w-20 h-20 bg-[#F2A65A] rounded-full opacity-20 animate-pulse" />
             <div className="absolute -bottom-4 -left-4 w-16 h-16 bg-[#7BAF8E] rounded-full opacity-20 animate-pulse delay-75" />
           </div>
