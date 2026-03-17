@@ -3,11 +3,11 @@ import { ChevronLeft, ChevronRight } from "lucide-react";
 
 const images = [
   { src: "https://i.ibb.co/mCY4BGhr/photo-2025-10-10-19-59-34.jpg", alt: "Развивающие занятия" },
-  { src: "https://images.unsplash.com/photo-1581606588715-a4735b758c18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080", alt: "Занятия по рисованию" },
-  { src: "https://images.unsplash.com/photo-1633762348290-33a37f4d7fcf?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080", alt: "Групповые занятия" },
-  { src: "https://images.unsplash.com/photo-1759646828783-7e1b8f02f89b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080", alt: "Творческая мастерская" },
-  { src: "https://images.unsplash.com/photo-1663045281813-c7407a6ec613?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080", alt: "Счастливые дети" },
-  { src: "https://images.unsplash.com/photo-1759734802071-98fbb4c4467a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixlib=rb-4.1.0&q=80&w=1080", alt: "Танцы и движение" },
+  { src: "https://i.ibb.co/Jw1ZxgYP/photo-2025-10-10-19-59-29.jpg", alt: "Занятия по рисованию" },
+  { src: "https://i.ibb.co/8LVrsk4h/photo-2025-10-05-12-15-22.jpg", alt: "Групповые занятия" },
+  { src: "https://i.ibb.co/NgWSkwSY/photo-2025-09-28-16-57-04.jpg", alt: "Творческая мастерская" },
+  { src: "https://i.ibb.co/KjxTQKj7/photo-2025-10-10-19-59-26.jpg", alt: "Счастливые дети" },
+  { src: "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg", alt: "Танцы и движение" },
 ];
 
 export function GallerySection() {
