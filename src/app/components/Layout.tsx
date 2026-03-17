@@ -69,7 +69,7 @@ function Header() {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <img src="/src/assets/Лого.svg" alt="Академия Панды" className="h-[60px] w-auto object-contain" />
+            <img src="/logo.svg" alt="Академия Панды" className="h-[60px] w-auto object-contain" />
           </Link>
 
           <nav className="hidden md:flex items-center gap-8">
@@ -126,7 +126,7 @@ function Footer() {
           {/* Логотип и слоган */}
           <div className="col-span-1">
            <img
-  src="/src/assets/Лого.svg"
+  src="/logo.svg"
   alt="Академия Панды"
   className="h-[60px] w-auto object-contain mb-4"
 />
