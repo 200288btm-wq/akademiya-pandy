@@ -15,31 +15,36 @@ export function HeroSection() {
 
           <div className="space-y-6">
             <h1 className="font-['Nunito',sans-serif] font-extrabold text-5xl md:text-6xl text-[#0c0805] leading-tight">
-              Тёплое место рядом с домом, куда дети хотят возвращаться
+              {"Тёплое место рядом с домом, куда дети хотят возвращаться"}
             </h1>
 
             <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#0c0805] leading-relaxed">
-              6 направлений для детей от 4 до 14 лет — рисование, английский,
-              развитие, танцы и не только. Ботанический район, рядом с домом.
+              {"6 направлений для детей от 4 до 14 лет — рисование, английский, развитие, танцы и не только. Ботанический район, рядом с домом."}
             </p>
 
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
-                <span className="text-lg">📍</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">Ботанический район</span>
+                <span className="text-lg">{"📍"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">
+                  {"Ботанический район"}
+                </span>
               </div>
               <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
-                <span className="text-lg">👥</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">Группы до 10 детей</span>
+                <span className="text-lg">{"👥"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">
+                  {"Группы до 10 детей"}
+                </span>
               </div>
               <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
-                <span className="text-lg">⭐</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">Первое занятие бесплатно</span>
+                <span className="text-lg">{"⭐"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">
+                  {"Первое занятие бесплатно"}
+                </span>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-4 items-center">
-              
+              <a
                 href="#contacts"
                 onClick={(e) => {
                   e.preventDefault();
@@ -47,13 +52,13 @@ export function HeroSection() {
                 }}
                 className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg"
               >
-                Записаться на пробное занятие
+                {"Записаться на пробное занятие"}
               </a>
               <Link
                 to="/programs"
                 className="inline-block border-2 border-[#7BAF8E] text-[#7BAF8E] hover:bg-[#7BAF8E] hover:text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all"
               >
-                Смотреть направления
+                {"Смотреть направления"}
               </Link>
             </div>
           </div>
