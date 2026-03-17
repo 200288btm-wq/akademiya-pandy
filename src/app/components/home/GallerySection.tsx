@@ -10,28 +10,29 @@ const images = [
   { src: "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg", alt: "Танцы и движение" },
 ];
 
+
+const STEP = 3;
+const TOTAL_SLIDES = Math.ceil(images.length / STEP);
+
 export function GallerySection() {
-  const [current, setCurrent] = useState(0);
+  const [slide, setSlide] = useState(0);
   const [fading, setFading] = useState(false);
 
   const goTo = useCallback((index: number) => {
     setFading(true);
     setTimeout(() => {
-      setCurrent((index + images.length) % images.length);
+      setSlide(((index % TOTAL_SLIDES) + TOTAL_SLIDES) % TOTAL_SLIDES);
       setFading(false);
     }, 200);
   }, []);
 
   useEffect(() => {
-    const timer = setInterval(() => goTo(current + 1), 4000);
+    const timer = setInterval(() => goTo(slide + 1), 5000);
     return () => clearInterval(timer);
-  }, [current, goTo]);
+  }, [slide, goTo]);
 
-  const visible = [
-    images[current % images.length],
-    images[(current + 1) % images.length],
-    images[(current + 2) % images.length],
-  ];
+  const start = slide * STEP;
+  const visible = images.slice(start, start + STEP);
 
   return (
     <section className="py-16 bg-[#F0EDD8]">
@@ -46,21 +47,19 @@ export function GallerySection() {
         </div>
 
         <div className="relative">
-          {/* Кнопка назад */}
           <button
-            onClick={() => goTo(current - 1)}
+            onClick={() => goTo(slide - 1)}
             className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white hover:bg-[#7BAF8E] hover:text-white text-[#0c0805] rounded-full shadow-lg flex items-center justify-center transition-all"
           >
             <ChevronLeft size={22} />
           </button>
 
-          {/* Десктоп: 3 фото */}
           <div
             className="hidden md:grid grid-cols-3 gap-4"
-            style={{ opacity: fading ? 0.5 : 1, transition: "opacity 0.2s ease" }}
+            style={{ opacity: fading ? 0.4 : 1, transition: "opacity 0.2s ease" }}
           >
             {visible.map((img, i) => (
-              <div key={i} className="aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
+              <div key={`${slide}-${i}`} className="aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
                 <img
                   src={img.src}
                   alt={img.alt}
@@ -70,35 +69,28 @@ export function GallerySection() {
             ))}
           </div>
 
-          {/* Мобайл: 1 фото */}
           <div
             className="md:hidden aspect-[4/3] overflow-hidden rounded-2xl shadow-md"
-            style={{ opacity: fading ? 0.5 : 1, transition: "opacity 0.2s ease" }}
+            style={{ opacity: fading ? 0.4 : 1, transition: "opacity 0.2s ease" }}
           >
-            <img
-              src={images[current].src}
-              alt={images[current].alt}
-              className="w-full h-full object-cover"
-            />
+            <img src={visible[0].src} alt={visible[0].alt} className="w-full h-full object-cover" />
           </div>
 
-          {/* Кнопка вперёд */}
           <button
-            onClick={() => goTo(current + 1)}
+            onClick={() => goTo(slide + 1)}
             className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white hover:bg-[#7BAF8E] hover:text-white text-[#0c0805] rounded-full shadow-lg flex items-center justify-center transition-all"
           >
             <ChevronRight size={22} />
           </button>
         </div>
 
-        {/* Точки */}
         <div className="flex justify-center gap-2 mt-6">
-          {images.map((_, i) => (
+          {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
             <button
               key={i}
               onClick={() => goTo(i)}
               className={`rounded-full transition-all duration-300 ${
-                i === current ? "w-7 h-3 bg-[#7BAF8E]" : "w-3 h-3 bg-[#7BAF8E] opacity-30"
+                i === slide ? "w-7 h-3 bg-[#7BAF8E]" : "w-3 h-3 bg-[#7BAF8E] opacity-30"
               }`}
             />
           ))}
