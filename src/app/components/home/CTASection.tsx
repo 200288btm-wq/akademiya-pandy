@@ -35,7 +35,7 @@ export function CTASection() {
 
     try {
       const token = "8797137222:AAHKaMMrx1KGSs5WxPUV7_mbdkpsz7h_DDA";
-      const chatId = "264918807";
+      const chatId = import.meta.env.VITE_TG_CHAT;
       await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
