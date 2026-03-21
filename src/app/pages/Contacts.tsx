@@ -48,7 +48,7 @@ export function Contacts() {
             </h2>
             <div className="aspect-video bg-[#F0EDD8] rounded-2xl overflow-hidden mb-6">
               <iframe
-                src="https://yandex.ru/map-widget/v1/?ll=60.5958%2C56.8010&z=16&pt=60.5958%2C56.8010%2Cpm2rdm"
+                src="https://yandex.ru/map-widget/v1/?ll=60.641523%2C56.802971&z=17&pt=60.641523%2C56.802971%2Cpm2rdm"
                 width="100%"
                 height="100%"
                 frameBorder="0"
