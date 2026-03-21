@@ -1,9 +1,11 @@
 import { useParams, Link } from "react-router";
 import { Layout } from "../components/Layout";
+import { useModal } from "../components/ModalContext";
 import { programs } from "../data/programs";
 import { ArrowLeft, Clock, Users, CheckCircle } from "lucide-react";
 
 export function ProgramDetail() {
+  const { openModal } = useModal();
   const { slug } = useParams();
   const program = programs.find((p) => p.slug === slug);
 
@@ -72,12 +74,12 @@ export function ProgramDetail() {
               <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#0c0805] leading-relaxed mb-8">
                 {program.description}
               </p>
-              <a
-                href="#cta"
-                className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg"
+              <button
+                onClick={() => openModal(program.name)}
+                className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg border-none cursor-pointer"
               >
                 Записаться на пробное занятие
-              </a>
+              </button>
               <p className="font-['Nunito_Sans',sans-serif] text-[#7BAF8E] font-semibold mt-3">
                 ✨ Первое занятие — бесплатно
               </p>
@@ -166,12 +168,12 @@ export function ProgramDetail() {
           <p className="font-['Nunito_Sans',sans-serif] text-xl text-white mb-8 opacity-90">
             Приходите, познакомьтесь с педагогом и посмотрите, как всё устроено
           </p>
-          <a
-            href="tel:+79000000000"
-            className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-5 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-2xl"
+          <button
+            onClick={() => openModal(program.name)}
+            className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-5 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-2xl border-none cursor-pointer"
           >
-            Записаться на {program.name}
-          </a>
+            {`Записаться на ${program.name}`}
+          </button>
         </div>
       </section>
     </Layout>
