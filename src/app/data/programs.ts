@@ -78,7 +78,7 @@ export const programs: Program[] = [
     statusText: "Скоро",
     duration: "60 минут",
     groupSize: "до 10 детей",
-    image: "https://i.ibb.co/cKpRG50p/4af909d3-e731-40d7-954f-a066580388f6.jpg"
+    image: "https://i.ibb.co/Ldy9r4R0/4af909d3-e731-40d7-954f-a066580388f6.jpg"
   },
   {
     id: "5",
