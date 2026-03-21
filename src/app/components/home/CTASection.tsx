@@ -1,6 +1,25 @@
 import { useState } from "react";
 import { X, Check } from "lucide-react";
 
+function TelegramIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="12" fill="#29A8E0"/>
+      <path d="M17.5 7L5 11.5L9.5 13L11 17.5L13.5 14.5L17 16.5L17.5 7Z" fill="white"/>
+      <path d="M9.5 13L11 17.5L13 14L9.5 13Z" fill="#C8DAEA"/>
+    </svg>
+  );
+}
+
+function VKIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <circle cx="12" cy="12" r="12" fill="#0077FF"/>
+      <path d="M12.9 15.5C8.8 15.5 6.5 12.8 6.4 8.2H8.4C8.5 11.7 10 13.1 11.2 13.4V8.2H13.1V11C14.3 10.9 15.5 9.6 15.9 8.2H17.8C17.5 9.9 16.2 11.2 15.3 11.7C16.2 12.1 17.7 13.3 18.2 15.5H16.1C15.7 14.2 14.6 13.2 13.1 13.1V15.5H12.9Z" fill="white"/>
+    </svg>
+  );
+}
+
 export function CTASection() {
   const [showModal, setShowModal] = useState(false);
   const [name, setName] = useState("");
@@ -12,7 +31,7 @@ export function CTASection() {
   const handleSubmit = async () => {
     if (!name || !phone || !agreed) return;
 
-    const message = `\u{1F43C} \u041d\u043e\u0432\u0430\u044f \u0437\u0430\u044f\u0432\u043a\u0430 \u0441 \u0441\u0430\u0439\u0442\u0430!\n\n\u{1F464} \u0418\u043c\u044f: ${name}\n\u{1F4F1} \u0422\u0435\u043b\u0435\u0444\u043e\u043d: ${phone}\n\u23F0 \u0423\u0434\u043e\u0431\u043d\u043e\u0435 \u0432\u0440\u0435\u043c\u044f: ${time || "\u041d\u0435 \u0443\u043a\u0430\u0437\u0430\u043d\u043e"}\n\n\u{1F4CD} \u0410\u043a\u0430\u0434\u0435\u043c\u0438\u044f \u041f\u0430\u043d\u0434\u044b, \u0443\u043b. \u0425\u0443\u0442\u043e\u0440\u0441\u043a\u0430\u044f 1`;
+    const message = `🐼 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📱 Телефон: ${phone}\n⏰ Удобное время: ${time || "Не указано"}\n\n📍 Академия Панды, ул. Хуторская 1`;
 
     try {
       const token = "TELEGRAM_BOT_TOKEN";
@@ -59,8 +78,9 @@ export function CTASection() {
           {"Заказать звонок"}
         </button>
 
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 text-white">
-          <p className="font-['Nunito_Sans',sans-serif] text-sm opacity-80">
+        {/* Кнопки соцсетей */}
+        <div className="flex flex-col items-center gap-4">
+          <p className="font-['Nunito_Sans',sans-serif] text-white font-bold text-xl opacity-95">
             {"Или напишите нам:"}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
@@ -68,18 +88,18 @@ export function CTASection() {
               href="https://t.me/olechkamom"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-lg transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
+              className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform text-base"
             >
-              <span className="text-lg">✈️</span>
+              <TelegramIcon />
               {"Написать в Telegram"}
             </a>
             <a
               href="https://vk.com/im/convo/-231900253?entrypoint=community_page&tab=all"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-lg transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
+              className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform text-base"
             >
-              <span className="text-lg">💬</span>
+              <VKIcon />
               {"Написать ВКонтакте"}
             </a>
           </div>
@@ -182,7 +202,7 @@ export function CTASection() {
                   <button
                     onClick={handleSubmit}
                     disabled={!name || !phone || !agreed}
-                    className={`w-full py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all ${name && phone && agreed ? "bg-[#F2A65A] hover:bg-[#e89542] text-white transform hover:scale-105 shadow-lg" : "bg-gray-200 text-gray-400 cursor-not-allowed"}`}
+                    className={`w-full py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all ${name && phone && agreed ? "bg-[#F2A65A] hover:bg-[#e89542] text-white transform hover:scale-105 shadow-lg cursor-pointer" : "bg-gray-200 text-gray-400 cursor-not-allowed"}`}
                   >
                     {"Отправить заявку"}
                   </button>
