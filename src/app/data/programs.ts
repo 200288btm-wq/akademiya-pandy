@@ -30,7 +30,7 @@ export const programs: Program[] = [
     statusText: "Идёт набор",
     duration: "60 минут",
     groupSize: "до 10 детей",
-    image: "https://images.unsplash.com/photo-1758598737498-03850be1ad89?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMHBsYXlpbmclMjBsZWFybmluZyUyMGFjdGl2aXR5fGVufDF8fHx8MTc3MzU5MDQxNXww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    image: "https://i.ibb.co/G4BTpQck/951b69af-3773-d9d1-addd-61b200c988f6.jpg"
   },
   {
     id: "2",
@@ -46,7 +46,7 @@ export const programs: Program[] = [
     statusText: "Идёт набор",
     duration: "60 минут",
     groupSize: "до 10 детей",
-    image: "https://images.unsplash.com/photo-1581606588715-a4735b758c18?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwYXJ0JTIwY2xhc3MlMjBkcmF3aW5nfGVufDF8fHx8MTc3MzU5MDQxNnww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    image: "https://i.ibb.co/k2702TBS/photo-2026-03-19-20-51-16.jpg"
   },
   {
     id: "3",
@@ -62,7 +62,7 @@ export const programs: Program[] = [
     statusText: "Запуск",
     duration: "60 минут",
     groupSize: "до 10 детей",
-    image: "https://images.unsplash.com/photo-1759646828783-7e1b8f02f89b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwY3JlYXRpdmUlMjB3b3Jrc2hvcCUyMGhhbmRzfGVufDF8fHx8MTc3MzU5MDQxN3ww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    image: "https://i.ibb.co/W43Gwb1z/3bab08d3-e731-40d7-954f-a066580388f6.jpg"
   },
   {
     id: "4",
@@ -78,12 +78,12 @@ export const programs: Program[] = [
     statusText: "Скоро",
     duration: "60 минут",
     groupSize: "до 10 детей",
-    image: "https://images.unsplash.com/photo-1565843248736-8c41e6db117b?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxraWRzJTIwZW5nbGlzaCUyMGxlYXJuaW5nfGVufDF8fHx8MTc3MzU5MDQxOHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    image: "https://i.ibb.co/cKpRG50p/4af909d3-e731-40d7-954f-a066580388f6.jpg"
   },
   {
     id: "5",
     slug: "shtab-pandy",
-    name: "Штаб Панды",
+    name: "Стратеги",
     shortName: "Настольные игры",
     age: "9+ лет",
     ageMin: 9,
@@ -94,7 +94,7 @@ export const programs: Program[] = [
     statusText: "Скоро",
     duration: "90 минут",
     groupSize: "до 10 человек",
-    image: "https://images.unsplash.com/photo-1672908871944-bf391a71cd12?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZCUyMGJvYXJkJTIwZ2FtZXMlMjBwbGF5aW5nfGVufDF8fHx8MTc3MzU5MDQxOHww&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    image: "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg"
   },
   {
     id: "6",
@@ -110,6 +110,6 @@ export const programs: Program[] = [
     statusText: "Скоро",
     duration: "45 минут",
     groupSize: "до 10 детей",
-    image: "https://images.unsplash.com/photo-1759734802071-98fbb4c4467a?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxjaGlsZHJlbiUyMGRhbmNpbmclMjBtb3ZlbWVudHxlbnwxfHx8fDE3NzM1OTA0MTd8MA&ixlib=rb-4.1.0&q=80&w=1080&utm_source=figma&utm_medium=referral"
+    image: "https://i.ibb.co/99s2sGkW/71e486d5-f03e-636c-674c-17d67b7088f6.jpgal"
   }
 ];
