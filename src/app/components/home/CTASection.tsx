@@ -34,8 +34,8 @@ export function CTASection() {
     const message = `🐼 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📱 Телефон: ${phone}\n⏰ Удобное время: ${time || "Не указано"}\n\n📍 Академия Панды, ул. Хуторская 1`;
 
     try {
-      const token = "TELEGRAM_BOT_TOKEN";
-      const chatId = "TELEGRAM_CHAT_ID";
+      const token = "8797137222:AAHKaMMrx1KGSs5WxPUV7_mbdkpsz7h_DDA";
+      const chatId = "264918807";
       await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
