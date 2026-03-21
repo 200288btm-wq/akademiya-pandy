@@ -184,6 +184,7 @@ function Header() {
 }
 
 function Footer() {
+  const { openModal } = useModal();
   return (
     <footer className="bg-white mt-20">
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -296,13 +297,13 @@ function Footer() {
               >
                 TG
               </a>
-              <a
-                href="tel:+79226570142"
-                className="w-10 h-10 bg-[#F2A65A] hover:bg-[#e89542] rounded-full flex items-center justify-center text-white transition-colors"
+              <button
+                onClick={() => openModal()}
+                className="w-10 h-10 bg-[#F2A65A] hover:bg-[#e89542] rounded-full flex items-center justify-center text-white transition-colors border-none cursor-pointer"
                 aria-label="Phone"
               >
                 <Phone size={18} />
-              </a>
+              </button>
             </div>
           </div>
         </div>
