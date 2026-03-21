@@ -1,4 +1,5 @@
 import { Link, useNavigate, useLocation } from "react-router";
+import { useModal } from "./ModalContext";
 import svgPaths from "../../imports/svg-sfs6t7friq";
 import { MessageCircle, Phone } from "lucide-react";
 
@@ -50,6 +51,7 @@ function PawPrint({ size, rotation }: { size: number; rotation: number }) {
 
 
 function Header() {
+  const { openModal } = useModal();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -168,13 +170,13 @@ function Header() {
             </Link>
           </nav>
 
-          <a
-            href="tel:+79226570142"
-            className="hidden md:flex items-center gap-2 bg-[#F2A65A] hover:bg-[#e89542] text-white px-6 py-3 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold transition-colors"
+          <button
+            onClick={() => openModal()}
+            className="hidden md:flex items-center gap-2 bg-[#F2A65A] hover:bg-[#e89542] text-white px-6 py-3 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold transition-colors border-none cursor-pointer"
           >
             <Phone size={20} />
             Записаться
-          </a>
+          </button>
         </div>
       </div>
     </header>
