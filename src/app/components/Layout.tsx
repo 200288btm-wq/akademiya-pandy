@@ -69,7 +69,8 @@ function Header() {
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <Link to="/" className="flex items-center gap-3">
-            <div className="h-[60px] w-[165px]">
+            <img src="/logo.svg" alt="Академия Панды" className="h-[60px] w-auto object-contain" />
+            <div className="hidden">
               <svg className="h-full w-full" viewBox="0 0 226 76" fill="none">
                 <g clipPath="url(#clip0_1_832)">
                   <path d={svgPaths.p38a13b00} fill="#F3F3F7" fillOpacity="0.0117647" />
@@ -187,7 +188,8 @@ function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Логотип и слоган */}
           <div className="col-span-1">
-            <div className="h-[60px] w-[165px] mb-4">
+            <img src="/logo.svg" alt="Академия Панды" className="h-[60px] w-auto object-contain mb-4" />
+            <div className="hidden">
               <svg className="h-full w-full" viewBox="0 0 226 76" fill="none">
                 <g clipPath="url(#clip0_footer)">
                   <path d={svgPaths.p38a13b00} fill="#F3F3F7" fillOpacity="0.0117647" />
@@ -273,31 +275,31 @@ function Footer() {
             <h4 className="font-['Nunito',sans-serif] font-bold text-[#0c0805] mb-4">
               Мы в соцсетях
             </h4>
-            <div className="flex gap-4">
+            <div className="flex gap-3">
               <a
                 href="https://vk.com/akademypanda"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#7BAF8E] hover:bg-[#6a9e7d] rounded-full flex items-center justify-center text-white transition-colors"
+                className="w-10 h-10 bg-[#7BAF8E] hover:bg-[#6a9e7d] rounded-full flex items-center justify-center text-white transition-colors font-bold text-sm"
                 aria-label="VK"
               >
-                <MessageCircle size={20} />
+                VK
               </a>
               <a
                 href="https://t.me/AcPanda"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#7BAF8E] hover:bg-[#6a9e7d] rounded-full flex items-center justify-center text-white transition-colors"
+                className="w-10 h-10 bg-[#7BAF8E] hover:bg-[#6a9e7d] rounded-full flex items-center justify-center text-white transition-colors font-bold text-sm"
                 aria-label="Telegram"
               >
-                <MessageCircle size={20} />
+                TG
               </a>
               <a
                 href="tel:+79226570142"
-                className="w-10 h-10 bg-[#7BAF8E] hover:bg-[#6a9e7d] rounded-full flex items-center justify-center text-white transition-colors"
+                className="w-10 h-10 bg-[#F2A65A] hover:bg-[#e89542] rounded-full flex items-center justify-center text-white transition-colors"
                 aria-label="Phone"
               >
-                <Phone size={20} />
+                <Phone size={18} />
               </a>
             </div>
           </div>
