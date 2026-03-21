@@ -262,10 +262,10 @@ function Footer() {
                 </a>
               </li>
               <li className="font-['Nunito_Sans',sans-serif] text-[#0c0805] text-sm">
-                Екатеринбург, Ботанический район
+                г. Екатеринбург, ул. Хуторская 1
               </li>
               <li className="font-['Nunito_Sans',sans-serif] text-[#0c0805] text-sm">
-                рядом с ТЦ «Дирижабль»
+                Ботанический район
               </li>
             </ul>
           </div>
