@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { MessageCircle, X, Check } from "lucide-react";
+import { X, Check } from "lucide-react";
 
 export function CTASection() {
   const [showModal, setShowModal] = useState(false);
@@ -63,24 +63,24 @@ export function CTASection() {
           <p className="font-['Nunito_Sans',sans-serif] text-sm opacity-80">
             {"Или напишите нам:"}
           </p>
-          <div className="flex gap-4">
+          <div className="flex flex-wrap justify-center gap-4">
             <a
               href="https://t.me/olechkamom"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-lg transition-all text-white"
+              className="flex items-center gap-2 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-lg transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
             >
-              <MessageCircle size={20} />
-              <span className="font-['Nunito_Sans',sans-serif] font-semibold">{"Telegram"}</span>
+              <span className="text-lg">✈️</span>
+              {"Написать в Telegram"}
             </a>
             <a
               href="https://vk.com/im/convo/-231900253?entrypoint=community_page&tab=all"
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-2 bg-white bg-opacity-20 hover:bg-opacity-30 px-4 py-2 rounded-lg transition-all text-white"
+              className="flex items-center gap-2 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-lg transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
             >
-              <MessageCircle size={20} />
-              <span className="font-['Nunito_Sans',sans-serif] font-semibold">{"ВКонтакте"}</span>
+              <span className="text-lg">💬</span>
+              {"Написать ВКонтакте"}
             </a>
           </div>
         </div>
