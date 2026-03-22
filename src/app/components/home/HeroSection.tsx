@@ -5,7 +5,7 @@ export function HeroSection() {
   const { openModal } = useModal();
 
   return (
-    <section className="relative py-16 md:py-20 overflow-hidden">
+    <section className="relative py-16 md:py-20 overflow-hidden bg-[#7BAF8E]">
       <div className="absolute top-0 right-0 w-1/3 h-full opacity-5">
         <svg viewBox="0 0 400 400" className="w-full h-full">
           <circle cx="200" cy="200" r="150" fill="#7BAF8E" />
@@ -16,25 +16,25 @@ export function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h1 className="font-['Nunito',sans-serif] font-extrabold text-5xl md:text-6xl text-[#3D3D3D] leading-tight">
+            <h1 className="font-['Nunito',sans-serif] font-extrabold text-5xl md:text-6xl text-white leading-tight">
               {"Тёплое место рядом с домом, куда дети хотят возвращаться"}
             </h1>
-            <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed">
+            <p className="font-['Nunito_Sans',sans-serif] text-xl text-white/90 leading-relaxed">
               {"Рисование, английский, развитие, танцы и не только. С нами дети пробуют, ищут своё и увлекаются. Всё это рядом с домом, в Ботаническом районе."}
             </p>
 
             <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
+              <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">{"📍"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#3D3D3D]">{"Ботанический район"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-white">{"Ботанический район"}</span>
               </div>
-              <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
+              <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">{"👥"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#3D3D3D]">{"Группы до 10 детей"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-white">{"Группы до 10 детей"}</span>
               </div>
-              <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
+              <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">{"⭐"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#3D3D3D]">{"Первое занятие бесплатно"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-white">{"Первое занятие бесплатно"}</span>
               </div>
             </div>
 
@@ -47,7 +47,7 @@ export function HeroSection() {
               </button>
               <Link
                 to="/programs"
-                className="inline-block border-2 border-[#7BAF8E] text-[#7BAF8E] hover:bg-[#7BAF8E] hover:text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all"
+                className="inline-block border-2 border-white text-white hover:bg-white hover:text-[#7BAF8E] px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all"
               >
                 {"Смотреть направления"}
               </Link>
