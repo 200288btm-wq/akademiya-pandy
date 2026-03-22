@@ -46,18 +46,34 @@ export function WhyUsSection() {
             <div
               key={index}
               className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-2 group"
+              style={{
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='multiply'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")`,
+              }}
             >
-              <div className="w-20 h-20 mb-4 group-hover:scale-110 transition-transform">
-                <img
-                  src={reason.icon}
-                  alt={reason.title}
-                  className="w-full h-full object-contain"
-                />
+              {/* Стикер */}
+              <div className="flex justify-center mb-5">
+                <div
+                  className="relative"
+                  style={{
+                    filter: "drop-shadow(2px 4px 8px rgba(0,0,0,0.18)) drop-shadow(0px 1px 2px rgba(0,0,0,0.10))",
+                    transform: index % 2 === 0 ? "rotate(-3deg)" : "rotate(2.5deg)",
+                    transition: "transform 0.3s ease",
+                  }}
+                >
+                  <img
+                    src={reason.icon}
+                    alt={reason.title}
+                    className="w-28 h-28 object-contain group-hover:scale-110 transition-transform duration-300"
+                    style={{
+                      transform: index % 2 === 0 ? "rotate(-3deg)" : "rotate(2.5deg)",
+                    }}
+                  />
+                </div>
               </div>
-              <h3 className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] mb-3">
+              <h3 className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] mb-3 text-center">
                 {reason.title}
               </h3>
-              <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
+              <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed text-center">
                 {reason.description}
               </p>
             </div>
