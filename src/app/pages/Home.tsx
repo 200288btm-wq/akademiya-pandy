@@ -13,7 +13,10 @@ function PaperSection({ children, index }: { children: React.ReactNode; index: n
   return (
     <div
       className="paper-section"
-      style={{ "--section-z": index + 2 } as React.CSSProperties}
+      style={{
+        "--section-z": index + 2,
+        top: `${80}px`,
+      } as React.CSSProperties}
     >
       {children}
     </div>
