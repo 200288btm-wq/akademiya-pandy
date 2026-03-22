@@ -99,8 +99,6 @@ export function AboutSection() {
               />
               <div className="absolute bottom-0 left-0 right-0 h-1/4 bg-gradient-to-t from-[#F0EDD8]/50 to-transparent" />
             </div>
-            <div className="absolute -top-4 -right-4 w-16 h-16 bg-[#F2A65A] rounded-full opacity-20 animate-pulse" />
-            <div className="absolute -bottom-4 -left-4 w-12 h-12 bg-[#7BAF8E] rounded-full opacity-20 animate-pulse delay-75" />
           </div>
 
         </div>

@@ -23,9 +23,7 @@ export function CTASection() {
   const { openModal } = useModal();
 
   return (
-    <section className="py-20 bg-gradient-to-br from-[#7BAF8E] to-[#6a9e7d] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-96 h-96 bg-white opacity-5 rounded-full -translate-y-1/2 translate-x-1/2" />
-      <div className="absolute bottom-0 left-0 w-64 h-64 bg-white opacity-5 rounded-full translate-y-1/2 -translate-x-1/2" />
+    <section className="py-20 bg-[#7BAF8E] relative overflow-hidden">
 
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
         <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-white mb-4">
