@@ -39,13 +39,13 @@ export function ProgramsSection() {
         </div>
 
         {/* Фильтр по возрасту */}
-        <div className="flex justify-center mb-12">
-          <div className="inline-flex bg-white rounded-lg p-2 shadow-md gap-2">
+        <div className="flex justify-center mb-12 px-4">
+          <div className="flex flex-wrap justify-center bg-white rounded-lg p-2 shadow-md gap-2">
             {ageRanges.map((range) => (
               <button
                 key={range.value}
                 onClick={() => setSelectedAge(range.value)}
-                className={`px-6 py-3 rounded-md font-['Nunito_Sans',sans-serif] font-semibold transition-all ${
+                className={`px-4 py-2 rounded-md font-['Nunito_Sans',sans-serif] font-semibold transition-all text-sm md:text-base md:px-6 md:py-3 whitespace-nowrap ${
                   selectedAge === range.value
                     ? "bg-[#7BAF8E] text-white shadow-md"
                     : "bg-transparent text-[#3D3D3D] hover:bg-gray-100"
