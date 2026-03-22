@@ -5,18 +5,7 @@ import { MessageCircle, Phone } from "lucide-react";
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-[#F0EDD8] relative overflow-hidden">
-      {/* Декоративные элементы - следы лапок панды */}
-      <div className="absolute top-20 right-10 opacity-10 pointer-events-none">
-        <PawPrint size={60} rotation={15} />
-      </div>
-      <div className="absolute top-[500px] left-20 opacity-10 pointer-events-none">
-        <PawPrint size={50} rotation={-20} />
-      </div>
-      <div className="absolute bottom-[400px] right-40 opacity-10 pointer-events-none">
-        <PawPrint size={45} rotation={30} />
-      </div>
-      
+    <div className="min-h-screen bg-[#F0EDD8] relative">
       {/* Навигация */}
       <Header />
       
