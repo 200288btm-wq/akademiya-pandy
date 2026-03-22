@@ -16,7 +16,7 @@ export function WhyUsSection() {
       description: "До 10 детей в группе — педагог видит каждого ребёнка и может уделить внимание всем",
     },
     {
-      icon: "https://i.ibb.co/fGth2Wxq/a-cute-minimal-watercolor-sticker-featur-Amh-KYV-TRy8f-Z7tr-ZCBg-Yr-2h-Rq6-RV-vx33g-Mf60rg-removebg-p.png",
+      icon: "https://i.ibb.co/k2dSZvh3/a-cute-minimal-watercolor-sticker-featur-Amh-KYV-TRy8f-Z7tr-ZCBg-Yr-2h-Rq6-RV-vx33g-Mf60rg-removebg-p.png",
       title: "Педагоги с душой",
       description: "Наши преподаватели любят детей и своё дело. Они создают атмосферу, куда хочется возвращаться",
     },
