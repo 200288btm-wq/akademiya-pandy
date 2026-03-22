@@ -14,7 +14,8 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
   const [agreed, setAgreed] = useState(false);
   const [sent, setSent] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = async (e?: React.MouseEvent) => {
+    if (e) e.preventDefault();
     if (!name || !phone || !agreed) return;
 
     const program = programName ? `\nНаправление: ${programName}` : "";
@@ -51,7 +52,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4">
+    <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 px-4" onClick={(e) => { if (e.target === e.currentTarget) onClose(); }}>
       <div className="bg-white rounded-3xl p-8 max-w-md w-full relative shadow-2xl">
         <button
           onClick={onClose}
@@ -137,7 +138,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
               </label>
 
               <button
-                onClick={handleSubmit}
+                onClick={(e) => handleSubmit(e)}
                 disabled={!name || !phone || !agreed}
                 className={`w-full py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all ${name && phone && agreed ? "bg-[#F2A65A] hover:bg-[#e89542] text-white transform hover:scale-105 shadow-lg cursor-pointer" : "bg-gray-200 text-gray-400 cursor-not-allowed"}`}
               >
