@@ -60,7 +60,7 @@ export function Programs() {
           </div>
 
           <a
-            href="/contacts"
+            href="/contacts#social"
             className="inline-block border-2 border-[#7BAF8E] text-[#7BAF8E] hover:bg-[#7BAF8E] hover:text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold transition-all"
           >
             Напишите нам — поможем выбрать

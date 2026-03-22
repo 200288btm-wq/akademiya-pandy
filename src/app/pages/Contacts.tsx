@@ -104,7 +104,7 @@ export function Contacts() {
         </div>
       </section>
 
-      <section className="py-20 bg-gradient-to-br from-[#7BAF8E] to-[#6a9e7d]">
+      <section id="social" className="py-20 bg-[#7BAF8E]">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-white mb-2">
             {"Чтобы познакомиться,"}
