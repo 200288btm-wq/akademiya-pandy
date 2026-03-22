@@ -5,7 +5,7 @@ export function HeroSection() {
   const { openModal } = useModal();
 
   return (
-    <section className="relative py-16 md:py-20 overflow-hidden bg-[#7BAF8E]">
+    <section className="relative py-16 md:py-20 bg-[#7BAF8E]">
       <div className="absolute top-0 right-0 w-1/3 h-full opacity-5">
         <svg viewBox="0 0 400 400" className="w-full h-full">
           <circle cx="200" cy="200" r="150" fill="#7BAF8E" />

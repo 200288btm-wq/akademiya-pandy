@@ -13,7 +13,7 @@ function PawIcon({ color = "#7BAF8E" }: { color?: string }) {
 
 export function AboutSection() {
   return (
-    <section id="about" className="py-20 bg-white relative overflow-hidden">
+    <section id="about" className="py-20 bg-white relative">
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#7BAF8E] opacity-5 rounded-full" />
       <div className="absolute -bottom-20 -right-20 w-96 h-96 bg-[#F2A65A] opacity-5 rounded-full" />
 
