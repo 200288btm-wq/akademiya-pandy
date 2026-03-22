@@ -11,7 +11,7 @@ export function WhyUsSection() {
       description: "Мы не требуем быть идеальными. Каждый ребёнок развивается в своём темпе, и это нормально",
     },
     {
-      icon: "https://i.ibb.co/ZpnFT42B/Gemini-Generated-Image-68jmvd68jmvd68jm-removebg-preview.png",
+      icon: "https://i.ibb.co/tTsthPMF/Gemini-Generated-Image-68jmvd68jmvd68jm-removebg-preview-1.png",
       title: "Маленькие группы",
       description: "До 10 детей в группе — педагог видит каждого ребёнка и может уделить внимание всем",
     },
@@ -49,7 +49,7 @@ export function WhyUsSection() {
               style={{
                 backgroundColor: "#faf8f3",
                 boxShadow: "0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)",
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E")`,
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.35'/%3E%3C/svg%3E")`,
               }}
             >
               {/* Стикер */}
