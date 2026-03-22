@@ -45,17 +45,26 @@ export function WhyUsSection() {
           {reasons.map((reason, index) => (
             <div
               key={index}
-              className="bg-white rounded-2xl p-6 shadow-md hover:shadow-xl transition-all transform hover:-translate-y-2 group"
+              className="rounded-2xl p-6 hover:shadow-xl transition-all transform hover:-translate-y-2 group relative overflow-hidden"
               style={{
-                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeBlend in='SourceGraphic' mode='multiply'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E")`,
+                backgroundColor: "#f5f2eb",
+                boxShadow: "2px 3px 10px rgba(0,0,0,0.10), inset 0 0 40px rgba(0,0,0,0.03)",
+                backgroundImage: `
+                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
+                  linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(240,236,224,0.3) 50%, rgba(255,255,255,0.4) 100%)
+                `,
               }}
             >
+              {/* Лёгкая виньетка по краям как у бумаги */}
+              <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
+                boxShadow: "inset 0 0 30px rgba(180,160,120,0.08)"
+              }} />
+
               {/* Стикер */}
-              <div className="flex justify-center mb-5">
+              <div className="flex justify-center mb-5 relative z-10">
                 <div
-                  className="relative"
                   style={{
-                    filter: "drop-shadow(2px 4px 8px rgba(0,0,0,0.18)) drop-shadow(0px 1px 2px rgba(0,0,0,0.10))",
+                    filter: "drop-shadow(1px 3px 6px rgba(0,0,0,0.20)) drop-shadow(0px 1px 2px rgba(0,0,0,0.12))",
                     transform: index % 2 === 0 ? "rotate(-3deg)" : "rotate(2.5deg)",
                     transition: "transform 0.3s ease",
                   }}
@@ -64,16 +73,13 @@ export function WhyUsSection() {
                     src={reason.icon}
                     alt={reason.title}
                     className="w-28 h-28 object-contain group-hover:scale-110 transition-transform duration-300"
-                    style={{
-                      transform: index % 2 === 0 ? "rotate(-3deg)" : "rotate(2.5deg)",
-                    }}
                   />
                 </div>
               </div>
-              <h3 className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] mb-3 text-center">
+              <h3 className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] mb-3 text-center relative z-10">
                 {reason.title}
               </h3>
-              <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed text-center">
+              <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed text-center relative z-10">
                 {reason.description}
               </p>
             </div>
