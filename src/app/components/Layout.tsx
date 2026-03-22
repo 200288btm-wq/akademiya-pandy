@@ -1,11 +1,21 @@
 import { Link, useNavigate, useLocation } from "react-router";
+import { useEffect } from "react";
 import { useModal } from "./ModalContext";
 import svgPaths from "../../imports/svg-sfs6t7friq";
 import { MessageCircle, Phone } from "lucide-react";
 
+function ScrollToTop() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
+  return null;
+}
+
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="min-h-screen bg-[#F0EDD8] relative">
+      <ScrollToTop />
       {/* Навигация */}
       <Header />
       
