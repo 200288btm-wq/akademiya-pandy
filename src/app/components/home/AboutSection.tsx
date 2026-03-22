@@ -1,3 +1,22 @@
+function PawIcon({ color = "#7BAF8E" }: { color?: string }) {
+  return (
+    <svg width="28" height="28" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, marginTop: 2 }}>
+      {/* Toe beans - sketchy style */}
+      <ellipse cx="28" cy="28" rx="10" ry="12" fill={color} opacity="0.85"
+        style={{ filter: "url(#sketch)" }} />
+      <ellipse cx="50" cy="20" rx="11" ry="13" fill={color} opacity="0.85" />
+      <ellipse cx="72" cy="28" rx="10" ry="12" fill={color} opacity="0.85" />
+      <ellipse cx="18" cy="46" rx="8" ry="10" fill={color} opacity="0.80" />
+      {/* Main pad - irregular sketchy shape */}
+      <path d="M50 38 C30 36 18 50 20 65 C22 78 35 88 50 88 C65 88 78 78 80 65 C82 50 70 36 50 38Z"
+        fill={color} opacity="0.88" />
+      {/* Sketch texture lines */}
+      <path d="M35 60 Q50 55 65 60" stroke="white" strokeWidth="1.5" strokeLinecap="round" opacity="0.3" fill="none" />
+      <path d="M30 70 Q50 65 70 70" stroke="white" strokeWidth="1" strokeLinecap="round" opacity="0.2" fill="none" />
+    </svg>
+  );
+}
+
 export function AboutSection() {
   return (
     <section id="about" className="py-20 bg-white relative overflow-hidden">
@@ -8,8 +27,9 @@ export function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           <div className="space-y-6">
-            <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#0c0805]">
-              {"Академия Панды"}<br />{"больше чем просто занятия"}
+            <h2 className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
+              <span className="text-4xl md:text-5xl">{"Академия Панды,"}</span><br />
+              <span className="text-2xl md:text-3xl font-semibold">{"больше чем просто занятия"}</span>
             </h2>
 
             <div className="space-y-4 font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805] leading-relaxed">
@@ -23,7 +43,7 @@ export function AboutSection() {
 
             <div className="space-y-4">
               <div className="flex items-start gap-3">
-                <span className="text-2xl mt-0.5">{"🧠"}</span>
+                <PawIcon color="#7BAF8E" />
                 <div>
                   <p className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
                     {"Нейроподход и бережное развитие"}
@@ -35,7 +55,7 @@ export function AboutSection() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="text-2xl mt-0.5">{"💛"}</span>
+                <PawIcon color="#F2A65A" />
                 <div>
                   <p className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
                     {"Каждый ребёнок в своём темпе"}
@@ -47,7 +67,7 @@ export function AboutSection() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="text-2xl mt-0.5">{"👥"}</span>
+                <PawIcon color="#7BAF8E" />
                 <div>
                   <p className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
                     {"Маленькие группы до 10 детей"}
@@ -59,7 +79,7 @@ export function AboutSection() {
               </div>
 
               <div className="flex items-start gap-3">
-                <span className="text-2xl mt-0.5">{"📍"}</span>
+                <PawIcon color="#F2A65A" />
                 <div>
                   <p className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
                     {"Рядом с домом"}
