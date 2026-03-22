@@ -36,7 +36,7 @@ export function ProgramsSection() {
             Найдите занятие для вашего ребёнка
           </h2>
           <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805] max-w-2xl mx-auto">
-            6 направлений для детей от 4 до 14 лет — выберите то, что откликается вашему ребёнку
+            Выберите то, что откликается вашему ребёнку
           </p>
         </div>
 
