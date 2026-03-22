@@ -23,7 +23,7 @@ export function WhyUsSection() {
   ];
 
   return (
-    <section className="py-20 relative">
+    <section className="py-20 relative bg-[#faf8f3]">
       <div className="absolute inset-0 overflow-hidden opacity-5">
         <svg className="absolute w-full h-full" viewBox="0 0 1440 800" preserveAspectRatio="none">
           <path d="M0,400 Q360,300 720,400 T1440,400 L1440,800 L0,800 Z" fill="#7BAF8E" />

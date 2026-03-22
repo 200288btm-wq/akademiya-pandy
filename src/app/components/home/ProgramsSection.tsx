@@ -23,7 +23,7 @@ export function ProgramsSection() {
   });
 
   return (
-    <section id="programs" className="py-20 relative">
+    <section id="programs" className="py-20 relative bg-[#F0EDD8]">
       {/* Декоративный элемент */}
       <div className="absolute top-10 left-10 w-32 h-32 opacity-10">
         <LeafDecoration />

@@ -32,7 +32,7 @@ export function FAQSection() {
   ];
 
   return (
-    <section className="py-20 relative">
+    <section className="py-20 relative bg-[#F0EDD8]">
       {/* Декоративные элементы */}
       <div className="absolute top-0 left-0 w-64 h-64 bg-[#7BAF8E] opacity-5 rounded-full blur-3xl" />
       <div className="absolute bottom-0 right-0 w-96 h-96 bg-[#F2A65A] opacity-5 rounded-full blur-3xl" />
