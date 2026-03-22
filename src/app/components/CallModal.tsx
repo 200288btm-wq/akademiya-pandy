@@ -22,12 +22,17 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
 
     try {
       const token = import.meta.env.VITE_TG_TOKEN;
-      const chatId = import.meta.env.VITE_TG_CHAT;
-      await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ chat_id: chatId, text: message }),
-      });
+      const chatIds = [
+        import.meta.env.VITE_TG_CHAT,
+        "523543780",
+      ];
+      for (const chatId of chatIds) {
+        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ chat_id: chatId, text: message }),
+        });
+      }
     } catch (e) {
       console.log("Send error", e);
     }
