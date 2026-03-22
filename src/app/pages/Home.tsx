@@ -1,4 +1,3 @@
-import { useEffect, useRef } from "react";
 import { Layout } from "../components/Layout";
 import { HeroSection } from "../components/home/HeroSection";
 import { ProgramsSection } from "../components/home/ProgramsSection";
@@ -10,44 +9,37 @@ import { ReviewsSection } from "../components/home/ReviewsSection";
 import { FAQSection } from "../components/home/FAQSection";
 import { CTASection } from "../components/home/CTASection";
 
-function AnimatedSection({ children }: { children: React.ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null);
-
-  useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          el.classList.add("visible");
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.08 }
-    );
-    observer.observe(el);
-    return () => observer.disconnect();
-  }, []);
-
+function PaperSection({ children, index }: { children: React.ReactNode; index: number }) {
   return (
-    <div ref={ref} className="section-animate">
+    <div
+      className="paper-section"
+      style={{ "--section-z": index + 2 } as React.CSSProperties}
+    >
       {children}
     </div>
   );
 }
 
 export function Home() {
+  const sections = [
+    <ProgramsSection />,
+    <AboutSection />,
+    <WhyUsSection />,
+    <HowItWorksSection />,
+    <GallerySection />,
+    <ReviewsSection />,
+    <FAQSection />,
+    <CTASection />,
+  ];
+
   return (
     <Layout>
       <HeroSection />
-      <AnimatedSection><ProgramsSection /></AnimatedSection>
-      <AnimatedSection><AboutSection /></AnimatedSection>
-      <AnimatedSection><WhyUsSection /></AnimatedSection>
-      <AnimatedSection><HowItWorksSection /></AnimatedSection>
-      <AnimatedSection><GallerySection /></AnimatedSection>
-      <AnimatedSection><ReviewsSection /></AnimatedSection>
-      <AnimatedSection><FAQSection /></AnimatedSection>
-      <AnimatedSection><CTASection /></AnimatedSection>
+      {sections.map((section, i) => (
+        <PaperSection key={i} index={i}>
+          {section}
+        </PaperSection>
+      ))}
     </Layout>
   );
 }
