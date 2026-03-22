@@ -32,7 +32,17 @@ section + section {
     0 4px 16px rgba(0, 0, 0, 0.07);
 }
 
-/* Убираем зернистость с карточек, кнопок и скруглённых блоков */
+/* Scroll-in анимация секций */
+.section-animate {
+  opacity: 0;
+  transform: translateY(60px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.section-animate.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
 .rounded-lg,
 .rounded-xl,
 .rounded-2xl,
