@@ -35,9 +35,7 @@ export function ProgramsSection() {
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#0c0805] mb-4">
             Найдите занятие для вашего ребёнка
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805] max-w-2xl mx-auto">
-            Выберите то, что откликается вашему ребёнку
-          </p>
+
         </div>
 
         {/* Фильтр по возрасту */}
