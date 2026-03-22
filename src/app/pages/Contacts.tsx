@@ -105,76 +105,16 @@ export function Contacts() {
       </section>
 
       <section className="py-20 bg-white">
-        <div className="max-w-3xl mx-auto px-6">
-          <div className="text-center mb-12">
-            <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#0c0805] mb-4">
-              {"Запишитесь на пробное занятие"}
-            </h2>
-            <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805]">
-              {"Заполните форму, и мы перезвоним в течение часа"}
-            </p>
-          </div>
-
-          <div className="space-y-6">
-            <div>
-              <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805] mb-2 block">
-                {"Ваше имя"}
-              </label>
-              <input
-                type="text"
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#7BAF8E] focus:outline-none font-['Nunito_Sans',sans-serif] transition-colors"
-                placeholder="Как вас зовут?"
-              />
-            </div>
-
-            <div>
-              <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805] mb-2 block">
-                {"Телефон"}
-              </label>
-              <input
-                type="tel"
-                className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#7BAF8E] focus:outline-none font-['Nunito_Sans',sans-serif] transition-colors"
-                placeholder="+7 (___) ___-__-__"
-              />
-            </div>
-
-            <div>
-              <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805] mb-2 block">
-                {"Выберите направление"}
-              </label>
-              <select className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#7BAF8E] focus:outline-none font-['Nunito_Sans',sans-serif] transition-colors">
-                <option>{"Смышлёная Панда"}</option>
-                <option>{"Пушистые художники"}</option>
-                <option>{"Секреты миниатюриста"}</option>
-                <option>{"Эксплорики"}</option>
-                <option>{"Штаб Панды"}</option>
-                <option>{"Мягкие лапки"}</option>
-                <option>{"Не знаю — помогите выбрать"}</option>
-              </select>
-            </div>
-
-            <div>
-              <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805] mb-2 block">
-                {"Удобное время для звонка"}
-              </label>
-              <select className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#7BAF8E] focus:outline-none font-['Nunito_Sans',sans-serif] transition-colors">
-                <option>{"Утром (9:00 - 12:00)"}</option>
-                <option>{"Днём (12:00 - 17:00)"}</option>
-                <option>{"Вечером (17:00 - 20:00)"}</option>
-              </select>
-            </div>
-
-            <button
-              onClick={() => openModal()}
-              className="block w-full bg-[#F2A65A] hover:bg-[#e89542] text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg text-center border-none cursor-pointer"
-            >
-              {"Записаться на пробное занятие"}
-            </button>
-
-            <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#0c0805] text-center opacity-60">
-              {"Перезвоним в течение часа в рабочее время"}
-            </p>
-          </div>
+        <div className="max-w-xl mx-auto px-6 text-center">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#0c0805] mb-6">
+            {"Чтобы познакомиться, просто приходите на пробное занятие"}
+          </h2>
+          <button
+            onClick={() => openModal()}
+            className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg border-none cursor-pointer"
+          >
+            {"Записаться"}
+          </button>
         </div>
       </section>
 
