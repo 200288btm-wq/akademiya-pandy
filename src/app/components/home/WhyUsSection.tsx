@@ -47,19 +47,11 @@ export function WhyUsSection() {
               key={index}
               className="rounded-2xl p-6 hover:shadow-xl transition-all transform hover:-translate-y-2 group relative overflow-hidden"
               style={{
-                backgroundColor: "#f5f2eb",
-                boxShadow: "2px 3px 10px rgba(0,0,0,0.10), inset 0 0 40px rgba(0,0,0,0.03)",
-                backgroundImage: `
-                  url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.08'/%3E%3C/svg%3E"),
-                  linear-gradient(135deg, rgba(255,255,255,0.6) 0%, rgba(240,236,224,0.3) 50%, rgba(255,255,255,0.4) 100%)
-                `,
+                backgroundColor: "#faf8f3",
+                boxShadow: "0 2px 12px rgba(0,0,0,0.08), 0 1px 3px rgba(0,0,0,0.05)",
+                backgroundImage: `url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='200' height='200' filter='url(%23n)' opacity='0.12'/%3E%3C/svg%3E")`,
               }}
             >
-              {/* Лёгкая виньетка по краям как у бумаги */}
-              <div className="absolute inset-0 rounded-2xl pointer-events-none" style={{
-                boxShadow: "inset 0 0 30px rgba(180,160,120,0.08)"
-              }} />
-
               {/* Стикер */}
               <div className="flex justify-center mb-5 relative z-10">
                 <div
