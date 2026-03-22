@@ -104,47 +104,45 @@ export function Contacts() {
         </div>
       </section>
 
-      <section className="py-20 bg-white">
-        <div className="max-w-xl mx-auto px-6 text-center">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#0c0805] mb-6">
-            {"Чтобы познакомиться, просто приходите на пробное занятие"}
+      <section className="py-20 bg-gradient-to-br from-[#7BAF8E] to-[#6a9e7d]">
+        <div className="max-w-2xl mx-auto px-6 text-center">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-white mb-2">
+            {"Чтобы познакомиться,"}
+          </h2>
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-white mb-8">
+            {"просто приходите на пробное занятие"}
           </h2>
           <button
             onClick={() => openModal()}
-            className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg border-none cursor-pointer"
+            className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg border-none cursor-pointer mb-10"
           >
             {"Записаться"}
           </button>
-        </div>
-      </section>
 
-      <section className="py-20 bg-gradient-to-br from-[#7BAF8E] to-[#6a9e7d]">
-        <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-white mb-4">
-            {"Или напишите нам"}
-          </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-xl text-white mb-8 opacity-90">
-            {"Мы всегда на связи и с радостью ответим на все ваши вопросы"}
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://t.me/olechkamom"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
-            >
-              <TelegramIcon />
-              {"Написать в Telegram"}
-            </a>
-            <a
-              href="https://vk.com/im/convo/-231900253?entrypoint=community_page&tab=all"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
-            >
-              <VKIcon />
-              {"Написать ВКонтакте"}
-            </a>
+          <div className="border-t border-white border-opacity-20 pt-10">
+            <p className="font-['Nunito_Sans',sans-serif] text-white font-bold text-xl mb-6">
+              {"Или напишите нам:"}
+            </p>
+            <div className="flex flex-wrap justify-center gap-4">
+              <a
+                href="https://t.me/olechkamom"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
+              >
+                <TelegramIcon />
+                {"Написать в Telegram"}
+              </a>
+              <a
+                href="https://vk.com/im/convo/-231900253?entrypoint=community_page&tab=all"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
+              >
+                <VKIcon />
+                {"Написать ВКонтакте"}
+              </a>
+            </div>
           </div>
         </div>
       </section>
