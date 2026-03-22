@@ -14,14 +14,14 @@ export function ReviewsSection() {
       child: "Дамир, 4 года",
       program: "Смышлёная Панда",
       text: "Занятия нравятся, видно, что всегда готовятся к ним — благодаря этому у детей много активностей и частая смена видов деятельности, что важно для дошкольников. В занятие включены физические, творческие, развивающие и нейропсихологические задания, детки развиваются всесторонне. Меня как маму и педагога всё устраивает 🌸",
-      avatar: "https://images.unsplash.com/photo-1663045281813-c7407a6ec613?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RoZXIlMjBjaGlsZCUyMGhhcHB5JTIwZmFtaWx5fGVufDF8fHx8MTc3MzU5MDQxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      avatar: "https://i.ibb.co/gZk3BwPP/photo-2026-03-22-15-51-16.jpg",
     },
     {
       name: "Джемма",
       child: "Манэ, 5 лет",
       program: "Смышлёная Панда",
       text: "Занятия очень понравились, ребёнок довольный, чувствуется прогресс в развитии и усидчивости. Благодарю! ❤️",
-      avatar: "https://images.unsplash.com/photo-1663045281813-c7407a6ec613?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=M3w3Nzg4Nzd8MHwxfHNlYXJjaHwxfHxtb3RoZXIlMjBjaGlsZCUyMGhhcHB5JTIwZmFtaWx5fGVufDF8fHx8MTc3MzU5MDQxOHww&ixlib=rb-4.1.0&q=80&w=1080",
+      avatar: "https://i.ibb.co/TMYzFC12/photo-2026-03-22-15-51-39.jpg",
     },
   ];
 
@@ -54,7 +54,7 @@ export function ReviewsSection() {
                 "{review.text}"
               </p>
               <div className="flex items-center gap-3">
-                <div className="w-12 h-12 rounded-full overflow-hidden bg-[#7BAF8E]">
+                <div className="w-16 h-16 rounded-full overflow-hidden bg-[#7BAF8E] flex-shrink-0">
                   <img src={review.avatar} alt={review.name} className="w-full h-full object-cover" />
                 </div>
                 <div>
