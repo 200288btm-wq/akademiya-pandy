@@ -32,7 +32,7 @@ export function ProgramsSection() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Заголовок */}
         <div className="text-center mb-12">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#0c0805] mb-4">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
             Найдите занятие для вашего ребёнка
           </h2>
 
@@ -48,7 +48,7 @@ export function ProgramsSection() {
                 className={`px-6 py-3 rounded-md font-['Nunito_Sans',sans-serif] font-semibold transition-all ${
                   selectedAge === range.value
                     ? "bg-[#7BAF8E] text-white shadow-md"
-                    : "bg-transparent text-[#0c0805] hover:bg-gray-100"
+                    : "bg-transparent text-[#3D3D3D] hover:bg-gray-100"
                 }`}
               >
                 {range.label}
@@ -100,7 +100,7 @@ function ProgramCard({ program }: { program: typeof programs[0] }) {
       <div className="p-6 space-y-4">
         <div>
           <div className="flex items-center justify-between mb-2">
-            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#0c0805]">
+            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D]">
               {program.name}
             </h3>
             <span
@@ -110,21 +110,21 @@ function ProgramCard({ program }: { program: typeof programs[0] }) {
               {program.age}
             </span>
           </div>
-          <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] opacity-80 text-sm">
+          <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-80 text-sm">
             {program.shortName}
           </p>
         </div>
 
-        <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] leading-relaxed">
+        <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
           {program.description}
         </p>
 
         {/* Детали */}
         <div className="flex gap-4 text-sm">
-          <div className="font-['Nunito_Sans',sans-serif] text-[#0c0805] opacity-60">
+          <div className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-60">
             ⏱ {program.duration}
           </div>
-          <div className="font-['Nunito_Sans',sans-serif] text-[#0c0805] opacity-60">
+          <div className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-60">
             👥 {program.groupSize}
           </div>
         </div>
@@ -132,9 +132,9 @@ function ProgramCard({ program }: { program: typeof programs[0] }) {
         {/* Кнопка */}
         <Link
           to={`/programs/${program.slug}`}
-          className="flex items-center justify-between w-full px-4 py-3 rounded-lg border-2 border-[#0c0805] border-opacity-10 hover:border-opacity-20 transition-all group/btn"
+          className="flex items-center justify-between w-full px-4 py-3 rounded-lg border-2 border-[#3D3D3D] border-opacity-10 hover:border-opacity-20 transition-all group/btn"
         >
-          <span className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805]">
+          <span className="font-['Nunito_Sans',sans-serif] font-semibold text-[#3D3D3D]">
             Узнать подробнее
           </span>
           <ChevronRight className="group-hover/btn:translate-x-1 transition-transform" size={20} />

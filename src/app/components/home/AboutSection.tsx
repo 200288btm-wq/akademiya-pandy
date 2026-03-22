@@ -27,12 +27,12 @@ export function AboutSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
 
           <div className="space-y-6">
-            <h2 className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
+            <h2 className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
               <span className="text-4xl md:text-5xl">{"Академия Панды,"}</span><br />
               <span className="text-2xl md:text-3xl font-semibold">{"больше чем просто занятия"}</span>
             </h2>
 
-            <div className="space-y-4 font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805] leading-relaxed">
+            <div className="space-y-4 font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] leading-relaxed">
               <p>
                 {"К нам дети приходят с интересом, а уходят с новыми навыками и счастливыми глазами."}
               </p>
@@ -45,7 +45,7 @@ export function AboutSection() {
               <div className="flex items-start gap-3">
                 <PawIcon color="#7BAF8E" />
                 <div>
-                  <p className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
+                  <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
                     {"Нейроподход и бережное развитие"}
                   </p>
                   <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
@@ -57,7 +57,7 @@ export function AboutSection() {
               <div className="flex items-start gap-3">
                 <PawIcon color="#F2A65A" />
                 <div>
-                  <p className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
+                  <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
                     {"Каждый ребёнок в своём темпе"}
                   </p>
                   <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
@@ -69,7 +69,7 @@ export function AboutSection() {
               <div className="flex items-start gap-3">
                 <PawIcon color="#7BAF8E" />
                 <div>
-                  <p className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
+                  <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
                     {"Маленькие группы до 10 детей"}
                   </p>
                   <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
@@ -81,7 +81,7 @@ export function AboutSection() {
               <div className="flex items-start gap-3">
                 <PawIcon color="#F2A65A" />
                 <div>
-                  <p className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
+                  <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
                     {"Рядом с домом"}
                   </p>
                   <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">

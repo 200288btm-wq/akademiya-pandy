@@ -40,10 +40,10 @@ export function FAQSection() {
       <div className="max-w-4xl mx-auto px-6 relative z-10">
         {/* Заголовок */}
         <div className="text-center mb-12">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#0c0805] mb-4">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
             Часто задаваемые вопросы
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805]">
+          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D]">
             Ответы на самые популярные вопросы родителей
           </p>
         </div>
@@ -59,7 +59,7 @@ export function FAQSection() {
                 onClick={() => setOpenIndex(openIndex === index ? null : index)}
                 className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
               >
-                <span className="font-['Nunito',sans-serif] font-bold text-lg text-[#0c0805] pr-4">
+                <span className="font-['Nunito',sans-serif] font-bold text-lg text-[#3D3D3D] pr-4">
                   {faq.question}
                 </span>
                 <ChevronDown
@@ -71,7 +71,7 @@ export function FAQSection() {
               </button>
               {openIndex === index && (
                 <div className="px-6 pb-6">
-                  <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] leading-relaxed">
+                  <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

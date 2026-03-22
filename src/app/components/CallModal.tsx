@@ -66,7 +66,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
             <div className="w-16 h-16 bg-[#7BAF8E] rounded-full flex items-center justify-center mx-auto mb-4">
               <Check size={32} className="text-white" />
             </div>
-            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#0c0805] mb-2">
+            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-2">
               {"Заявка отправлена!"}
             </h3>
             <p className="font-['Nunito_Sans',sans-serif] text-[#4a4a4a]">
@@ -75,7 +75,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
           </div>
         ) : (
           <>
-            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#0c0805] mb-2">
+            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-2">
               {"Заказать звонок"}
             </h3>
             <p className="font-['Nunito_Sans',sans-serif] text-[#4a4a4a] mb-6">
@@ -84,7 +84,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
 
             <div className="space-y-4">
               <div>
-                <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805] mb-1 block text-sm">
+                <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#3D3D3D] mb-1 block text-sm">
                   {"Ваше имя"}
                 </label>
                 <input
@@ -97,7 +97,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
               </div>
 
               <div>
-                <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805] mb-1 block text-sm">
+                <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#3D3D3D] mb-1 block text-sm">
                   {"Телефон"}
                 </label>
                 <input
@@ -110,7 +110,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
               </div>
 
               <div>
-                <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805] mb-1 block text-sm">
+                <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#3D3D3D] mb-1 block text-sm">
                   {"Удобное время для звонка"}
                 </label>
                 <select

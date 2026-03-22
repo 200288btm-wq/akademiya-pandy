@@ -10,10 +10,10 @@ export function Programs() {
       <section className="py-20 bg-gradient-to-b from-white to-[#F0EDD8]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-3xl mx-auto">
-            <h1 className="font-['Nunito',sans-serif] font-bold text-5xl md:text-6xl text-[#0c0805] mb-6">
+            <h1 className="font-['Nunito',sans-serif] font-bold text-5xl md:text-6xl text-[#3D3D3D] mb-6">
               Все направления Академии Панды
             </h1>
-            <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#0c0805] leading-relaxed">
+            <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed">
               Занятия для детей от 4 до 14 лет, найдите то, что откликается вашему ребёнку
             </p>
           </div>
@@ -34,10 +34,10 @@ export function Programs() {
       {/* Помощь в выборе */}
       <section className="py-20 bg-white">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-3xl md:text-4xl text-[#0c0805] mb-4">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-3xl md:text-4xl text-[#3D3D3D] mb-4">
             Не знаете, с чего начать?
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805] mb-8">
+          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] mb-8">
             Это нормально — мы поможем
           </p>
           
@@ -102,7 +102,7 @@ function ProgramCard({ program }: { program: typeof programs[0] }) {
       <div className="p-6 space-y-4">
         <div>
           <div className="flex items-center justify-between mb-2">
-            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#0c0805]">
+            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D]">
               {program.name}
             </h3>
             <span
@@ -112,29 +112,29 @@ function ProgramCard({ program }: { program: typeof programs[0] }) {
               {program.age}
             </span>
           </div>
-          <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] opacity-80 text-sm">
+          <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-80 text-sm">
             {program.shortName}
           </p>
         </div>
 
-        <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] leading-relaxed">
+        <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
           {program.description}
         </p>
 
         <div className="flex gap-4 text-sm">
-          <div className="font-['Nunito_Sans',sans-serif] text-[#0c0805] opacity-60">
+          <div className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-60">
             ⏱ {program.duration}
           </div>
-          <div className="font-['Nunito_Sans',sans-serif] text-[#0c0805] opacity-60">
+          <div className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-60">
             👥 {program.groupSize}
           </div>
         </div>
 
         <Link
           to={`/programs/${program.slug}`}
-          className="flex items-center justify-between w-full px-4 py-3 rounded-lg border-2 border-[#0c0805] border-opacity-10 hover:border-opacity-20 transition-all group/btn"
+          className="flex items-center justify-between w-full px-4 py-3 rounded-lg border-2 border-[#3D3D3D] border-opacity-10 hover:border-opacity-20 transition-all group/btn"
         >
-          <span className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805]">
+          <span className="font-['Nunito_Sans',sans-serif] font-semibold text-[#3D3D3D]">
             Узнать подробнее
           </span>
           <ChevronRight className="group-hover/btn:translate-x-1 transition-transform" size={20} />

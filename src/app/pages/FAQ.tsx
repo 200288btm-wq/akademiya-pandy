@@ -49,10 +49,10 @@ export function FAQ() {
       {/* Заголовок */}
       <section className="py-20 bg-gradient-to-b from-white to-[#F0EDD8]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="font-['Nunito',sans-serif] font-bold text-5xl md:text-6xl text-[#0c0805] mb-6">
+          <h1 className="font-['Nunito',sans-serif] font-bold text-5xl md:text-6xl text-[#3D3D3D] mb-6">
             Часто задаваемые вопросы
           </h1>
-          <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#0c0805] leading-relaxed">
+          <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed">
             Чтобы вы чувствовали себя уверенно и знали все детали о нашем центре
           </p>
         </div>
@@ -71,7 +71,7 @@ export function FAQ() {
                   onClick={() => setOpenIndex(openIndex === index ? null : index)}
                   className="w-full flex items-center justify-between p-6 text-left hover:bg-gray-50 transition-colors"
                 >
-                  <span className="font-['Nunito',sans-serif] font-bold text-lg md:text-xl text-[#0c0805] pr-4">
+                  <span className="font-['Nunito',sans-serif] font-bold text-lg md:text-xl text-[#3D3D3D] pr-4">
                     {faq.question}
                   </span>
                   <ChevronDown
@@ -83,7 +83,7 @@ export function FAQ() {
                 </button>
                 {openIndex === index && (
                   <div className="px-6 pb-6">
-                    <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] text-lg leading-relaxed">
+                    <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-lg leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>

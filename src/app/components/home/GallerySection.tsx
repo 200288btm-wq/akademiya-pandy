@@ -38,7 +38,7 @@ export function GallerySection() {
     <section className="py-16 bg-[#F0EDD8]">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-10">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#0c0805] mb-3">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-3">
             Атмосфера Академии Панды
           </h2>
           <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#6b6b6b] max-w-2xl mx-auto">
@@ -49,7 +49,7 @@ export function GallerySection() {
         <div className="relative">
           <button
             onClick={() => goTo(slide - 1)}
-            className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white hover:bg-[#7BAF8E] hover:text-white text-[#0c0805] rounded-full shadow-lg flex items-center justify-center transition-all"
+            className="absolute -left-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white hover:bg-[#7BAF8E] hover:text-white text-[#3D3D3D] rounded-full shadow-lg flex items-center justify-center transition-all"
           >
             <ChevronLeft size={22} />
           </button>
@@ -78,7 +78,7 @@ export function GallerySection() {
 
           <button
             onClick={() => goTo(slide + 1)}
-            className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white hover:bg-[#7BAF8E] hover:text-white text-[#0c0805] rounded-full shadow-lg flex items-center justify-center transition-all"
+            className="absolute -right-5 top-1/2 -translate-y-1/2 z-10 w-11 h-11 bg-white hover:bg-[#7BAF8E] hover:text-white text-[#3D3D3D] rounded-full shadow-lg flex items-center justify-center transition-all"
           >
             <ChevronRight size={22} />
           </button>

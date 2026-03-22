@@ -30,10 +30,10 @@ export function ReviewsSection() {
       <div className="max-w-7xl mx-auto px-6">
         {/* Заголовок */}
         <div className="text-center mb-12">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#0c0805] mb-4">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
             Что говорят родители
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805] max-w-2xl mx-auto">
+          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
             Реальные отзывы мам, которые доверили нам своих детей
           </p>
         </div>
@@ -53,7 +53,7 @@ export function ReviewsSection() {
               </div>
 
               {/* Текст отзыва */}
-              <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] leading-relaxed mb-6 italic">
+              <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed mb-6 italic">
                 "{review.text}"
               </p>
 
@@ -67,10 +67,10 @@ export function ReviewsSection() {
                   />
                 </div>
                 <div>
-                  <p className="font-['Nunito',sans-serif] font-bold text-[#0c0805]">
+                  <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
                     {review.name}
                   </p>
-                  <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#0c0805] opacity-60">
+                  <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D] opacity-60">
                     {review.child} • {review.program}
                   </p>
                 </div>

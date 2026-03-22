@@ -25,10 +25,10 @@ export function HowItWorksSection() {
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#0c0805] mb-4">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
             {"Как это работает?"}
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805] max-w-2xl mx-auto">
+          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
             {"Три простых шага до первого занятия"}
           </p>
         </div>
@@ -49,10 +49,10 @@ export function HowItWorksSection() {
                 <div className="absolute inset-0 rounded-full border-4 border-[#7BAF8E] opacity-20 scale-125" />
               </div>
               <div className="text-center">
-                <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#0c0805] mb-3">
+                <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-3">
                   {step.title}
                 </h3>
-                <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] leading-relaxed">
+                <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
                   {step.description}
                 </p>
               </div>

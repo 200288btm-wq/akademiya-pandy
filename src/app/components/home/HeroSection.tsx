@@ -16,25 +16,25 @@ export function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
-            <h1 className="font-['Nunito',sans-serif] font-extrabold text-5xl md:text-6xl text-[#0c0805] leading-tight">
+            <h1 className="font-['Nunito',sans-serif] font-extrabold text-5xl md:text-6xl text-[#3D3D3D] leading-tight">
               {"Тёплое место рядом с домом, куда дети хотят возвращаться"}
             </h1>
-            <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#0c0805] leading-relaxed">
+            <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed">
               {"Рисование, английский, развитие, танцы и не только. С нами дети пробуют, ищут своё и увлекаются. Всё это рядом с домом, в Ботаническом районе."}
             </p>
 
             <div className="flex flex-wrap gap-4">
               <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">{"📍"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">{"Ботанический район"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#3D3D3D]">{"Ботанический район"}</span>
               </div>
               <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">{"👥"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">{"Группы до 10 детей"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#3D3D3D]">{"Группы до 10 детей"}</span>
               </div>
               <div className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">{"⭐"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#0c0805]">{"Первое занятие бесплатно"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-[#3D3D3D]">{"Первое занятие бесплатно"}</span>
               </div>
             </div>
 

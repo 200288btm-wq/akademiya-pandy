@@ -33,7 +33,7 @@ function Content7({ children }: React.PropsWithChildren<{}>) {
           </defs>
         </svg>
       </div>
-      <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[#0c0805] text-[18px] w-[352px]" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+      <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[#3D3D3D] text-[18px] w-[352px]" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {children}
       </p>
     </div>
@@ -169,7 +169,7 @@ type LinkText1Props = {
 function LinkText1({ text }: LinkText1Props) {
   return (
     <div className="content-stretch flex items-start py-[8px] relative shrink-0 w-full">
-      <p className="flex-[1_0_0] font-['Nunito_Sans:SemiBold',sans-serif] font-semibold leading-[1.6] min-h-px min-w-px relative text-[#0c0805] text-[14px]" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+      <p className="flex-[1_0_0] font-['Nunito_Sans:SemiBold',sans-serif] font-semibold leading-[1.6] min-h-px min-w-px relative text-[#3D3D3D] text-[14px]" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {text}
       </p>
     </div>
@@ -199,7 +199,7 @@ type Helper2Props = {
 
 function Helper2({ text, text1 }: Helper2Props) {
   return (
-    <div className="content-stretch flex flex-[1_0_0] flex-col items-start leading-[1.6] min-h-px min-w-px relative text-[#0c0805] text-[16px]">
+    <div className="content-stretch flex flex-[1_0_0] flex-col items-start leading-[1.6] min-h-px min-w-px relative text-[#3D3D3D] text-[16px]">
       <p className="font-['Nunito_Sans:SemiBold',sans-serif] font-semibold relative shrink-0 w-full" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {text}
       </p>
@@ -216,7 +216,7 @@ type Content2Props = {
 
 function Content2({ text, text1 }: Content2Props) {
   return (
-    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 text-[#0c0805] w-full">
+    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 text-[#3D3D3D] w-full">
       <p className="font-['Nunito:Medium',sans-serif] font-medium leading-[1.4] relative shrink-0 text-[36px] tracking-[0.36px] w-full">{text}</p>
       <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[16px] w-full" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {text1}
@@ -241,7 +241,7 @@ function Text1({ text, additionalClassNames = "" }: Text1Props) {
   return (
     <div className={clsx("flex flex-row items-center justify-center size-full", additionalClassNames)}>
       <div className="content-stretch flex items-center justify-center px-[24px] py-[10px] relative">
-        <p className="font-['Nunito_Sans:Medium',sans-serif] font-medium leading-[1.6] relative shrink-0 text-[#0c0805] text-[16px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+        <p className="font-['Nunito_Sans:Medium',sans-serif] font-medium leading-[1.6] relative shrink-0 text-[#3D3D3D] text-[16px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
           {text}
         </p>
       </div>
@@ -268,7 +268,7 @@ type Helper1Props = {
 
 function Helper1({ text, text1, additionalClassNames = "" }: Helper1Props) {
   return (
-    <div className={clsx("content-stretch flex flex-col gap-[24px] items-center relative shrink-0 text-[#0c0805] text-center w-full", additionalClassNames)}>
+    <div className={clsx("content-stretch flex flex-col gap-[24px] items-center relative shrink-0 text-[#3D3D3D] text-center w-full", additionalClassNames)}>
       <p className="font-['Nunito:Medium',sans-serif] font-medium leading-[1.2] relative shrink-0 text-[52px] tracking-[0.52px] w-full">{text}</p>
       <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[18px] w-full" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {text1}
@@ -283,7 +283,7 @@ type TaglineWrapperText1Props = {
 function TaglineWrapperText1({ text }: TaglineWrapperText1Props) {
   return (
     <div className="content-stretch flex items-center relative shrink-0">
-      <p className="font-['Nunito_Sans:SemiBold',sans-serif] font-semibold leading-[1.5] relative shrink-0 text-[#0c0805] text-[16px] text-center whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+      <p className="font-['Nunito_Sans:SemiBold',sans-serif] font-semibold leading-[1.5] relative shrink-0 text-[#3D3D3D] text-[16px] text-center whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {text}
       </p>
     </div>
@@ -315,7 +315,7 @@ type Content1Props = {
 
 function Content1({ text, text1 }: Content1Props) {
   return (
-    <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 text-[#0c0805] w-full">
+    <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 text-[#3D3D3D] w-full">
       <p className="font-['Nunito:Medium',sans-serif] font-medium leading-[1.4] relative shrink-0 text-[28px] tracking-[0.28px] w-full">{text}</p>
       <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[16px] w-full" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {text1}
@@ -331,7 +331,7 @@ function ButtonText({ text }: ButtonTextProps) {
   return (
     <Wrapper2 additionalClassNames="rounded-[6px]">
       <div className="content-stretch flex gap-[8px] items-center justify-center relative">
-        <p className="font-['Nunito_Sans:Medium',sans-serif] font-medium leading-[1.6] relative shrink-0 text-[#0c0805] text-[16px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+        <p className="font-['Nunito_Sans:Medium',sans-serif] font-medium leading-[1.6] relative shrink-0 text-[#3D3D3D] text-[16px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
           {text}
         </p>
         <div className="overflow-clip relative shrink-0 size-[24px]" data-name="chevron_right">
@@ -364,7 +364,7 @@ type ContentProps = {
 
 function Content({ text, text1 }: ContentProps) {
   return (
-    <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 text-[#0c0805] w-full">
+    <div className="content-stretch flex flex-col gap-[24px] items-start relative shrink-0 text-[#3D3D3D] w-full">
       <p className="font-['Nunito:Medium',sans-serif] font-medium leading-[1.2] relative shrink-0 text-[44px] tracking-[0.44px] w-full">{text}</p>
       <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[16px] w-full" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {text1}
@@ -379,7 +379,7 @@ type TaglineWrapperTextProps = {
 function TaglineWrapperText({ text }: TaglineWrapperTextProps) {
   return (
     <div className="content-stretch flex items-center relative shrink-0">
-      <p className="font-['Nunito_Sans:SemiBold',sans-serif] font-semibold leading-[1.5] relative shrink-0 text-[#0c0805] text-[16px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+      <p className="font-['Nunito_Sans:SemiBold',sans-serif] font-semibold leading-[1.5] relative shrink-0 text-[#3D3D3D] text-[16px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {text}
       </p>
     </div>
@@ -417,7 +417,7 @@ type LinkTextProps = {
 function LinkText({ text }: LinkTextProps) {
   return (
     <div className="content-stretch flex items-center justify-center relative shrink-0">
-      <p className="font-['Nunito_Sans:Light',sans-serif] font-light leading-[1.6] relative shrink-0 text-[#0c0805] text-[22px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+      <p className="font-['Nunito_Sans:Light',sans-serif] font-light leading-[1.6] relative shrink-0 text-[#3D3D3D] text-[22px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
         {text}
       </p>
     </div>
@@ -565,7 +565,7 @@ export default function Desktop() {
                       <LinkText text="Отзывы" />
                       <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0" data-name="Link">
                         <div className="content-stretch flex gap-[4px] items-center justify-center relative shrink-0" data-name="Nav Link Dropdown">
-                          <p className="font-['Nunito_Sans:Light',sans-serif] font-light leading-[1.6] relative shrink-0 text-[#0c0805] text-[22px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+                          <p className="font-['Nunito_Sans:Light',sans-serif] font-light leading-[1.6] relative shrink-0 text-[#3D3D3D] text-[22px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
                             Программы
                           </p>
                           <div className="relative shrink-0 size-[24px]" data-name="Chevron Down">
@@ -602,8 +602,8 @@ export default function Desktop() {
                 <div className="content-stretch flex h-[614px] items-center justify-center relative shrink-0 w-[1278px]">
                   <div className="content-stretch flex flex-col h-[615px] items-start justify-center px-[48px] py-[65px] relative shrink-0 w-[584px]" data-name="Column">
                     <div className="content-stretch flex flex-col gap-[24px] items-start justify-center relative shrink-0 w-full" data-name="Content">
-                      <p className="font-['Nunito:Medium',sans-serif] font-medium leading-[1.2] min-w-full relative shrink-0 text-[#0c0805] text-[52px] tracking-[0.52px] w-[min-content]">Тёплое место рядом с домом, куда дети хотят возвращаться</p>
-                      <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] min-w-full relative shrink-0 text-[#0c0805] text-[18px] w-[min-content]" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+                      <p className="font-['Nunito:Medium',sans-serif] font-medium leading-[1.2] min-w-full relative shrink-0 text-[#3D3D3D] text-[52px] tracking-[0.52px] w-[min-content]">Тёплое место рядом с домом, куда дети хотят возвращаться</p>
+                      <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] min-w-full relative shrink-0 text-[#3D3D3D] text-[18px] w-[min-content]" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
                         Занятия для детей от 4 до 14 лет в Ботаническом районе Екатеринбурга. Рисование, архитектурное моделирование, английский язык, танцы и настольные игры — всё в одном месте, где каждый ребёнок развивается в своём темпе.
                       </p>
                       <div className="content-stretch flex flex-col h-[46px] items-start justify-end relative shrink-0 w-[135px]" data-name="Actions">
@@ -685,7 +685,7 @@ export default function Desktop() {
                               </div>
                             </div>
                           </div>
-                          <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 text-[#0c0805] w-full" data-name="Content">
+                          <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 text-[#3D3D3D] w-full" data-name="Content">
                             <p className="font-['Nunito:Medium',sans-serif] font-medium leading-[1.4] relative shrink-0 text-[28px] tracking-[0.28px] w-full">Секреты миниатюриста</p>
                             <div className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[16px] w-full" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
                               <p className="mb-0">Архитектурное моделирование и макеты из бумаги для тех, кто любит создавать</p>
@@ -722,13 +722,13 @@ export default function Desktop() {
                               <img alt="" className="absolute h-[101.54%] left-[-22.12%] max-w-none top-[-1.85%] w-[140.28%]" src={imgPhoto2026031503455621} />
                             </div>
                           </div>
-                          <div className="flex flex-col font-['Nunito:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#0c0805] text-[44px] tracking-[0.44px] w-[317px]">
+                          <div className="flex flex-col font-['Nunito:Medium',sans-serif] font-medium justify-center leading-[0] relative shrink-0 text-[#3D3D3D] text-[44px] tracking-[0.44px] w-[317px]">
                             <p className="leading-[1.2]">Пушистые художники</p>
                           </div>
                         </div>
                       </div>
                       <div className="content-stretch flex flex-col gap-[24px] h-[88px] items-start justify-center relative shrink-0 w-full" data-name="Actions">
-                        <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[#0c0805] text-[16px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
+                        <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[#3D3D3D] text-[16px] whitespace-nowrap" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
                           Рисование от простого к интересному
                         </p>
                         <ButtonText text="Подробнее" />
@@ -848,7 +848,7 @@ export default function Desktop() {
                 <Content3>
                   <div className="content-stretch flex flex-col gap-[8px] items-start relative shrink-0 w-full" data-name="Content Top">
                     <TaglineWrapperText text="Шаг второй" />
-                    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 text-[#0c0805] w-full" data-name="Content">
+                    <div className="content-stretch flex flex-col gap-[16px] items-start relative shrink-0 text-[#3D3D3D] w-full" data-name="Content">
                       <p className="font-['Nunito:Medium',sans-serif] font-medium leading-[1.4] relative shrink-0 text-[36px] tracking-[0.36px] w-full">Придите на пробное занятие со скидкой 50%*</p>
                       <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[16px] w-full" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>{`*При покупке абоненмента- первое занятие в подарок `}</p>
                     </div>
@@ -949,7 +949,7 @@ export default function Desktop() {
       <Wrapper additionalClassNames="bg-[#fcedde]">
         <div className="content-stretch flex flex-col gap-[80px] items-center max-w-[1280px] relative shrink-0 w-full" data-name="Container">
           <Helper1 text="Вопросы" text1="Ответы на самые частые вопросы родителей о центре" additionalClassNames="max-w-[768px]" />
-          <div className="content-stretch flex flex-col gap-[48px] items-start leading-[1.6] max-w-[768px] overflow-clip relative shrink-0 text-[#0c0805] w-full" data-name="List">
+          <div className="content-stretch flex flex-col gap-[48px] items-start leading-[1.6] max-w-[768px] overflow-clip relative shrink-0 text-[#3D3D3D] w-full" data-name="List">
             <ListItem text="Где находится Академия Панды?" text1="Мы в Ботаническом районе Екатеринбурга, рядом с ТЦ «Дирижабль». Адрес и схему проезда можно найти в разделе контактов. Центр легко доступен на машине или общественном транспорте." />
             <ListItem text="Сколько детей в группе?" text1="В каждой группе не более десяти детей. Это позволяет педагогу уделить внимание каждому и создать комфортную атмосферу для развития." />
             <ListItem text="Нужна ли подготовка перед первым занятием?" text1="Никакой подготовки не нужно. Приходите такими, какие вы есть. Педагог встретит вас, расскажет о программе и начнёт занятие в спокойном темпе." />
@@ -957,7 +957,7 @@ export default function Desktop() {
             <ListItem text="Можно ли попробовать перед покупкой абонемента?" text1="Да, первое занятие будет со скидкой 50%. Это даёт вам возможность понять, нравится ли программа, комфортно ли ребёнку, и только потом принять решение об абонементе." />
           </div>
           <div className="content-stretch flex flex-col gap-[24px] items-center max-w-[560px] relative shrink-0 w-full" data-name="Content">
-            <div className="content-stretch flex flex-col gap-[16px] items-center relative shrink-0 text-[#0c0805] text-center w-full" data-name="Content">
+            <div className="content-stretch flex flex-col gap-[16px] items-center relative shrink-0 text-[#3D3D3D] text-center w-full" data-name="Content">
               <p className="font-['Nunito:Medium',sans-serif] font-medium leading-[1.4] relative shrink-0 text-[36px] tracking-[0.36px] w-full">Как выбрать подходящее направление?</p>
               <p className="font-['Nunito_Sans:Regular',sans-serif] font-normal leading-[1.6] relative shrink-0 text-[18px] w-full" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
                 Посмотрите описания программ на сайте или позвоните нам. Мы поможем выбрать то, что подойдёт именно вашему ребёнку, учитывая его интересы и возраст.
@@ -1000,7 +1000,7 @@ export default function Desktop() {
                 <div className="content-stretch flex items-start relative shrink-0">
                   <Helper />
                 </div>
-                <div className="content-stretch flex flex-col gap-[24px] items-start leading-[1.6] relative shrink-0 text-[#0c0805] text-[14px] w-full" data-name="Content">
+                <div className="content-stretch flex flex-col gap-[24px] items-start leading-[1.6] relative shrink-0 text-[#3D3D3D] text-[14px] w-full" data-name="Content">
                   <div className="content-stretch flex flex-col gap-[4px] items-start relative shrink-0 w-full" data-name="Content">
                     <p className="font-['Nunito_Sans:SemiBold',sans-serif] font-semibold relative shrink-0 w-full" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
                       Адрес
@@ -1078,7 +1078,7 @@ export default function Desktop() {
                   </svg>
                 </div>
               </div>
-              <div className="content-stretch flex font-['Nunito_Sans:Regular',sans-serif] font-normal items-start justify-between leading-[1.6] relative shrink-0 text-[#0c0805] text-[14px] w-full whitespace-nowrap" data-name="Row">
+              <div className="content-stretch flex font-['Nunito_Sans:Regular',sans-serif] font-normal items-start justify-between leading-[1.6] relative shrink-0 text-[#3D3D3D] text-[14px] w-full whitespace-nowrap" data-name="Row">
                 <p className="relative shrink-0" style={{ fontVariationSettings: "'YTLC' 500, 'wdth' 100" }}>
                   © 2025 Академия Панды. Все права защищены.
                 </p>

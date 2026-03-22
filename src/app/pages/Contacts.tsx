@@ -27,10 +27,10 @@ export function Contacts() {
     <Layout>
       <section className="py-20 bg-gradient-to-b from-white to-[#F0EDD8]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="font-['Nunito',sans-serif] font-bold text-5xl md:text-6xl text-[#0c0805] mb-6">
+          <h1 className="font-['Nunito',sans-serif] font-bold text-5xl md:text-6xl text-[#3D3D3D] mb-6">
             {"Приходите познакомиться"}
           </h1>
-          <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#0c0805] leading-relaxed">
+          <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed">
             {"Мы в Екатеринбурге, ул. Хуторская 1, рядом с домом, в Ботаническом районе."}
             <br />
             {"Будем рады вас видеть!"}
@@ -64,7 +64,7 @@ export function Contacts() {
           </div>
 
           <div className="bg-white rounded-3xl p-8 shadow-xl">
-            <h2 className="font-['Nunito',sans-serif] font-bold text-3xl text-[#0c0805] mb-6">
+            <h2 className="font-['Nunito',sans-serif] font-bold text-3xl text-[#3D3D3D] mb-6">
               {"Как нас найти"}
             </h2>
             <div className="aspect-video bg-[#F0EDD8] rounded-2xl overflow-hidden mb-6">
@@ -81,21 +81,21 @@ export function Contacts() {
               <div className="bg-[#F0EDD8] rounded-2xl p-6">
                 <div className="text-2xl mb-2">{"🚗"}</div>
                 <h3 className="font-['Nunito',sans-serif] font-bold mb-2">{"На машине"}</h3>
-                <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#0c0805]">
+                <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D]">
                   {"Удобная парковка рядом с центром"}
                 </p>
               </div>
               <div className="bg-[#F0EDD8] rounded-2xl p-6">
                 <div className="text-2xl mb-2">{"🚌"}</div>
                 <h3 className="font-['Nunito',sans-serif] font-bold mb-2">{"На автобусе"}</h3>
-                <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#0c0805]">
+                <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D]">
                   {"Остановка в 2 минутах ходьбы"}
                 </p>
               </div>
               <div className="bg-[#F0EDD8] rounded-2xl p-6">
                 <div className="text-2xl mb-2">{"👟"}</div>
                 <h3 className="font-['Nunito',sans-serif] font-bold mb-2">{"Пешком"}</h3>
-                <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#0c0805]">
+                <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D]">
                   {"Безопасный район для прогулок"}
                 </p>
               </div>
@@ -159,10 +159,10 @@ function ContactCard({ icon, title, content, color, link }: any) {
       >
         {icon}
       </div>
-      <h3 className="font-['Nunito',sans-serif] font-bold text-lg text-[#0c0805] mb-2">
+      <h3 className="font-['Nunito',sans-serif] font-bold text-lg text-[#3D3D3D] mb-2">
         {title}
       </h3>
-      <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805]">{content}</p>
+      <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D]">{content}</p>
     </div>
   );
 

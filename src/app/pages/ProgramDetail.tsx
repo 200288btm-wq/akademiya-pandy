@@ -65,13 +65,13 @@ export function ProgramDetail() {
                   {program.statusText}
                 </span>
               </div>
-              <h1 className="font-['Nunito',sans-serif] font-bold text-5xl text-[#0c0805] mb-4">
+              <h1 className="font-['Nunito',sans-serif] font-bold text-5xl text-[#3D3D3D] mb-4">
                 {program.name}
               </h1>
-              <p className="font-['Nunito_Sans',sans-serif] text-2xl text-[#0c0805] mb-6 opacity-80">
+              <p className="font-['Nunito_Sans',sans-serif] text-2xl text-[#3D3D3D] mb-6 opacity-80">
                 {program.shortName}
               </p>
-              <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#0c0805] leading-relaxed mb-8">
+              <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed mb-8">
                 {program.description}
               </p>
               <button
@@ -98,7 +98,7 @@ export function ProgramDetail() {
       {/* Формат */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#0c0805] mb-12 text-center">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#3D3D3D] mb-12 text-center">
             Формат занятий
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -133,7 +133,7 @@ export function ProgramDetail() {
       {/* Что развивает */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#0c0805] mb-12 text-center">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#3D3D3D] mb-12 text-center">
             Что развивает программа
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
@@ -146,10 +146,10 @@ export function ProgramDetail() {
                   <CheckCircle size={24} style={{ color: program.color }} />
                 </div>
                 <div>
-                  <h3 className="font-['Nunito',sans-serif] font-bold text-lg text-[#0c0805] mb-2">
+                  <h3 className="font-['Nunito',sans-serif] font-bold text-lg text-[#3D3D3D] mb-2">
                     {benefit.title}
                   </h3>
-                  <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805]">
+                  <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D]">
                     {benefit.description}
                   </p>
                 </div>
@@ -189,10 +189,10 @@ function FormatCard({ icon, title, value, color }: any) {
       >
         {icon}
       </div>
-      <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#0c0805] opacity-60 mb-1">
+      <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D] opacity-60 mb-1">
         {title}
       </p>
-      <p className="font-['Nunito',sans-serif] font-bold text-xl text-[#0c0805]">{value}</p>
+      <p className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D]">{value}</p>
     </div>
   );
 }

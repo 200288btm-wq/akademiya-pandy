@@ -140,31 +140,31 @@ function Header() {
           <nav className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollTo("about")}
-              className="font-['Nunito_Sans',sans-serif] text-[#0c0805] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0"
+              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0"
             >
               О центре
             </button>
             <Link
               to="/programs"
-              className="font-['Nunito_Sans',sans-serif] text-[#0c0805] hover:text-[#7BAF8E] transition-colors text-lg"
+              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg"
             >
               Направления
             </Link>
             <button
               onClick={() => scrollTo("reviews")}
-              className="font-['Nunito_Sans',sans-serif] text-[#0c0805] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0"
+              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0"
             >
               Отзывы
             </button>
             <Link
               to="/faq"
-              className="font-['Nunito_Sans',sans-serif] text-[#0c0805] hover:text-[#7BAF8E] transition-colors text-lg"
+              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg"
             >
               Вопросы
             </Link>
             <Link
               to="/contacts"
-              className="font-['Nunito_Sans',sans-serif] text-[#0c0805] hover:text-[#7BAF8E] transition-colors text-lg"
+              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg"
             >
               Контакты
             </Link>
@@ -207,21 +207,21 @@ function Footer() {
                 </defs>
               </svg>
             </div>
-            <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] text-sm leading-relaxed">
+            <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm leading-relaxed">
               Тёплое место рядом с домом, куда дети хотят возвращаться
             </p>
           </div>
 
           {/* Навигация */}
           <div>
-            <h4 className="font-['Nunito',sans-serif] font-bold text-[#0c0805] mb-4">
+            <h4 className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D] mb-4">
               Меню
             </h4>
             <ul className="space-y-2">
               <li>
                 <Link
                   to="/"
-                  className="font-['Nunito_Sans',sans-serif] text-[#0c0805] hover:text-[#7BAF8E] transition-colors"
+                  className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors"
                 >
                   Главная
                 </Link>
@@ -229,7 +229,7 @@ function Footer() {
               <li>
                 <Link
                   to="/programs"
-                  className="font-['Nunito_Sans',sans-serif] text-[#0c0805] hover:text-[#7BAF8E] transition-colors"
+                  className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors"
                 >
                   Программы
                 </Link>
@@ -237,7 +237,7 @@ function Footer() {
               <li>
                 <Link
                   to="/contacts"
-                  className="font-['Nunito_Sans',sans-serif] text-[#0c0805] hover:text-[#7BAF8E] transition-colors"
+                  className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors"
                 >
                   Контакты
                 </Link>
@@ -245,7 +245,7 @@ function Footer() {
               <li>
                 <Link
                   to="/faq"
-                  className="font-['Nunito_Sans',sans-serif] text-[#0c0805] hover:text-[#7BAF8E] transition-colors"
+                  className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors"
                 >
                   Вопросы и ответы
                 </Link>
@@ -255,19 +255,19 @@ function Footer() {
 
           {/* Контакты */}
           <div>
-            <h4 className="font-['Nunito',sans-serif] font-bold text-[#0c0805] mb-4">
+            <h4 className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D] mb-4">
               Контакты
             </h4>
             <ul className="space-y-2">
-              <li className="font-['Nunito_Sans',sans-serif] text-[#0c0805]">
+              <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D]">
                 <a href="tel:+79226570142" className="hover:text-[#7BAF8E] transition-colors">
                   +7 (922) 657-01-42
                 </a>
               </li>
-              <li className="font-['Nunito_Sans',sans-serif] text-[#0c0805] text-sm">
+              <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm">
                 г. Екатеринбург, ул. Хуторская 1
               </li>
-              <li className="font-['Nunito_Sans',sans-serif] text-[#0c0805] text-sm">
+              <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm">
                 Ботанический район
               </li>
             </ul>
@@ -275,7 +275,7 @@ function Footer() {
 
           {/* Соцсети */}
           <div>
-            <h4 className="font-['Nunito',sans-serif] font-bold text-[#0c0805] mb-4">
+            <h4 className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D] mb-4">
               Мы в соцсетях
             </h4>
             <div className="flex gap-3">
@@ -309,7 +309,7 @@ function Footer() {
         </div>
 
         <div className="border-t border-gray-200 mt-8 pt-8">
-          <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] text-sm text-center">
+          <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm text-center">
             © 2026 Академия Панды. Все права защищены
           </p>
         </div>

@@ -43,10 +43,10 @@ export function WhyUsSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         {/* Заголовок */}
         <div className="text-center mb-16">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#0c0805] mb-4">
+          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
             Почему дети хотят возвращаться?
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#0c0805] max-w-2xl mx-auto">
+          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
             Мы создали место, где каждый ребёнок чувствует себя важным и принятым
           </p>
         </div>
@@ -61,10 +61,10 @@ export function WhyUsSection() {
               <div className="w-16 h-16 bg-gradient-to-br from-[#7BAF8E] to-[#F2A65A] rounded-2xl flex items-center justify-center text-white mb-4 group-hover:scale-110 transition-transform">
                 {reason.icon}
               </div>
-              <h3 className="font-['Nunito',sans-serif] font-bold text-xl text-[#0c0805] mb-3">
+              <h3 className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] mb-3">
                 {reason.title}
               </h3>
-              <p className="font-['Nunito_Sans',sans-serif] text-[#0c0805] leading-relaxed">
+              <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
                 {reason.description}
               </p>
             </div>
