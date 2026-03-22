@@ -5,17 +5,17 @@ export function HowItWorksSection() {
 
   const steps = [
     {
-      number: "1",
+      image: "https://i.ibb.co/M5MGsm15/Gemini-Generated-Image-arq0wmarq0wmarq0-1.png",
       title: "Выберите направление",
       description: "Посмотрите наши программы и выберите то, что интересно вашему ребёнку. Не уверены? Мы поможем!",
     },
     {
-      number: "2",
+      image: "https://i.ibb.co/KcRkvwHM/Gemini-Generated-Image-rpzikarpzikarpzi-1.png",
       title: "Придите на пробное",
       description: "Первое занятие бесплатно — приходите, познакомьтесь с педагогом и почувствуйте атмосферу.",
     },
     {
-      number: "3",
+      image: "https://i.ibb.co/twknjQ4c/Gemini-Generated-Image-86zxe086zxe086zx-1.png",
       title: "Решите сами",
       description: "Никакого давления. Если ребёнку понравилось — отлично! Если нет — тоже нормально.",
     },
@@ -34,19 +34,24 @@ export function HowItWorksSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-12 relative">
-          <div className="hidden md:block absolute top-16 left-0 right-0 h-1">
-            <div className="absolute left-[16.66%] right-[16.66%] top-0 h-full bg-gradient-to-r from-[#7BAF8E] via-[#F2A65A] to-[#7BAF8E] opacity-20" />
+          {/* Пунктирная линия */}
+          <div className="hidden md:block absolute top-14 left-0 right-0 pointer-events-none">
+            <svg width="100%" height="4" xmlns="http://www.w3.org/2000/svg">
+              <line x1="16.66%" y1="2" x2="83.33%" y2="2"
+                stroke="#7BAF8E" strokeWidth="2"
+                strokeDasharray="8 6" strokeOpacity="0.4" />
+            </svg>
           </div>
 
           {steps.map((step, index) => (
             <div key={index} className="relative">
-              <div className="w-24 h-24 mx-auto mb-6 relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-[#7BAF8E] to-[#F2A65A] rounded-full flex items-center justify-center">
-                  <span className="font-['Nunito',sans-serif] font-bold text-4xl text-white">
-                    {step.number}
-                  </span>
-                </div>
-                <div className="absolute inset-0 rounded-full border-4 border-[#7BAF8E] opacity-20 scale-125" />
+              <div className="w-28 h-28 mx-auto mb-6 relative"
+                style={{ filter: "drop-shadow(1px 3px 6px rgba(0,0,0,0.15))" }}>
+                <img
+                  src={step.image}
+                  alt={step.title}
+                  className="w-full h-full object-contain"
+                />
               </div>
               <div className="text-center">
                 <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-3">
