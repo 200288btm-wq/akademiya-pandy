@@ -1,7 +1,28 @@
 import { Layout } from "../components/Layout";
-import { MapPin, Phone, Clock, MessageCircle } from "lucide-react";
+import { MapPin, Phone, Clock } from "lucide-react";
+import { useModal } from "../components/ModalContext";
+
+function TelegramIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="12" fill="#29A8E0"/>
+      <path d="M17.5 7L5 11.5L9.5 13L11 17.5L13.5 14.5L17 16.5L17.5 7Z" fill="white"/>
+      <path d="M9.5 13L11 17.5L13 14L9.5 13Z" fill="#C8DAEA"/>
+    </svg>
+  );
+}
+
+function VKIcon() {
+  return (
+    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+      <circle cx="12" cy="12" r="12" fill="#0077FF"/>
+      <path d="M12.9 15.5C8.8 15.5 6.5 12.8 6.4 8.2H8.4C8.5 11.7 10 13.1 11.2 13.4V8.2H13.1V11C14.3 10.9 15.5 9.6 15.9 8.2H17.8C17.5 9.9 16.2 11.2 15.3 11.7C16.2 12.1 17.7 13.3 18.2 15.5H16.1C15.7 14.2 14.6 13.2 13.1 13.1V15.5H12.9Z" fill="white"/>
+    </svg>
+  );
+}
 
 export function Contacts() {
+  const { openModal } = useModal();
   return (
     <Layout>
       <section className="py-20 bg-gradient-to-b from-white to-[#F0EDD8]">
@@ -10,7 +31,7 @@ export function Contacts() {
             {"Приходите познакомиться"}
           </h1>
           <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#0c0805] leading-relaxed">
-            {"Мы в Екатеринбурге, ул. Хуторская 1 — рядом с домом, в Ботаническом районе."}
+            {"Мы в Екатеринбурге, ул. Хуторская 1, рядом с домом, в Ботаническом районе."}
             <br />
             {"Будем рады вас видеть!"}
           </p>
@@ -143,12 +164,12 @@ export function Contacts() {
               </select>
             </div>
 
-            <a
-              href="tel:+79226570142"
-              className="block w-full bg-[#F2A65A] hover:bg-[#e89542] text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg text-center"
+            <button
+              onClick={() => openModal()}
+              className="block w-full bg-[#F2A65A] hover:bg-[#e89542] text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg text-center border-none cursor-pointer"
             >
               {"Записаться на пробное занятие"}
-            </a>
+            </button>
 
             <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#0c0805] text-center opacity-60">
               {"Перезвоним в течение часа в рабочее время"}
@@ -167,25 +188,22 @@ export function Contacts() {
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <a
-              href="https://t.me/AcPanda"
-              className="flex items-center gap-3 bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-4 rounded-lg transition-all text-white font-['Nunito_Sans',sans-serif] font-semibold"
+              href="https://t.me/olechkamom"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
             >
-              <MessageCircle size={24} />
-              {"Telegram"}
+              <TelegramIcon />
+              {"Написать в Telegram"}
             </a>
             <a
-              href="tel:+79226570142"
-              className="flex items-center gap-3 bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-4 rounded-lg transition-all text-white font-['Nunito_Sans',sans-serif] font-semibold"
+              href="https://vk.com/im/convo/-231900253?entrypoint=community_page&tab=all"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
             >
-              <Phone size={24} />
-              {"+7 (922) 657-01-42"}
-            </a>
-            <a
-              href="https://vk.com/akademypanda"
-              className="flex items-center gap-3 bg-white bg-opacity-20 hover:bg-opacity-30 px-6 py-4 rounded-lg transition-all text-white font-['Nunito_Sans',sans-serif] font-semibold"
-            >
-              <MessageCircle size={24} />
-              {"ВКонтакте"}
+              <VKIcon />
+              {"Написать ВКонтакте"}
             </a>
           </div>
         </div>
