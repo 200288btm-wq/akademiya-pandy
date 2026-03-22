@@ -5,17 +5,17 @@ export function HowItWorksSection() {
 
   const steps = [
     {
-      image: "https://i.ibb.co/M5MGsm15/Gemini-Generated-Image-arq0wmarq0wmarq0-1.png",
+      image: "https://i.ibb.co/4wjS96ks/Gemini-Generated-Image-95p8bf95p8bf95p8-removebg-preview-1.png",
       title: "Выберите направление",
       description: "Посмотрите наши программы и выберите то, что интересно вашему ребёнку. Не уверены? Мы поможем!",
     },
     {
-      image: "https://i.ibb.co/KcRkvwHM/Gemini-Generated-Image-rpzikarpzikarpzi-1.png",
+      image: "https://i.ibb.co/rf3CV4Sm/Gemini-Generated-Image-st7kqqst7kqqst7k-removebg-preview-1.png",
       title: "Придите на пробное",
       description: "Первое занятие бесплатно — приходите, познакомьтесь с педагогом и почувствуйте атмосферу.",
     },
     {
-      image: "https://i.ibb.co/twknjQ4c/Gemini-Generated-Image-86zxe086zxe086zx-1.png",
+      image: "https://i.ibb.co/6R5wHQbW/Gemini-Generated-Image-sipu2ssipu2ssipu-removebg-preview-1.png",
       title: "Решите сами",
       description: "Никакого давления. Если ребёнку понравилось — отлично! Если нет — тоже нормально.",
     },
