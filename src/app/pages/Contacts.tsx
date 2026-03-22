@@ -115,7 +115,7 @@ export function Contacts() {
             </p>
           </div>
 
-          <form className="space-y-6">
+          <div className="space-y-6">
             <div>
               <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#0c0805] mb-2 block">
                 {"Ваше имя"}
@@ -174,7 +174,7 @@ export function Contacts() {
             <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#0c0805] text-center opacity-60">
               {"Перезвоним в течение часа в рабочее время"}
             </p>
-          </form>
+          </div>
         </div>
       </section>
 
