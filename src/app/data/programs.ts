@@ -46,7 +46,7 @@ export const programs: Program[] = [
     statusText: "Идёт набор",
     duration: "60 минут",
     groupSize: "до 10 детей",
-    image: "https://i.ibb.co/k2702TBS/photo-2026-03-19-20-51-16.jpg"
+    image: "https://i.ibb.co/cKK28JvZ/Generated-Image-March-22-2026-3-47-PM.png"
   },
   {
     id: "3",
@@ -90,8 +90,8 @@ export const programs: Program[] = [
     ageMax: 14,
     description: "Новые друзья, стратегия, логика и море удовольствия — в тёплой компании единомышленников",
     color: "#D4826A",
-    status: "soon",
-    statusText: "Скоро",
+    status: "active",
+    statusText: "Идёт набор",
     duration: "90 минут",
     groupSize: "до 10 человек",
     image: "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg"
