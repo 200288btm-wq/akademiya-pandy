@@ -159,6 +159,181 @@ export function ProgramDetail() {
         </div>
       </section>
 
+      {/* Описание программы — Смышлёная Панда */}
+      {program.slug === "smyshlennaya-panda" && (
+        <>
+          <section className="py-20 bg-[#F0EDD8]">
+            <div className="max-w-7xl mx-auto px-6">
+              <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#3D3D3D] mb-4 text-center">
+                Каждое занятие включает четыре блока
+              </h2>
+              <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] text-center mb-12 opacity-70">
+                Смена деятельности каждые 10–15 минут — так детям не скучно и всё усваивается легче
+              </p>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                {[
+                  {
+                    emoji: "🧠",
+                    title: "Познавательный блок",
+                    items: ["Формирование математических понятий (ФЭМП)", "Развитие речи", "Логические задачи", "Представления об окружающем мире", "Знакомство с физическими понятиями через опыты"],
+                    color: "#7BAF8E"
+                  },
+                  {
+                    emoji: "🏃",
+                    title: "Крупная моторика",
+                    items: ["Баланс тела", "Развитие межполушарных взаимодействий", "Нейрогимнастика", "Ортопедические упражнения"],
+                    color: "#F2A65A"
+                  },
+                  {
+                    emoji: "✋",
+                    title: "Мелкая моторика",
+                    items: ["Нейроупражнения", "Сенсорное восприятие", "Пальчиковая гимнастика"],
+                    color: "#7BAF8E"
+                  },
+                  {
+                    emoji: "🎨",
+                    title: "Творческий блок",
+                    items: ["Рисование", "Аппликация", "Объёмные поделки", "Лепка"],
+                    color: "#F2A65A"
+                  }
+                ].map((block, i) => (
+                  <div key={i} className="bg-white rounded-2xl p-6 shadow-md">
+                    <div className="flex items-center gap-3 mb-4">
+                      <span className="text-3xl">{block.emoji}</span>
+                      <h3 className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D]">
+                        {block.title}
+                      </h3>
+                    </div>
+                    <ul className="space-y-2">
+                      {block.items.map((item, j) => (
+                        <li key={j} className="flex items-start gap-2 font-['Nunito_Sans',sans-serif] text-[#3D3D3D]">
+                          <span style={{ color: block.color }} className="mt-1 flex-shrink-0">●</span>
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-20 bg-white">
+            <div className="max-w-5xl mx-auto px-6">
+              <div className="bg-[#F0EDD8] rounded-3xl p-8 md:p-12 relative overflow-hidden">
+                <div className="relative z-10 md:pr-64">
+                  <h2 className="font-['Nunito',sans-serif] font-bold text-3xl text-[#3D3D3D] mb-4">
+                    Каждая неделя — одна тема
+                  </h2>
+                  <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] leading-relaxed mb-6">
+                    Все занятия объединены через игру с героями — умной пандочкой <strong>Звёздочкой</strong> и обезьянкой <strong>Пружинкой</strong>. Через их приключения дети ненавязчиво погружаются в обучающую среду.
+                  </p>
+                  <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-70">
+                    Единая тема недели связывает все четыре блока в целостную историю — так знания усваиваются глубже и остаются надолго.
+                  </p>
+                </div>
+                <div className="absolute right-0 bottom-0 flex items-end gap-2 md:gap-4 pr-4">
+                  <img
+                    src="https://i.ibb.co/twhKXxHJ/Generated-Image-March-19-2026-11-19-PM-removebg-preview.png"
+                    alt="Панда Звёздочка"
+                    className="h-48 md:h-56 object-contain drop-shadow-lg"
+                  />
+                  <img
+                    src="https://i.ibb.co/Q7dTC7wt/Generated-Image-March-19-2026-11-26-PM-removebg-preview.png"
+                    alt="Обезьянка Пружинка"
+                    className="h-40 md:h-48 object-contain drop-shadow-lg"
+                  />
+                </div>
+              </div>
+            </div>
+          </section>
+        </>
+      )}
+
+      {/* Описание программы — Пушистые художники */}
+      {program.slug === "pushistye-hudozhniki" && (
+        <section className="py-20 bg-[#F0EDD8]">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#3D3D3D] mb-4 text-center">
+              Как устроена программа
+            </h2>
+            <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] text-center mb-12 opacity-70 max-w-3xl mx-auto">
+              Программа построена на принципе творческой гостиной. Ребёнок сам выбирает что рисовать — педагог мягко направляет. Теория гармонично включена в творческий процесс.
+            </p>
+
+            {/* Адаптация по возрасту */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+              {[
+                { age: "4–6 лет", desc: "Знакомство с формой, цветом, крупной композицией" },
+                { age: "7–12 лет", desc: "Осознанное построение формы, светотень, материалы" },
+                { age: "Подростки", desc: "Глубокая проработка техники, объёма, композиции" },
+              ].map((item, i) => (
+                <div key={i} className="bg-white rounded-2xl p-6 shadow-md text-center">
+                  <div className="inline-block px-4 py-1 rounded-full text-sm font-semibold mb-3 font-['Nunito_Sans',sans-serif]"
+                    style={{ backgroundColor: "#F2A65A20", color: "#F2A65A" }}>
+                    {item.age}
+                  </div>
+                  <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D]">{item.desc}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Структура занятия */}
+            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-6 text-center">
+              Структура занятия
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              {[
+                { num: "1", title: "Вводная часть (5–7 мин)", items: ["Обсуждение проекта", "Выбор референса", "Постановка художественной задачи"] },
+                { num: "2", title: "Теоретический микро-блок (5–10 мин)", items: ["Как построить форму", "Где свет и тень", "Как смешать нужный цвет", "Как работать кистью"] },
+                { num: "3", title: "Практическая работа (30–40 мин)", items: ["Работа над индивидуальным проектом", "Персональные комментарии", "Корректировка через показ, а не критику"] },
+                { num: "4", title: "Рефлексия (5 мин)", items: ["Что получилось", "Что было сложным", "Какой следующий шаг"] },
+              ].map((block, i) => (
+                <div key={i} className="bg-white rounded-2xl p-6 shadow-md">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-8 h-8 rounded-full flex items-center justify-center text-white font-bold text-sm flex-shrink-0"
+                      style={{ backgroundColor: "#F2A65A" }}>
+                      {block.num}
+                    </div>
+                    <h4 className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">{block.title}</h4>
+                  </div>
+                  <ul className="space-y-1">
+                    {block.items.map((item, j) => (
+                      <li key={j} className="flex items-start gap-2 font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm">
+                        <span className="text-[#F2A65A] mt-1 flex-shrink-0">●</span>
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+
+            {/* Материалы */}
+            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-6 text-center">
+              Материалы и техники
+            </h3>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+              {[
+                { name: "Акварель", items: ["Прозрачность и слои", "Работа по сырому", "Цветовые переходы"] },
+                { name: "Гуашь", items: ["Плотность", "Перекрытие цвета", "Декоративность"] },
+                { name: "Акрил", items: ["Работа плотным слоем", "Фактура", "Основы на холсте"] },
+                { name: "Графика", items: ["Карандаш и штрих", "Линия", "Тональные градации"] },
+              ].map((mat, i) => (
+                <div key={i} className="bg-white rounded-2xl p-4 shadow-md">
+                  <h4 className="font-['Nunito',sans-serif] font-bold text-[#F2A65A] mb-3">{mat.name}</h4>
+                  <ul className="space-y-1">
+                    {mat.items.map((item, j) => (
+                      <li key={j} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm">{item}</li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <section id="cta" className="py-20 bg-gradient-to-br from-[#7BAF8E] to-[#6a9e7d]">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -208,7 +383,7 @@ function getBenefits(slug: string) {
     "pushistye-hudozhniki": [
       { title: "Построение композиции", description: "Основы композиции и пространственного мышления" },
       { title: "Теория цвета", description: "Как работать с цветом и создавать гармонию" },
-      { title: "Разные техники", description: "От реализма до абстракции, от акварели до гуаши" },
+      { title: "Разные техники, жанры, направления", description: "От реализма до абстракции, от живописи до графики" },
       { title: "Уверенность в себе", description: "Творчество без оценок и сравнений" },
     ],
     "sekrety-miniatyurista": [
