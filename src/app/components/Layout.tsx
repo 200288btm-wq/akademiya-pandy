@@ -58,8 +58,10 @@ function Header({ scrolled }: { scrolled: boolean }) {
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
+  const [mobileOpen, setMobileOpen] = useState(false);
 
   const scrollTo = (id: string) => {
+    setMobileOpen(false);
     if (!isHome) {
       navigate("/");
       setTimeout(() => {
@@ -71,71 +73,95 @@ function Header({ scrolled }: { scrolled: boolean }) {
   };
 
   return (
-    <header className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${scrolled ? "py-1" : "py-2"}`}>
-      <div className="max-w-7xl mx-auto px-6">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-2">
-            {/* Кнопка назад — только не на главной */}
-            {!isHome && (
-              <button
-                onClick={() => navigate(-1)}
-                className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#F0EDD8] transition-colors border-none cursor-pointer bg-transparent mr-1"
-                aria-label="Назад"
-              >
-                <ArrowLeft size={20} className="text-[#3D3D3D]" />
-              </button>
-            )}
-            <Link to="/">
-              <img
-                src="/logo.svg"
-                alt="Академия Панды"
-                className={`w-auto object-contain transition-all duration-300 ${scrolled ? "h-[40px]" : "h-[55px]"}`}
-              />
-            </Link>
-          </div>
-          <nav className="hidden md:flex items-center gap-8">
-            <button
-              onClick={() => scrollTo("about")}
-              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0"
-            >
-              О центре
-            </button>
-            <Link
-              to="/programs"
-              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg"
-            >
-              Направления
-            </Link>
-            <button
-              onClick={() => scrollTo("reviews")}
-              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0"
-            >
-              Отзывы
-            </button>
-            <Link
-              to="/faq"
-              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg"
-            >
-              Вопросы
-            </Link>
-            <Link
-              to="/contacts"
-              className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg"
-            >
-              Контакты
-            </Link>
-          </nav>
+    <>
+      <header className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${scrolled ? "py-1" : "py-2"}`}>
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-2">
+              {!isHome && (
+                <button
+                  onClick={() => navigate(-1)}
+                  className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#F0EDD8] transition-colors border-none cursor-pointer bg-transparent mr-1"
+                  aria-label="Назад"
+                >
+                  <ArrowLeft size={20} className="text-[#3D3D3D]" />
+                </button>
+              )}
+              <Link to="/">
+                <img
+                  src="/logo.svg"
+                  alt="Академия Панды"
+                  className={`w-auto object-contain transition-all duration-300 ${scrolled ? "h-[40px]" : "h-[55px]"}`}
+                />
+              </Link>
+            </div>
 
-          <button
-            onClick={() => openModal()}
-            className="hidden md:flex items-center gap-2 bg-[#F2A65A] hover:bg-[#e89542] text-white px-6 py-3 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold transition-colors border-none cursor-pointer"
-          >
-            <Phone size={20} />
-            Записаться
-          </button>
+            {/* Десктоп меню — не трогаем */}
+            <nav className="hidden md:flex items-center gap-8">
+              <button onClick={() => scrollTo("about")} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0">О центре</button>
+              <Link to="/programs" className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg">Направления</Link>
+              <button onClick={() => scrollTo("reviews")} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0">Отзывы</button>
+              <Link to="/faq" className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg">Вопросы</Link>
+              <Link to="/contacts" className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg">Контакты</Link>
+            </nav>
+
+            <div className="flex items-center gap-2">
+              {/* Кнопка записаться — только десктоп */}
+              <button onClick={() => openModal()} className="hidden md:flex items-center gap-2 bg-[#F2A65A] hover:bg-[#e89542] text-white px-6 py-3 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold transition-colors border-none cursor-pointer">
+                <Phone size={20} />
+                Записаться
+              </button>
+              {/* Гамбургер — только мобильный */}
+              <button
+                onClick={() => setMobileOpen(true)}
+                className="md:hidden w-10 h-10 flex flex-col items-center justify-center gap-1.5 border-none cursor-pointer bg-transparent"
+                aria-label="Меню"
+              >
+                <span className="w-6 h-0.5 bg-[#3D3D3D] block rounded"></span>
+                <span className="w-6 h-0.5 bg-[#3D3D3D] block rounded"></span>
+                <span className="w-6 h-0.5 bg-[#3D3D3D] block rounded"></span>
+              </button>
+            </div>
+          </div>
         </div>
-      </div>
-    </header>
+      </header>
+
+      {/* Мобильное меню — выезжает справа */}
+      {mobileOpen && (
+        <div className="fixed inset-0 z-50 md:hidden">
+          {/* Затемнение */}
+          <div className="absolute inset-0 bg-black/40" onClick={() => setMobileOpen(false)} />
+          {/* Панель */}
+          <div className="absolute right-0 top-0 h-full w-72 bg-white shadow-2xl flex flex-col">
+            {/* Шапка панели */}
+            <div className="flex items-center justify-between px-6 py-5 border-b border-gray-100">
+              <img src="/logo.svg" alt="Академия Панды" className="h-10 w-auto object-contain" />
+              <button onClick={() => setMobileOpen(false)} className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#F0EDD8] border-none cursor-pointer bg-transparent">
+                <span className="text-2xl text-[#3D3D3D] leading-none">×</span>
+              </button>
+            </div>
+            {/* Ссылки */}
+            <nav className="flex flex-col px-6 py-6 gap-5 flex-1">
+              <button onClick={() => scrollTo("about")} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl text-left bg-transparent border-none cursor-pointer p-0 hover:text-[#7BAF8E] transition-colors">О центре</button>
+              <Link to="/programs" onClick={() => setMobileOpen(false)} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl hover:text-[#7BAF8E] transition-colors">Направления</Link>
+              <button onClick={() => scrollTo("reviews")} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl text-left bg-transparent border-none cursor-pointer p-0 hover:text-[#7BAF8E] transition-colors">Отзывы</button>
+              <Link to="/faq" onClick={() => setMobileOpen(false)} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl hover:text-[#7BAF8E] transition-colors">Вопросы</Link>
+              <Link to="/contacts" onClick={() => setMobileOpen(false)} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl hover:text-[#7BAF8E] transition-colors">Контакты</Link>
+            </nav>
+            {/* Кнопка записаться */}
+            <div className="px-6 pb-8">
+              <button
+                onClick={() => { setMobileOpen(false); openModal(); }}
+                className="w-full flex items-center justify-center gap-2 bg-[#F2A65A] hover:bg-[#e89542] text-white px-6 py-4 rounded-xl font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-colors border-none cursor-pointer"
+              >
+                <Phone size={20} />
+                Записаться
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
+    </>
   );
 }
 
