@@ -1,8 +1,8 @@
 import { Link, useNavigate, useLocation } from "react-router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useModal } from "./ModalContext";
 import svgPaths from "../../imports/svg-sfs6t7friq";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone, ArrowLeft, ArrowUp } from "lucide-react";
 
 function ScrollToTop() {
   const { pathname, hash } = useLocation();
@@ -20,49 +20,47 @@ function ScrollToTop() {
 }
 
 export function Layout({ children }: { children: React.ReactNode }) {
+  const [scrolled, setScrolled] = useState(false);
+  const [showTop, setShowTop] = useState(false);
+
+  useEffect(() => {
+    const onScroll = () => {
+      setScrolled(window.scrollY > 60);
+      setShowTop(window.scrollY > 400);
+    };
+    window.addEventListener("scroll", onScroll);
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
   return (
     <div className="min-h-screen bg-[#F0EDD8] relative">
       <ScrollToTop />
-      {/* Навигация */}
-      <Header />
-      
-      {/* Основной контент */}
+      <Header scrolled={scrolled} />
       <main>{children}</main>
-      
-      {/* Футер */}
       <Footer />
+
+      {/* Кнопка "Наверх" */}
+      {showTop && (
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="fixed bottom-6 right-6 z-50 w-12 h-12 bg-[#7BAF8E] hover:bg-[#6a9e7d] text-white rounded-full shadow-lg flex items-center justify-center transition-all border-none cursor-pointer"
+          aria-label="Наверх"
+        >
+          <ArrowUp size={20} />
+        </button>
+      )}
     </div>
   );
 }
 
-function PawPrint({ size, rotation }: { size: number; rotation: number }) {
-  return (
-    <svg
-      width={size}
-      height={size}
-      viewBox="0 0 100 100"
-      fill="currentColor"
-      className="text-[#7BAF8E]"
-      style={{ transform: `rotate(${rotation}deg)` }}
-    >
-      <ellipse cx="50" cy="70" rx="20" ry="25" />
-      <ellipse cx="30" cy="40" rx="12" ry="15" />
-      <ellipse cx="50" cy="35" rx="12" ry="15" />
-      <ellipse cx="70" cy="40" rx="12" ry="15" />
-      <ellipse cx="85" cy="55" rx="10" ry="12" />
-    </svg>
-  );
-}
-
-
-
-function Header() {
+function Header({ scrolled }: { scrolled: boolean }) {
   const { openModal } = useModal();
   const navigate = useNavigate();
   const location = useLocation();
+  const isHome = location.pathname === "/";
 
   const scrollTo = (id: string) => {
-    if (location.pathname !== "/") {
+    if (!isHome) {
       navigate("/");
       setTimeout(() => {
         document.getElementById(id)?.scrollIntoView({ behavior: "smooth" });
@@ -73,76 +71,28 @@ function Header() {
   };
 
   return (
-    <header className="bg-white shadow-md sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-6 py-4">
+    <header className={`bg-white shadow-md sticky top-0 z-50 transition-all duration-300 ${scrolled ? "py-1" : "py-2"}`}>
+      <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between">
-          <Link to="/" className="flex items-center gap-3">
-            <img src="/logo.svg" alt="Академия Панды" className="h-[60px] w-auto object-contain" />
-            <div className="hidden">
-              <svg className="h-full w-full" viewBox="0 0 226 76" fill="none">
-                <g clipPath="url(#clip0_1_832)">
-                  <path d={svgPaths.p38a13b00} fill="#F3F3F7" fillOpacity="0.0117647" />
-                  <path d={svgPaths.pb181f00} fill="#F3F3F7" fillOpacity="0.0117647" />
-                  <path d={svgPaths.p230cad00} fill="#080808" />
-                  <path d={svgPaths.p37293700} fill="#080808" />
-                  <path d={svgPaths.pe256300} fill="#080808" />
-                  <path d={svgPaths.p12470f80} fill="#080808" />
-                  <path d={svgPaths.p2293a000} fill="#080808" />
-                  <path d={svgPaths.p35bb4800} fill="#080808" />
-                  <path d={svgPaths.p88cf880} fill="#080808" />
-                  <path d={svgPaths.pa5c14f0} fill="#080808" />
-                  <path d={svgPaths.p129d6200} fill="#080808" />
-                  <path d={svgPaths.p7c15380} fill="#080808" />
-                  <path d={svgPaths.p2f072200} fill="#080808" />
-                  <path d={svgPaths.p35ee200} fill="#080808" />
-                  <path d={svgPaths.p1d22080} fill="#080808" />
-                  <path d={svgPaths.p3d261b00} fill="#080808" />
-                  <path d={svgPaths.p1fa8fd00} fill="#080808" />
-                  <path d={svgPaths.p14c7ac00} fill="#080808" />
-                  <path d={svgPaths.p22bdb400} fill="#82C4A0" />
-                  <path d={svgPaths.p46880} fill="#080808" />
-                  <path d={svgPaths.pdf0a900} fill="#82C4A0" />
-                  <path d={svgPaths.p3f545c80} fill="#080808" />
-                  <path d={svgPaths.p24623680} fill="#FCFBFA" />
-                  <path d={svgPaths.p22264800} fill="#3A3A3A" />
-                  <path d={svgPaths.pc895900} fill="#080808" />
-                  <path d={svgPaths.p193cb600} fill="#FCFBFA" />
-                  <path d={svgPaths.p30cbf780} fill="#FCFBFA" />
-                  <path d={svgPaths.p12ad4600} fill="#3A3A3A" />
-                  <path d={svgPaths.p3580c100} fill="#080808" />
-                  <path d={svgPaths.p15866d00} fill="#FCFBFA" />
-                  <path d={svgPaths.p2000e700} fill="#FCFBFA" />
-                  <path d={svgPaths.p13bfad80} fill="#080808" />
-                  <path d={svgPaths.p3d632f80} fill="#080808" />
-                  <path d={svgPaths.pa2c5600} fill="#FCFBFA" />
-                  <path d={svgPaths.p2fca6900} fill="#DEDDDC" />
-                  <path d={svgPaths.p23f5ce80} fill="#DEDDDC" />
-                  <path d={svgPaths.p1a4fdd00} fill="#DEDDDC" />
-                  <path d={svgPaths.p2f223300} fill="#DEDDDC" />
-                  <path d={svgPaths.p11316f80} fill="#FCFBFA" />
-                  <path d={svgPaths.p2333dd00} fill="#080808" />
-                  <path d={svgPaths.p3a19ff80} fill="#3A3A3A" />
-                  <path d={svgPaths.p3350000} fill="#82C4A0" />
-                  <path d={svgPaths.pee78f00} fill="#FCFBFA" />
-                  <path d={svgPaths.peb8e00} fill="#FCFBFA" />
-                  <path d={svgPaths.p3f075270} fill="#FCFBFA" />
-                  <path d={svgPaths.p37a0e500} fill="#FCFBFA" />
-                  <path d={svgPaths.p37e510b0} fill="#FCFBFA" />
-                  <path d={svgPaths.p2165d400} fill="#FCFBFA" />
-                  <path d={svgPaths.p6d56a80} fill="#FCFBFA" />
-                  <path d={svgPaths.p88e2e80} fill="#FCFBFA" />
-                  <path d={svgPaths.p38a71780} fill="#FCFBFA" />
-                  <path d={svgPaths.p39377600} fill="#FCFBFA" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_1_832">
-                    <rect fill="white" height="76" width="226" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
-          </Link>
-
+          <div className="flex items-center gap-2">
+            {/* Кнопка назад — только не на главной */}
+            {!isHome && (
+              <button
+                onClick={() => navigate(-1)}
+                className="w-9 h-9 flex items-center justify-center rounded-full hover:bg-[#F0EDD8] transition-colors border-none cursor-pointer bg-transparent mr-1"
+                aria-label="Назад"
+              >
+                <ArrowLeft size={20} className="text-[#3D3D3D]" />
+              </button>
+            )}
+            <Link to="/">
+              <img
+                src="/logo.svg"
+                alt="Академия Панды"
+                className={`w-auto object-contain transition-all duration-300 ${scrolled ? "h-[40px]" : "h-[55px]"}`}
+              />
+            </Link>
+          </div>
           <nav className="hidden md:flex items-center gap-8">
             <button
               onClick={() => scrollTo("about")}
@@ -198,21 +148,6 @@ function Footer() {
           {/* Логотип и слоган */}
           <div className="col-span-1">
             <img src="/logo.svg" alt="Академия Панды" className="h-[60px] w-auto object-contain mb-4" />
-            <div className="hidden">
-              <svg className="h-full w-full" viewBox="0 0 226 76" fill="none">
-                <g clipPath="url(#clip0_footer)">
-                  <path d={svgPaths.p38a13b00} fill="#F3F3F7" fillOpacity="0.0117647" />
-                  <path d={svgPaths.p230cad00} fill="#080808" />
-                  <path d={svgPaths.p22bdb400} fill="#82C4A0" />
-                  <path d={svgPaths.p3350000} fill="#82C4A0" />
-                </g>
-                <defs>
-                  <clipPath id="clip0_footer">
-                    <rect fill="white" height="76" width="226" />
-                  </clipPath>
-                </defs>
-              </svg>
-            </div>
             <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm leading-relaxed">
               Тёплое место рядом с домом, куда дети хотят возвращаться
             </p>
