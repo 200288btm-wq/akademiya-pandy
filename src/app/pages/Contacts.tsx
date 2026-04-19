@@ -89,7 +89,7 @@ export function Contacts() {
                 <div className="text-2xl mb-2">{"🚌"}</div>
                 <h3 className="font-['Nunito',sans-serif] font-bold mb-2">{"На автобусе"}</h3>
                 <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D]">
-                  {"Остановка в 2 минутах ходьбы"}
+                  {"От остановки «Саввы Белых» спокойным шагом с ребёнком 10 минут"}
                 </p>
               </div>
               <div className="bg-[#F0EDD8] rounded-2xl p-6">
