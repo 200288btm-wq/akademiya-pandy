@@ -1,9 +1,15 @@
+import { useSEO } from "../hooks/useSEO";
 import { Layout } from "../components/Layout";
 import { Link } from "react-router";
 import { programs } from "../data/programs";
 import { ChevronRight } from "lucide-react";
 
 export function Programs() {
+  useSEO({
+    title: "Направления — Академия Панды | Детский центр в Екатеринбурге",
+    description: "Все направления Академии Панды: подготовка к школе, рисование, английский язык, настольные игры, танцы, архитектурное моделирование. Дети 4–14 лет. Ботанический район Екатеринбурга.",
+    keywords: "кружки для детей Екатеринбург, рисование для детей Екатеринбург, английский для детей Ботанический район, подготовка к школе Екатеринбург, танцы для детей Екатеринбург",
+  });
   return (
     <Layout>
       {/* Заголовок */}

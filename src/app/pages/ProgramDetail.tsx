@@ -3,6 +3,7 @@ import { Layout } from "../components/Layout";
 import { useModal } from "../components/ModalContext";
 import { programs } from "../data/programs";
 import { ArrowLeft, Clock, Users, CheckCircle } from "lucide-react";
+import { useSEO } from "../hooks/useSEO";
 
 export function ProgramDetail() {
   const { openModal } = useModal();
@@ -23,6 +24,12 @@ export function ProgramDetail() {
       </Layout>
     );
   }
+
+  useSEO({
+    title: `${program.name} — Академия Панды | ${program.shortName} для детей ${program.age} в Екатеринбурге`,
+    description: `${program.description}. Занятия в Академии Панды в Ботаническом районе Екатеринбурга. ${program.duration}, группы ${program.groupSize}. Первое занятие бесплатно.`,
+    keywords: `${program.name} Екатеринбург, ${program.shortName} для детей Екатеринбург, детский центр Ботанический район`,
+  });
 
   return (
     <Layout>

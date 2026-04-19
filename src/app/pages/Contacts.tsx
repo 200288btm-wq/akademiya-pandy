@@ -1,3 +1,4 @@
+import { useSEO } from "../hooks/useSEO";
 import { Layout } from "../components/Layout";
 import { MapPin, Phone, Clock } from "lucide-react";
 import { useModal } from "../components/ModalContext";
@@ -22,6 +23,11 @@ function VKIcon() {
 }
 
 export function Contacts() {
+  useSEO({
+    title: "Контакты — Академия Панды | Ботанический район, Екатеринбург",
+    description: "Академия Панды находится в Екатеринбурге, ул. Хуторская 1, Ботанический район. Телефон: +7 (922) 657-01-42. Запишитесь на бесплатное пробное занятие.",
+    keywords: "Академия Панды адрес, детский центр Ботанический район адрес, развивающий центр Екатеринбург контакты, детские занятия Хуторская Екатеринбург",
+  });
   const { openModal } = useModal();
   return (
     <Layout>

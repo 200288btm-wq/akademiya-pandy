@@ -1,4 +1,5 @@
 import { Layout } from "../components/Layout";
+import { useSEO } from "../hooks/useSEO";
 import { HeroSection } from "../components/home/HeroSection";
 import { ProgramsSection } from "../components/home/ProgramsSection";
 import { AboutSection } from "../components/home/AboutSection";
@@ -13,10 +14,7 @@ function PaperSection({ children, index }: { children: React.ReactNode; index: n
   return (
     <div
       className="paper-section"
-      style={{
-        "--section-z": index + 2,
-        top: `${80}px`,
-      } as React.CSSProperties}
+      style={{ "--section-z": index + 2, top: `${80}px` } as React.CSSProperties}
     >
       {children}
     </div>
@@ -24,6 +22,12 @@ function PaperSection({ children, index }: { children: React.ReactNode; index: n
 }
 
 export function Home() {
+  useSEO({
+    title: "Академия Панды — развивающий центр для детей в Ботаническом районе Екатеринбурга",
+    description: "Развивающие занятия для детей 4–14 лет в Ботаническом районе Екатеринбурга. Подготовка к школе, рисование, английский, настольные игры, танцы. Первое занятие бесплатно. Рядом с ТЦ Дирижабль.",
+    keywords: "развивающие занятия Екатеринбург, детский центр Ботанический район, подготовка к школе Екатеринбург, занятия для детей Чкаловский район, центр развития детей Екатеринбург, детские кружки Ботанический, развивающий центр Екатеринбург",
+  });
+
   const sections = [
     <ProgramsSection />,
     <AboutSection />,

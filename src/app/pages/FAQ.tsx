@@ -1,3 +1,4 @@
+import { useSEO } from "../hooks/useSEO";
 import { useState } from "react";
 import { Layout } from "../components/Layout";
 import { ChevronDown } from "lucide-react";
@@ -22,6 +23,11 @@ function VKIcon() {
 }
 
 export function FAQ() {
+  useSEO({
+    title: "Вопросы и ответы — Академия Панды | Детский центр Екатеринбург",
+    description: "Ответы на частые вопросы об Академии Панды: возраст детей, стоимость, расписание, пробное занятие, как добраться. Детский центр в Ботаническом районе Екатеринбурга.",
+    keywords: "детский центр Екатеринбург вопросы, занятия для детей Екатеринбург цены, детский кружок Ботанический район",
+  });
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const faqs = [
