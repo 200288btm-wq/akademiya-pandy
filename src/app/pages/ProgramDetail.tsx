@@ -220,29 +220,30 @@ export function ProgramDetail() {
 
           <section className="py-20 bg-white">
             <div className="max-w-5xl mx-auto px-6">
-              <div className="bg-[#F0EDD8] rounded-3xl p-8 md:p-12 relative overflow-hidden">
-                <div className="relative z-10 md:pr-64">
-                  <h2 className="font-['Nunito',sans-serif] font-bold text-3xl text-[#3D3D3D] mb-4">
+              <div className="bg-[#F0EDD8] rounded-3xl p-8 md:p-12 relative overflow-hidden min-h-[280px] md:min-h-[260px]">
+                {/* Обезьянка — правый верхний угол */}
+                <img
+                  src="https://i.ibb.co/Q7dTC7wt/Generated-Image-March-19-2026-11-26-PM-removebg-preview.png"
+                  alt="Обезьянка Пружинка"
+                  className="absolute top-0 right-0 h-36 md:h-48 object-contain drop-shadow-lg"
+                />
+                {/* Панда — левый нижний угол */}
+                <img
+                  src="https://i.ibb.co/twhKXxHJ/Generated-Image-March-19-2026-11-19-PM-removebg-preview.png"
+                  alt="Панда Звёздочка"
+                  className="absolute bottom-0 left-0 h-32 md:h-44 object-contain drop-shadow-lg"
+                />
+                {/* Текст по центру с отступами от картинок */}
+                <div className="relative z-10 px-36 md:px-48 text-center">
+                  <h2 className="font-['Nunito',sans-serif] font-bold text-2xl md:text-3xl text-[#3D3D3D] mb-4">
                     Каждая неделя — одна тема
                   </h2>
-                  <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] leading-relaxed mb-6">
+                  <p className="font-['Nunito_Sans',sans-serif] text-base md:text-lg text-[#3D3D3D] leading-relaxed mb-4">
                     Все занятия объединены через игру с героями — умной пандочкой <strong>Звёздочкой</strong> и обезьянкой <strong>Пружинкой</strong>. Через их приключения дети ненавязчиво погружаются в обучающую среду.
                   </p>
-                  <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-70">
+                  <p className="font-['Nunito_Sans',sans-serif] text-sm md:text-base text-[#3D3D3D] opacity-70">
                     Единая тема недели связывает все четыре блока в целостную историю — так знания усваиваются глубже и остаются надолго.
                   </p>
-                </div>
-                <div className="absolute right-0 bottom-0 flex items-end gap-2 md:gap-4 pr-4">
-                  <img
-                    src="https://i.ibb.co/twhKXxHJ/Generated-Image-March-19-2026-11-19-PM-removebg-preview.png"
-                    alt="Панда Звёздочка"
-                    className="h-48 md:h-56 object-contain drop-shadow-lg"
-                  />
-                  <img
-                    src="https://i.ibb.co/Q7dTC7wt/Generated-Image-March-19-2026-11-26-PM-removebg-preview.png"
-                    alt="Обезьянка Пружинка"
-                    className="h-40 md:h-48 object-contain drop-shadow-lg"
-                  />
                 </div>
               </div>
             </div>
