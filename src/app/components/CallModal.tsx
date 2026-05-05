@@ -38,6 +38,32 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
       console.log("Send error", e);
     }
 
+    // Записываем заявку в CRM (Supabase)
+    try {
+      const SUPABASE_URL = "https://dmvqiuminxrtcaylfcwg.supabase.co";
+      const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ||
+        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtdnFpdW1pbnhydGNheWxmY3dnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4MDc4NTAsImV4cCI6MjA5MjM4Mzg1MH0.oosI4r-Hdtea_pEy-yIRPYZG37fAOPLNdk1Y_yG93k0";
+      await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "apikey": SUPABASE_KEY,
+          "Authorization": `Bearer ${SUPABASE_KEY}`,
+          "Prefer": "return=minimal",
+        },
+        body: JSON.stringify({
+          source: "studio",
+          parent_name: name,
+          parent_phone: phone,
+          squad: programName || null,
+          notes: time ? `Удобное время: ${time}` : null,
+          status: "new",
+        }),
+      });
+    } catch (e) {
+      console.log("Supabase error", e);
+    }
+
     setSent(true);
     setTimeout(() => {
       onClose();
