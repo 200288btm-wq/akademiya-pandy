@@ -38,30 +38,20 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
       console.log("Send error", e);
     }
 
-    // Записываем заявку в CRM (Supabase)
+    // Записываем заявку в CRM через serverless функцию (обходит CORS)
     try {
-      const SUPABASE_URL = "https://dmvqiuminxrtcaylfcwg.supabase.co";
-      const SUPABASE_KEY = import.meta.env.VITE_SUPABASE_ANON_KEY ||
-        "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImRtdnFpdW1pbnhydGNheWxmY3dnIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzY4MDc4NTAsImV4cCI6MjA5MjM4Mzg1MH0.oosI4r-Hdtea_pEy-yIRPYZG37fAOPLNdk1Y_yG93k0";
-      await fetch(`${SUPABASE_URL}/rest/v1/leads`, {
+      await fetch("/api/submit-lead", {
         method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "apikey": SUPABASE_KEY,
-          "Authorization": `Bearer ${SUPABASE_KEY}`,
-          "Prefer": "return=minimal",
-        },
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
-          source: "studio",
-          parent_name: name,
-          parent_phone: phone,
-          squad: programName || null,
-          notes: time ? `Удобное время: ${time}` : null,
-          status: "new",
+          name,
+          phone,
+          time,
+          programName: programName || null,
         }),
       });
     } catch (e) {
-      console.log("Supabase error", e);
+      console.log("Lead submit error", e);
     }
 
     setSent(true);
