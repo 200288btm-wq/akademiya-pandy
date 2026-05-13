@@ -6,7 +6,7 @@ export default async function handler(req, res) {
   if (req.method === 'OPTIONS') return res.status(200).end();
   if (req.method !== 'POST') return res.status(405).json({ error: 'Method not allowed' });
 
-  const { name, phone, time, programName } = req.body || {};
+  const { name, phone, childName, time, programName } = req.body || {};
 
   const SUPABASE_URL = 'https://dmvqiuminxrtcaylfcwg.supabase.co';
   const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY ||
@@ -25,6 +25,7 @@ export default async function handler(req, res) {
         source: 'studio',
         parent_name: name || null,
         parent_phone: phone || null,
+        child_name: childName || null,
         squad: programName || null,
         notes: time ? `Удобное время: ${time}` : null,
         status: 'new'

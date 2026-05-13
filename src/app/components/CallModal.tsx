@@ -10,6 +10,7 @@ interface CallModalProps {
 export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
   const [name, setName] = useState("");
   const [phone, setPhone] = useState("");
+  const [childName, setChildName] = useState("");
   const [time, setTime] = useState("");
   const [agreed, setAgreed] = useState(false);
   const [sent, setSent] = useState(false);
@@ -19,7 +20,8 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
     if (!name || !phone || !agreed) return;
 
     const program = programName ? `\nНаправление: ${programName}` : "";
-    const message = `🐼 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📱 Телефон: ${phone}\n⏰ Удобное время: ${time || "Не указано"}${program}\n\n📍 Академия Панды, ул. Хуторская 1`;
+    const child = childName ? `\n👦 Ребёнок: ${childName}` : "";
+    const message = `🐼 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📱 Телефон: ${phone}${child}\n⏰ Удобное время: ${time || "Не указано"}${program}\n\n📍 Академия Панды, ул. Хуторская 1`;
 
     try {
       const token = import.meta.env.VITE_TG_TOKEN;
@@ -46,6 +48,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
         body: JSON.stringify({
           name,
           phone,
+          childName,
           time,
           programName: programName || null,
         }),
@@ -60,6 +63,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
       setSent(false);
       setName("");
       setPhone("");
+      setChildName("");
       setTime("");
       setAgreed(false);
     }, 2500);
@@ -121,6 +125,19 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
                   value={phone}
                   onChange={(e) => setPhone(e.target.value)}
                   placeholder="+7 (___) ___-__-__"
+                  className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#7BAF8E] focus:outline-none font-['Nunito_Sans',sans-serif] transition-colors"
+                />
+              </div>
+
+              <div>
+                <label className="font-['Nunito_Sans',sans-serif] font-semibold text-[#3D3D3D] mb-1 block text-sm">
+                  {"Имя ребёнка"}
+                </label>
+                <input
+                  type="text"
+                  value={childName}
+                  onChange={(e) => setChildName(e.target.value)}
+                  placeholder="Например, Маша"
                   className="w-full px-4 py-3 rounded-lg border-2 border-gray-200 focus:border-[#7BAF8E] focus:outline-none font-['Nunito_Sans',sans-serif] transition-colors"
                 />
               </div>
