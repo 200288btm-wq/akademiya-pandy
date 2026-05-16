@@ -19,28 +19,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
     if (e) e.preventDefault();
     if (!name || !phone || !agreed) return;
 
-    const program = programName ? `\nНаправление: ${programName}` : "";
-    const child = childName ? `\n👦 Ребёнок: ${childName}` : "";
-    const message = `🐼 Новая заявка с сайта!\n\n👤 Имя: ${name}\n📱 Телефон: ${phone}${child}\n⏰ Удобное время: ${time || "Не указано"}${program}\n\n📍 Академия Панды, ул. Хуторская 1`;
-
-    try {
-      const token = import.meta.env.VITE_TG_TOKEN;
-      const chatIds = [
-        import.meta.env.VITE_TG_CHAT,
-        "523543780",
-      ];
-      for (const chatId of chatIds) {
-        await fetch(`https://api.telegram.org/bot${token}/sendMessage`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ chat_id: chatId, text: message }),
-        });
-      }
-    } catch (e) {
-      console.log("Send error", e);
-    }
-
-    // Записываем заявку в CRM через serverless функцию (обходит CORS)
+    // Отправляем заявку через серверную функцию — она шлёт в Telegram, VK и пишет в CRM
     try {
       await fetch("/api/submit-lead", {
         method: "POST",
