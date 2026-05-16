@@ -8,7 +8,7 @@ export default async function handler(req, res) {
 
   const { name, phone, childName, time, programName } = req.body || {};
 
-  const TG_TOKEN = process.env.TG_TOKEN;
+  const TG_TOKEN = process.env.VITE_TG_TOKEN || process.env.TG_TOKEN;
   const VK_TOKEN = process.env.VK_TOKEN;
   const SUPABASE_URL = 'https://dmvqiuminxrtcaylfcwg.supabase.co';
   const SUPABASE_KEY = process.env.SUPABASE_ANON_KEY ||
