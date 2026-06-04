@@ -1,0 +1,17 @@
+﻿node_modules/
+dist/
+dist-ssr/
+build/
+.env
+.env.local
+.env.*.local
+*.log
+.vscode/
+.idea/
+*.swp
+.DS_Store
+Thumbs.db
+.vite/
+*.local
+pandy-beget/
+*.zip

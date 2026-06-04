@@ -275,10 +275,16 @@ function Footer() {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 mt-8 pt-8">
+        <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6">
           <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm text-center">
             © 2026 Академия Панды. Все права защищены
           </p>
+          <Link
+            to="/privacy"
+            className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm hover:text-[#7BAF8E] transition-colors text-center"
+          >
+            Политика обработки персональных данных
+          </Link>
         </div>
       </div>
     </footer>

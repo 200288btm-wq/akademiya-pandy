@@ -129,7 +129,16 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
                   {agreed && <Check size={12} className="text-white" />}
                 </div>
                 <span className="font-['Nunito_Sans',sans-serif] text-sm text-[#4a4a4a]">
-                  {"Я согласен(а) на обработку персональных данных"}
+                  {"Я согласен(а) на обработку "}
+                  <a
+                    href="/privacy"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[#7BAF8E] hover:underline"
+                    onClick={(e) => e.stopPropagation()}
+                  >
+                    персональных данных
+                  </a>
                 </span>
               </label>
 
