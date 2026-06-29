@@ -58,7 +58,7 @@ export const programs: Program[] = [
     ageMax: 14,
     description: "Проектируем и строим настоящие архитектурные макеты из бумаги — от идеи до готовой модели",
     color: "#7B9FBA",
-    status: "launching",
+    status: "active",
     statusText: "Идёт набор",
     duration: "60 минут",
     groupSize: "до 10 детей",

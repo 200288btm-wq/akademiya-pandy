@@ -84,9 +84,7 @@ function ProgramCard({ program }: { program: typeof programs[0] }) {
             className="px-3 py-1 rounded-full text-xs font-['Nunito_Sans',sans-serif] font-semibold text-white"
             style={{
               backgroundColor:
-                program.statusText === "Идёт набор"
-                  ? "#F2A65A"
-                  : program.status === "active"
+                program.status === "active"
                   ? "#7BAF8E"
                   : program.status === "launching"
                   ? "#F2A65A"
