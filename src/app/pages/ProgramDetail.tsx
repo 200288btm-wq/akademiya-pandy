@@ -343,6 +343,88 @@ export function ProgramDetail() {
         </section>
       )}
 
+      {/* Описание программы — Секреты миниатюриста */}
+      {program.slug === "sekrety-miniatyurista" && (
+        <section className="py-20 bg-[#F0EDD8]">
+          <div className="max-w-7xl mx-auto px-6">
+            <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#3D3D3D] mb-4 text-center">
+              Архитектурное моделирование
+            </h2>
+            <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] text-center mb-12 opacity-80 max-w-3xl mx-auto">
+              Уникальная творческая мастерская, где бумага и картон превращаются в здания, мосты и целые города. В отличие от обычного рисования или лепки, здесь каждый проект — это полноценное «строительство»: от эскиза до объёмного макета.
+            </p>
+
+            {/* С чем работаем */}
+            <div className="bg-white rounded-2xl p-8 shadow-md mb-12 max-w-4xl mx-auto">
+              <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-4">
+                С чем мы работаем
+              </h3>
+              <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
+                Бумага, картон, клей и чертёжные инструменты. Изучаем основы архитектурной графики, учимся читать чертежи и создавать развёртки. Каждый ребёнок сам придумывает идею, делает набросок, продумывает пропорции и переносит проект в объём.
+              </p>
+            </div>
+
+            {/* Что развивает программа — карточки */}
+            <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-6 text-center">
+              Что развивает программа
+            </h3>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12">
+              {[
+                {
+                  title: "Пространственное мышление",
+                  desc: "Учимся видеть объёмные формы и планировать конструкцию. Представлять, как выглядит объект сверху, сбоку и изнутри. Этот навык лежит в основе геометрии, черчения и точных наук."
+                },
+                {
+                  title: "Планирование",
+                  desc: "От идеи до реализации — полный цикл создания макета. Мы не даём готовых шаблонов: ребёнок сам придумывает, чертит, рассчитывает и собирает. Формируется системное мышление: цель → этапы → результат."
+                },
+                {
+                  title: "Инженерное мышление",
+                  desc: "Не просто «сделать красиво», а «сделать надёжно, функционально и продумано». Понимание конструкции, прочности и свойств материалов, поиск оптимальных решений, работа с ошибками."
+                },
+                {
+                  title: "Усидчивость",
+                  desc: "Создание макета требует точности до миллиметра. Учим детей и взрослых аккуратности, сосредоточенности и умению доводить начатое до конца — качествам, которые пригодятся в школе и в жизни."
+                },
+                {
+                  title: "Гордость за результат",
+                  desc: "Готовая работа — это не просто «поделка». Это авторский архитектурный объект, который ребёнок спроектировал, рассчитал, построил и оформил сам. Такой опыт даёт ощущение компетентности и уверенности в своих силах."
+                },
+              ].map((item, i) => (
+                <div key={i} className="bg-white rounded-2xl p-6 shadow-md">
+                  <h4 className="font-['Nunito',sans-serif] font-bold text-xl mb-3" style={{ color: "#7B9FBA" }}>
+                    {item.title}
+                  </h4>
+                  <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
+                    {item.desc}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            {/* Формат и условия */}
+            <div className="rounded-2xl p-8 shadow-md max-w-4xl mx-auto" style={{ backgroundColor: "#7B9FBA" }}>
+              <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-white mb-6 text-center">
+                Формат занятий
+              </h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {[
+                  { label: "Возраст", value: "Дети от 7 лет, подростки и взрослые" },
+                  { label: "Группа", value: "До 6 человек — внимание каждому" },
+                  { label: "Длительность", value: "1 час 40 минут" },
+                  { label: "Материалы", value: "Все включены в стоимость" },
+                ].map((item, i) => (
+                  <div key={i} className="bg-white/15 rounded-xl p-4 border border-white/20">
+                    <p className="font-['Nunito_Sans',sans-serif] text-white/70 text-sm mb-1">{item.label}</p>
+                    <p className="font-['Nunito',sans-serif] font-bold text-white text-base">{item.value}</p>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+      )}
+
       {/* CTA */}
       <section id="cta" className="py-20 bg-gradient-to-br from-[#7BAF8E] to-[#6a9e7d]">
         <div className="max-w-4xl mx-auto px-6 text-center">
@@ -398,6 +480,7 @@ function getBenefits(slug: string) {
     "sekrety-miniatyurista": [
       { title: "Пространственное мышление", description: "Учимся видеть объёмные формы и планировать конструкцию" },
       { title: "Планирование", description: "От идеи до реализации — полный цикл создания макета" },
+      { title: "Инженерное мышление", description: "Прочность, материалы, оптимальные решения, работа с ошибками" },
       { title: "Усидчивость", description: "Внимание к деталям и терпение в работе" },
       { title: "Гордость за результат", description: "Настоящий макет, созданный своими руками" },
     ],
