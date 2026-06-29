@@ -1,6 +1,7 @@
 import { Layout } from "../components/Layout";
 import { useSEO } from "../hooks/useSEO";
 import { HeroSection } from "../components/home/HeroSection";
+import { CampBannerSection } from "../components/home/CampBannerSection";
 import { ProgramsSection } from "../components/home/ProgramsSection";
 import { AboutSection } from "../components/home/AboutSection";
 import { WhyUsSection } from "../components/home/WhyUsSection";
@@ -29,6 +30,7 @@ export function Home() {
   });
 
   const sections = [
+    <CampBannerSection />,
     <ProgramsSection />,
     <AboutSection />,
     <WhyUsSection />,
