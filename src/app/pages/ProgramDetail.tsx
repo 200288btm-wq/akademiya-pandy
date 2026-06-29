@@ -88,7 +88,7 @@ export function ProgramDetail() {
                 Записаться на пробное занятие
               </button>
               <p className="font-['Nunito_Sans',sans-serif] text-[#7BAF8E] font-semibold mt-3">
-                ✨ Первое занятие — бесплатно
+                ✨ Первое занятие — бесплатно (при покупке абонемента)
               </p>
             </div>
             <div className="relative">

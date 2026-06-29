@@ -12,7 +12,7 @@ export function HowItWorksSection() {
     {
       image: "https://i.ibb.co/rf3CV4Sm/Gemini-Generated-Image-st7kqqst7kqqst7k-removebg-preview-1.png",
       title: "Придите на пробное",
-      description: "Первое занятие бесплатно — приходите, познакомьтесь с педагогом и почувствуйте атмосферу.",
+      description: "Первое занятие бесплатно (при покупке абонемента) — приходите, познакомьтесь с педагогом и почувствуйте атмосферу.",
     },
     {
       image: "https://i.ibb.co/6R5wHQbW/Gemini-Generated-Image-sipu2ssipu2ssipu-removebg-preview-1.png",

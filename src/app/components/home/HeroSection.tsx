@@ -34,7 +34,7 @@ export function HeroSection() {
               </div>
               <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 shadow-sm">
                 <span className="text-lg">{"⭐"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-white">{"Первое занятие бесплатно"}</span>
+                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-white">{"Первое занятие бесплатно (при покупке абонемента)"}</span>
               </div>
             </div>
 

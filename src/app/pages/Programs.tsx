@@ -61,7 +61,7 @@ export function Programs() {
             <div className="bg-[#F0EDD8] rounded-2xl p-6">
               <div className="text-4xl mb-3">🎯</div>
               <h3 className="font-['Nunito',sans-serif] font-bold text-lg mb-2">Попробуйте бесплатно</h3>
-              <p className="font-['Nunito_Sans',sans-serif] text-sm">Первое занятие всегда бесплатно</p>
+              <p className="font-['Nunito_Sans',sans-serif] text-sm">Первое занятие всегда бесплатно (при покупке абонемента)</p>
             </div>
           </div>
 
