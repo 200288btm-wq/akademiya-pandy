@@ -275,7 +275,7 @@ export function ProgramDetail() {
               {[
                 { age: "4–6 лет", desc: "Знакомство с формой, цветом, крупной композицией" },
                 { age: "7–12 лет", desc: "Осознанное построение формы, светотень, материалы" },
-                { age: "Подростки", desc: "Глубокая проработка техники, объёма, композиции" },
+                { age: "Подростки и взрослые", desc: "Глубокая проработка техники, объёма, композиции" },
               ].map((item, i) => (
                 <div key={i} className="bg-white rounded-2xl p-6 shadow-md text-center">
                   <div className="inline-block px-4 py-1 rounded-full text-sm font-semibold mb-3 font-['Nunito_Sans',sans-serif]"
