@@ -232,7 +232,7 @@ function Footer() {
                 </a>
               </li>
               <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm">
-                г. Екатеринбург, ул. Хуторская 1
+                г. Екатеринбург, ул. Онежская, 4
               </li>
               <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm">
                 Ботанический район

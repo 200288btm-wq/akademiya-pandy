@@ -70,7 +70,7 @@ export function CTASection() {
 
         <div className="mt-8 pt-8 border-t border-white border-opacity-20">
           <p className="font-['Nunito_Sans',sans-serif] text-white opacity-80">
-            {"📍 г. Екатеринбург, ул. Хуторская 1 — Ботанический район"}
+            {"📍 г. Екатеринбург, ул. Онежская, 4 — Ботанический район"}
           </p>
         </div>
       </div>
