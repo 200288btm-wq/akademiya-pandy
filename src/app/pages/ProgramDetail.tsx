@@ -62,7 +62,9 @@ export function ProgramDetail() {
                   className="px-4 py-2 rounded-full text-sm font-['Nunito_Sans',sans-serif] font-semibold text-white"
                   style={{
                     backgroundColor:
-                      program.status === "active"
+                      program.statusText === "Идёт набор"
+                        ? "#F2A65A"
+                        : program.status === "active"
                         ? "#7BAF8E"
                         : program.status === "launching"
                         ? "#F2A65A"
@@ -271,10 +273,9 @@ export function ProgramDetail() {
             </p>
 
             {/* Адаптация по возрасту */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-12 max-w-3xl mx-auto">
               {[
-                { age: "4–6 лет", desc: "Знакомство с формой, цветом, крупной композицией" },
-                { age: "7–12 лет", desc: "Осознанное построение формы, светотень, материалы" },
+                { age: "9–12 лет", desc: "Осознанное построение формы, светотень, материалы" },
                 { age: "Подростки и взрослые", desc: "Глубокая проработка техники, объёма, композиции" },
               ].map((item, i) => (
                 <div key={i} className="bg-white rounded-2xl p-6 shadow-md text-center">
