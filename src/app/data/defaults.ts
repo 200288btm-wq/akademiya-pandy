@@ -214,9 +214,32 @@ export interface HomeContent {
   cta: Cta;
 }
 
+export interface FormField {
+  id: string;
+  target: string;
+  type: "text" | "tel" | "select" | "textarea";
+  label: string;
+  placeholder: string;
+  options: string[];
+  required: boolean;
+  enabled: boolean;
+}
+
+export interface LeadForm {
+  title: string;
+  subtitle: string;
+  buttonText: string;
+  privacyText: string;
+  privacyLinkText: string;
+  successTitle: string;
+  successText: string;
+  fields: FormField[];
+}
+
 export interface SiteContent {
   home: HomeContent;
   contacts: Contacts;
+  form: LeadForm;
   programs: Program[];
   reviews: Review[];
   faq: FaqItem[];
@@ -363,6 +386,77 @@ export const defaultContent: SiteContent = {
       buttonText: "Заказать звонок",
       socialText: "Или напишите нам:",
     },
+  },
+  form: {
+    title: "Заказать звонок",
+    subtitle: "Оставьте номер — перезвоним в течение часа в рабочее время",
+    buttonText: "Отправить заявку",
+    privacyText: "Я согласен(а) на обработку",
+    privacyLinkText: "персональных данных",
+    successTitle: "Заявка отправлена!",
+    successText: "Перезвоним вам в удобное время. Спасибо!",
+    fields: [
+      {
+        id: "name",
+        target: "name",
+        type: "text",
+        label: "Ваше имя",
+        placeholder: "Как вас зовут?",
+        options: [],
+        required: true,
+        enabled: true,
+      },
+      {
+        id: "phone",
+        target: "phone",
+        type: "tel",
+        label: "Телефон",
+        placeholder: "+7 (___) ___-__-__",
+        options: [],
+        required: true,
+        enabled: true,
+      },
+      {
+        id: "time",
+        target: "time",
+        type: "select",
+        label: "Удобное время для звонка",
+        placeholder: "Выберите время",
+        options: ["Утром (9:00 - 12:00)", "Днём (12:00 - 17:00)", "Вечером (17:00 - 20:00)"],
+        required: false,
+        enabled: true,
+      },
+      {
+        id: "childName",
+        target: "childName",
+        type: "text",
+        label: "Имя ребёнка",
+        placeholder: "",
+        options: [],
+        required: false,
+        enabled: false,
+      },
+      {
+        id: "childAge",
+        target: "childAge",
+        type: "text",
+        label: "Возраст ребёнка",
+        placeholder: "Например, 5 лет",
+        options: [],
+        required: false,
+        enabled: false,
+      },
+      {
+        id: "comment",
+        target: "comment",
+        type: "textarea",
+        label: "Комментарий",
+        placeholder: "Что важно знать?",
+        options: [],
+        required: false,
+        enabled: false,
+      },
+    ],
   },
   contacts: {
     address: "г. Екатеринбург, ул. Онежская, 4",

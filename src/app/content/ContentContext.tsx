@@ -23,6 +23,8 @@ import type {
   Contacts,
   ContactsPage,
   Footer,
+  FormField,
+  LeadForm,
   Way,
   Cta,
   HomeGallery,
@@ -151,6 +153,46 @@ function cleanCta(raw: unknown, base: Cta): Cta {
     text: isText(data.text) ? data.text : base.text,
     buttonText: isText(data.buttonText) ? data.buttonText : base.buttonText,
     socialText: isText(data.socialText) ? data.socialText : "",
+  };
+}
+
+function cleanFormFields(raw: unknown): FormField[] {
+  if (!Array.isArray(raw)) return [];
+  const types = ["text", "tel", "select", "textarea"];
+
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => isText(item.label))
+    .map((item, index) => ({
+      id: isText(item.id) ? item.id : `field-${index}`,
+      // Стандартные поля уходят в свои колонки заявки, остальные — в комментарий.
+      target: isText(item.target) ? item.target : "extra",
+      type:
+        typeof item.type === "string" && types.includes(item.type)
+          ? (item.type as FormField["type"])
+          : "text",
+      label: String(item.label),
+      placeholder: isText(item.placeholder) ? item.placeholder : "",
+      options: cleanStrings(item.options),
+      required: item.required === true,
+      enabled: item.enabled !== false,
+    }));
+}
+
+function cleanForm(raw: unknown): LeadForm {
+  const base = defaultContent.form;
+  const data = (raw || {}) as Record<string, unknown>;
+  const fields = cleanFormFields(data.fields);
+
+  return {
+    title: isText(data.title) ? data.title : base.title,
+    subtitle: isText(data.subtitle) ? data.subtitle : "",
+    buttonText: isText(data.buttonText) ? data.buttonText : base.buttonText,
+    privacyText: isText(data.privacyText) ? data.privacyText : base.privacyText,
+    privacyLinkText: isText(data.privacyLinkText) ? data.privacyLinkText : base.privacyLinkText,
+    successTitle: isText(data.successTitle) ? data.successTitle : base.successTitle,
+    successText: isText(data.successText) ? data.successText : base.successText,
+    fields: fields.length > 0 ? fields : base.fields,
   };
 }
 
@@ -408,6 +450,7 @@ function mergeContent(raw: unknown): SiteContent {
   return {
     home: cleanHome(data.home),
     contacts: cleanContacts(data.contacts),
+    form: cleanForm(data.form),
     programs: cleanPrograms(data.programs) ?? defaultContent.programs,
     reviews: cleanReviews(data.reviews) ?? defaultContent.reviews,
     faq: cleanFaq(data.faq) ?? defaultContent.faq,
