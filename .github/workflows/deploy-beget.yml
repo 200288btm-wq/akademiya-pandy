@@ -38,6 +38,10 @@ jobs:
           exclude: |
             **/.htaccess
             **/api/**
+            **/admin/**
+            **/uploads/**
+            **/backups/**
+            **/content.json
             **/favicon.svg
             **/logo.svg
             **/.git*
