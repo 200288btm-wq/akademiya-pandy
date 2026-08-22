@@ -70,13 +70,91 @@ export interface Program {
   sections: Section[];
 }
 
+export interface Badge {
+  icon: string;
+  text: string;
+}
+
+export interface PromoCard {
+  badge: string;
+  title: string;
+  text: string;
+}
+
+export interface Hero {
+  title: string;
+  text: string;
+  badges: Badge[];
+  primaryButton: string;
+  secondaryButton: string;
+  secondaryLink: string;
+  image: string;
+}
+
+export interface Promo {
+  enabled: boolean;
+  label: string;
+  title: string;
+  titleAccent: string;
+  text: string;
+  link: string;
+  buttonText: string;
+  features: Badge[];
+  cards: PromoCard[];
+  images: string[];
+  bgColor: string;
+  accentColor: string;
+}
+
+export interface HomeContent {
+  hero: Hero;
+  promo: Promo;
+}
+
 export interface SiteContent {
+  home: HomeContent;
   programs: Program[];
   reviews: Review[];
   faq: FaqItem[];
 }
 
 export const defaultContent: SiteContent = {
+  home: {
+    hero: {
+      title: "Тёплое место рядом с домом, куда дети хотят возвращаться",
+      text: "Рисование, английский, развитие, настольные игры и не только. С нами дети пробуют, ищут своё и увлекаются. Всё это рядом с домом, в Ботаническом районе.",
+      badges: [
+        { icon: "📍", text: "Ботанический район" },
+        { icon: "👥", text: "Группы до 10 детей" },
+        { icon: "⭐", text: "Первое занятие бесплатно (при покупке абонемента)" },
+      ],
+      primaryButton: "Записаться на пробное занятие",
+      secondaryButton: "Смотреть направления",
+      secondaryLink: "/programs",
+      image: "https://i.ibb.co/mCY4BGhr/photo-2025-10-10-19-59-34.jpg",
+    },
+    promo: {
+      enabled: true,
+      label: "Летний лагерь",
+      title: "Лето",
+      titleAccent: "в вашем ритме",
+      text: "Творческий лагерь от Академии Панды в Екатеринбурге — без фиксированных смен, приходите когда удобно вам",
+      link: "https://akademiya-kanikul.ru",
+      buttonText: "Узнать подробнее",
+      features: [
+        { icon: "🍽", text: "Питание включено" },
+        { icon: "🗓", text: "Запись за 2 дня" },
+        { icon: "📉", text: "Больше дней — выгоднее" },
+      ],
+      cards: [
+        { badge: "от 7 лет", title: "Зелёная мастерская", text: "Нейрогимнастика и развивающие занятия" },
+        { badge: "от 9 лет", title: "Городские художники", text: "Городской скетчинг, прогулки по Екатеринбургу" },
+      ],
+      images: [],
+      bgColor: "#1E3A6E",
+      accentColor: "#F5C842",
+    },
+  },
   programs: [
     {
       id: "1",

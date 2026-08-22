@@ -1,8 +1,11 @@
 import { Link } from "react-router";
 import { useModal } from "../ModalContext";
+import { useContent } from "../../content/ContentContext";
 
 export function HeroSection() {
   const { openModal } = useModal();
+  const { home } = useContent();
+  const hero = home.hero;
 
   return (
     <section className="relative py-16 md:py-20 bg-[#7BAF8E]">
@@ -17,47 +20,52 @@ export function HeroSection() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div className="space-y-6">
             <h1 className="font-['Nunito',sans-serif] font-extrabold text-5xl md:text-6xl text-white leading-tight">
-              {"Тёплое место рядом с домом, куда дети хотят возвращаться"}
+              {hero.title}
             </h1>
             <p className="font-['Nunito_Sans',sans-serif] text-xl text-white/90 leading-relaxed">
-              {"Рисование, английский, развитие, настольные игры и не только. С нами дети пробуют, ищут своё и увлекаются. Всё это рядом с домом, в Ботаническом районе."}
+              {hero.text}
             </p>
 
-            <div className="flex flex-wrap gap-4">
-              <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 shadow-sm">
-                <span className="text-lg">{"📍"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-white">{"Ботанический район"}</span>
+            {hero.badges.length > 0 && (
+              <div className="flex flex-wrap gap-4">
+                {hero.badges.map((badge, i) => (
+                  <div
+                    key={i}
+                    className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 shadow-sm"
+                  >
+                    {badge.icon && <span className="text-lg">{badge.icon}</span>}
+                    <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-white">
+                      {badge.text}
+                    </span>
+                  </div>
+                ))}
               </div>
-              <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 shadow-sm">
-                <span className="text-lg">{"👥"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-white">{"Группы до 10 детей"}</span>
-              </div>
-              <div className="flex items-center gap-2 bg-white/20 rounded-full px-4 py-2 shadow-sm">
-                <span className="text-lg">{"⭐"}</span>
-                <span className="font-['Nunito_Sans',sans-serif] text-sm font-semibold text-white">{"Первое занятие бесплатно (при покупке абонемента)"}</span>
-              </div>
-            </div>
+            )}
 
             <div className="flex flex-wrap gap-4 items-center">
-              <button
-                onClick={() => openModal()}
-                className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg border-none cursor-pointer"
-              >
-                {"Записаться на пробное занятие"}
-              </button>
-              <Link
-                to="/programs"
-                className="inline-block border-2 border-white text-white hover:bg-white hover:text-[#7BAF8E] px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all"
-              >
-                {"Смотреть направления"}
-              </Link>
+              {hero.primaryButton && (
+                <button
+                  onClick={() => openModal()}
+                  className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg border-none cursor-pointer"
+                >
+                  {hero.primaryButton}
+                </button>
+              )}
+              {hero.secondaryButton && (
+                <Link
+                  to={hero.secondaryLink || "/programs"}
+                  className="inline-block border-2 border-white text-white hover:bg-white hover:text-[#7BAF8E] px-8 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all"
+                >
+                  {hero.secondaryButton}
+                </Link>
+              )}
             </div>
           </div>
 
-            <div className="relative">
+          <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="https://i.ibb.co/mCY4BGhr/photo-2025-10-10-19-59-34.jpg"
+                src={hero.image}
                 alt="Занятия в Академии Панды"
                 className="w-full h-full object-cover aspect-square"
               />

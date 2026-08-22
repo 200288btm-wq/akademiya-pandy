@@ -11,7 +11,18 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { defaultContent } from "../data/defaults";
-import type { Benefit, FaqItem, Program, Review, Section, SectionItem, SiteContent } from "../data/defaults";
+import type {
+  Badge,
+  Benefit,
+  FaqItem,
+  HomeContent,
+  Program,
+  PromoCard,
+  Review,
+  Section,
+  SectionItem,
+  SiteContent,
+} from "../data/defaults";
 
 const ContentContext = createContext<SiteContent>(defaultContent);
 
@@ -32,6 +43,72 @@ function cleanBenefits(raw: unknown): Benefit[] {
       title: String(item.title),
       description: isText(item.description) ? item.description : "",
     }));
+}
+
+function cleanBadges(raw: unknown): Badge[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => isText(item.text))
+    .map((item) => ({
+      icon: isText(item.icon) ? item.icon : "",
+      text: String(item.text),
+    }));
+}
+
+function cleanPromoCards(raw: unknown): PromoCard[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => isText(item.title))
+    .map((item) => ({
+      badge: isText(item.badge) ? item.badge : "",
+      title: String(item.title),
+      text: isText(item.text) ? item.text : "",
+    }));
+}
+
+function color(value: unknown, fallback: string): string {
+  return typeof value === "string" && /^#[0-9A-Fa-f]{6}$/.test(value) ? value : fallback;
+}
+
+function cleanHome(raw: unknown): HomeContent {
+  const base = defaultContent.home;
+  if (!raw || typeof raw !== "object") return base;
+  const data = raw as Record<string, unknown>;
+
+  const heroRaw = (data.hero || {}) as Record<string, unknown>;
+  const promoRaw = (data.promo || {}) as Record<string, unknown>;
+
+  const badges = cleanBadges(heroRaw.badges);
+  const features = cleanBadges(promoRaw.features);
+  const cards = cleanPromoCards(promoRaw.cards);
+
+  return {
+    hero: {
+      title: isText(heroRaw.title) ? heroRaw.title : base.hero.title,
+      text: isText(heroRaw.text) ? heroRaw.text : base.hero.text,
+      badges: badges.length > 0 ? badges : base.hero.badges,
+      primaryButton: isText(heroRaw.primaryButton) ? heroRaw.primaryButton : base.hero.primaryButton,
+      secondaryButton: isText(heroRaw.secondaryButton) ? heroRaw.secondaryButton : "",
+      secondaryLink: isText(heroRaw.secondaryLink) ? heroRaw.secondaryLink : "/programs",
+      image: isText(heroRaw.image) ? heroRaw.image : base.hero.image,
+    },
+    promo: {
+      enabled: promoRaw.enabled === true,
+      label: isText(promoRaw.label) ? promoRaw.label : "",
+      title: isText(promoRaw.title) ? promoRaw.title : "",
+      titleAccent: isText(promoRaw.titleAccent) ? promoRaw.titleAccent : "",
+      text: isText(promoRaw.text) ? promoRaw.text : "",
+      link: isText(promoRaw.link) ? promoRaw.link : "",
+      buttonText: isText(promoRaw.buttonText) ? promoRaw.buttonText : "",
+      features,
+      cards,
+      images: cleanStrings(promoRaw.images),
+      bgColor: color(promoRaw.bgColor, "#1E3A6E"),
+      accentColor: color(promoRaw.accentColor, "#F5C842"),
+    },
+  };
 }
 
 function cleanStrings(raw: unknown): string[] {
@@ -150,6 +227,7 @@ function mergeContent(raw: unknown): SiteContent {
   if (!raw || typeof raw !== "object") return defaultContent;
   const data = raw as Record<string, unknown>;
   return {
+    home: cleanHome(data.home),
     programs: cleanPrograms(data.programs) ?? defaultContent.programs,
     reviews: cleanReviews(data.reviews) ?? defaultContent.reviews,
     faq: cleanFaq(data.faq) ?? defaultContent.faq,
