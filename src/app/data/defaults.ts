@@ -106,13 +106,79 @@ export interface Promo {
   accentColor: string;
 }
 
+export interface Point {
+  title: string;
+  text: string;
+}
+
+export interface IconCard {
+  image: string;
+  title: string;
+  text: string;
+}
+
+export interface AgeFilter {
+  label: string;
+  min: number;
+  max: number;
+}
+
+export interface About {
+  title: string;
+  subtitle: string;
+  paragraphs: string;
+  points: Point[];
+  footnote: string;
+  image: string;
+}
+
+export interface CardsBlock {
+  title: string;
+  subtitle: string;
+  items: IconCard[];
+}
+
+export interface ProgramsBlock {
+  title: string;
+  subtitle: string;
+  filters: AgeFilter[];
+}
+
+export interface HomeGallery {
+  title: string;
+  subtitle: string;
+  images: string[];
+}
+
+export interface Cta {
+  title: string;
+  text: string;
+  buttonText: string;
+  socialText: string;
+}
+
+export interface Contacts {
+  address: string;
+  phone: string;
+  telegram: string;
+  vk: string;
+  whatsapp: string;
+}
+
 export interface HomeContent {
   hero: Hero;
   promo: Promo;
+  about: About;
+  programsBlock: ProgramsBlock;
+  whyUs: CardsBlock;
+  howItWorks: CardsBlock;
+  gallery: HomeGallery;
+  cta: Cta;
 }
 
 export interface SiteContent {
   home: HomeContent;
+  contacts: Contacts;
   programs: Program[];
   reviews: Review[];
   faq: FaqItem[];
@@ -154,6 +220,112 @@ export const defaultContent: SiteContent = {
       bgColor: "#1E3A6E",
       accentColor: "#F5C842",
     },
+    about: {
+      title: "Академия Панды,",
+      subtitle: "больше чем просто занятия",
+      paragraphs: "К нам дети приходят с интересом, а уходят с новыми навыками и счастливыми глазами.\n\nМы создаём тёплую атмосферу, где каждый ребёнок чувствует себя важным и принятым, со своим темпом, своими интересами и своими маленькими победами.",
+      points: [
+        {
+          title: "Нейроподход и бережное развитие",
+          text: "Занятия построены с учётом того, как работает мозг ребёнка, через движение, игру и творчество включается внимание, мышление и желание учиться.",
+        },
+        {
+          title: "Каждый ребёнок в своём темпе",
+          text: "Сравниваем ребёнка только с ним самим. Здесь ценят усилие и попытку, а результат приходит сам.",
+        },
+        {
+          title: "Маленькие группы до 10 детей",
+          text: "Педагог видит каждого ребёнка, знает его особенности и вовремя поддерживает.",
+        },
+        {
+          title: "Рядом с домом",
+          text: "г. Екатеринбург, ул. Онежская, 4. Ботанический район. Рядом с домом, удобно и спокойно.",
+        },
+      ],
+      footnote: "Мы рады видеть каждого ребёнка таким, какой он есть.",
+      image: "https://i.ibb.co/Jw1ZxgYP/photo-2025-10-10-19-59-29.jpg",
+    },
+    programsBlock: {
+      title: "Найдите занятие для вашего ребёнка",
+      subtitle: "",
+      filters: [
+        { label: "4-6 лет", min: 4, max: 6 },
+        { label: "7-8 лет", min: 7, max: 8 },
+        { label: "9+ лет", min: 9, max: 14 },
+      ],
+    },
+    whyUs: {
+      title: "Почему дети хотят возвращаться?",
+      subtitle: "Мы создали место, где каждый ребёнок чувствует себя важным и принятым",
+      items: [
+        {
+          image: "https://i.ibb.co/XrZPGN68/a-cute-minimal-watercolor-house-sticker-kin9-Ua-JRQj-WCK1-My-Vv-Pow-B4-U-Zf8c-QK2j-ZZ-OOh-G0-VA-removeb.png",
+          title: "Рядом с домом",
+          text: "В Ботаническом районе, рядом с ТЦ «Дирижабль» — удобно добираться пешком или на машине",
+        },
+        {
+          image: "https://i.ibb.co/cc8Xtkgm/a-simple-watercolor-heart-sticker-render-h4-Hu24-OSjm-G2-Onoros7h-A-nm-Lt-C0-Mv-Rniu-QOBj-ND5-D1-A-remove.png",
+          title: "Без давления",
+          text: "Мы не требуем быть идеальными. Каждый ребёнок развивается в своём темпе, и это нормально",
+        },
+        {
+          image: "https://i.ibb.co/tTsthPMF/Gemini-Generated-Image-68jmvd68jmvd68jm-removebg-preview-1.png",
+          title: "Маленькие группы",
+          text: "До 10 детей в группе — педагог видит каждого ребёнка и может уделить внимание всем",
+        },
+        {
+          image: "https://i.ibb.co/k2dSZvh3/a-cute-minimal-watercolor-sticker-featur-Amh-KYV-TRy8f-Z7tr-ZCBg-Yr-2h-Rq6-RV-vx33g-Mf60rg-removebg-p.png",
+          title: "Педагоги с душой",
+          text: "Наши преподаватели любят детей и своё дело. Они создают атмосферу, куда хочется возвращаться",
+        },
+      ],
+    },
+    howItWorks: {
+      title: "Как это работает?",
+      subtitle: "Три простых шага до первого занятия",
+      items: [
+        {
+          image: "https://i.ibb.co/4wjS96ks/Gemini-Generated-Image-95p8bf95p8bf95p8-removebg-preview-1.png",
+          title: "Выберите направление",
+          text: "Посмотрите наши программы и выберите то, что интересно вашему ребёнку. Не уверены? Мы поможем!",
+        },
+        {
+          image: "https://i.ibb.co/rf3CV4Sm/Gemini-Generated-Image-st7kqqst7kqqst7k-removebg-preview-1.png",
+          title: "Придите на пробное",
+          text: "Первое занятие бесплатно (при покупке абонемента) — приходите, познакомьтесь с педагогом и почувствуйте атмосферу.",
+        },
+        {
+          image: "https://i.ibb.co/6R5wHQbW/Gemini-Generated-Image-sipu2ssipu2ssipu-removebg-preview-1.png",
+          title: "Решите сами",
+          text: "Никакого давления. Если ребёнку понравилось — отлично! Если нет — тоже нормально.",
+        },
+      ],
+    },
+    gallery: {
+      title: "Атмосфера Академии Панды",
+      subtitle: "Реальные моменты из жизни центра — дети в процессе, эмоции и творчество",
+      images: [
+        "https://i.ibb.co/mCY4BGhr/photo-2025-10-10-19-59-34.jpg",
+        "https://i.ibb.co/Jw1ZxgYP/photo-2025-10-10-19-59-29.jpg",
+        "https://i.ibb.co/8LVrsk4h/photo-2025-10-05-12-15-22.jpg",
+        "https://i.ibb.co/NgWSkwSY/photo-2025-09-28-16-57-04.jpg",
+        "https://i.ibb.co/KjxTQKj7/photo-2025-10-10-19-59-26.jpg",
+        "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg",
+      ],
+    },
+    cta: {
+      title: "Приходите познакомиться",
+      text: "Первое занятие бесплатно (при покупке абонемента) — без давления и обязательств.\nПросто приходите и посмотрите, как всё устроено.",
+      buttonText: "Заказать звонок",
+      socialText: "Или напишите нам:",
+    },
+  },
+  contacts: {
+    address: "г. Екатеринбург, ул. Онежская, 4 — Ботанический район",
+    phone: "+7 922 657-01-42",
+    telegram: "https://t.me/olechkamom",
+    vk: "https://vk.com/im/convo/-231900253?entrypoint=community_page&tab=all",
+    whatsapp: "",
   },
   programs: [
     {

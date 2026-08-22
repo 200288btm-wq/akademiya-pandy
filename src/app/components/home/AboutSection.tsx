@@ -1,3 +1,5 @@
+import { useContent } from "../../content/ContentContext";
+
 function PawIcon({ color = "#7BAF8E" }: { color?: string }) {
   return (
     <svg width="28" height="29" viewBox="0 0 316 326" fill="none" xmlns="http://www.w3.org/2000/svg" style={{ flexShrink: 0, marginTop: 2 }}>
@@ -12,6 +14,10 @@ function PawIcon({ color = "#7BAF8E" }: { color?: string }) {
 }
 
 export function AboutSection() {
+  const { home } = useContent();
+  const about = home.about;
+  const paragraphs = about.paragraphs.split("\n").filter((line) => line.trim() !== "");
+
   return (
     <section id="about" className="py-20 bg-white relative">
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#7BAF8E] opacity-5 rounded-full" />
@@ -22,78 +28,48 @@ export function AboutSection() {
 
           <div className="space-y-6">
             <h2 className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
-              <span className="text-4xl md:text-5xl">{"Академия Панды,"}</span><br />
-              <span className="text-2xl md:text-3xl font-semibold">{"больше чем просто занятия"}</span>
+              <span className="text-4xl md:text-5xl">{about.title}</span>
+              {about.subtitle && (
+                <>
+                  <br />
+                  <span className="text-2xl md:text-3xl font-semibold">{about.subtitle}</span>
+                </>
+              )}
             </h2>
 
             <div className="space-y-4 font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] leading-relaxed">
-              <p>
-                {"К нам дети приходят с интересом, а уходят с новыми навыками и счастливыми глазами."}
-              </p>
-              <p>
-                {"Мы создаём тёплую атмосферу, где каждый ребёнок чувствует себя важным и принятым, со своим темпом, своими интересами и своими маленькими победами."}
-              </p>
+              {paragraphs.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
             </div>
 
             <div className="space-y-4">
-              <div className="flex items-start gap-3">
-                <PawIcon color="#7BAF8E" />
-                <div>
-                  <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
-                    {"Нейроподход и бережное развитие"}
-                  </p>
-                  <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
-                    {"Занятия построены с учётом того, как работает мозг ребёнка, через движение, игру и творчество включается внимание, мышление и желание учиться."}
-                  </p>
+              {about.points.map((point, i) => (
+                <div key={i} className="flex items-start gap-3">
+                  <PawIcon color={i % 2 === 0 ? "#7BAF8E" : "#F2A65A"} />
+                  <div>
+                    <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
+                      {point.title}
+                    </p>
+                    <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
+                      {point.text}
+                    </p>
+                  </div>
                 </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <PawIcon color="#F2A65A" />
-                <div>
-                  <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
-                    {"Каждый ребёнок в своём темпе"}
-                  </p>
-                  <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
-                    {"Сравниваем ребёнка только с ним самим. Здесь ценят усилие и попытку, а результат приходит сам."}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <PawIcon color="#7BAF8E" />
-                <div>
-                  <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
-                    {"Маленькие группы до 10 детей"}
-                  </p>
-                  <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
-                    {"Педагог видит каждого ребёнка, знает его особенности и вовремя поддерживает."}
-                  </p>
-                </div>
-              </div>
-
-              <div className="flex items-start gap-3">
-                <PawIcon color="#F2A65A" />
-                <div>
-                  <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
-                    {"Рядом с домом"}
-                  </p>
-                  <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
-                    {"г. Екатеринбург, ул. Онежская, 4. Ботанический район. Рядом с домом, удобно и спокойно."}
-                  </p>
-                </div>
-              </div>
+              ))}
             </div>
 
-            <p className="font-['Nunito_Sans',sans-serif] text-[#7BAF8E] font-semibold text-lg">
-              {"Мы рады видеть каждого ребёнка таким, какой он есть."}
-            </p>
+            {about.footnote && (
+              <p className="font-['Nunito_Sans',sans-serif] text-[#7BAF8E] font-semibold text-lg">
+                {about.footnote}
+              </p>
+            )}
           </div>
 
           <div className="relative">
             <div className="relative rounded-3xl overflow-hidden shadow-2xl">
               <img
-                src="https://i.ibb.co/Jw1ZxgYP/photo-2025-10-10-19-59-29.jpg"
+                src={about.image}
                 alt="Занятия в Академии Панды"
                 className="w-full h-full object-cover aspect-square"
               />

@@ -1,20 +1,17 @@
 import { useState, useEffect, useCallback } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { useContent } from "../../content/ContentContext";
 
-const images = [
-  { src: "https://i.ibb.co/mCY4BGhr/photo-2025-10-10-19-59-34.jpg", alt: "Развивающие занятия" },
-  { src: "https://i.ibb.co/Jw1ZxgYP/photo-2025-10-10-19-59-29.jpg", alt: "Занятия по рисованию" },
-  { src: "https://i.ibb.co/8LVrsk4h/photo-2025-10-05-12-15-22.jpg", alt: "Групповые занятия" },
-  { src: "https://i.ibb.co/NgWSkwSY/photo-2025-09-28-16-57-04.jpg", alt: "Творческая мастерская" },
-  { src: "https://i.ibb.co/KjxTQKj7/photo-2025-10-10-19-59-26.jpg", alt: "Счастливые дети" },
-  { src: "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg", alt: "Настольные игры" },
-];
 
 
 const STEP = 3;
-const TOTAL_SLIDES = Math.ceil(images.length / STEP);
 
 export function GallerySection() {
+  const { home } = useContent();
+  const block = home.gallery;
+  const images = block.images;
+  const TOTAL_SLIDES = Math.max(1, Math.ceil(images.length / STEP));
+
   const [slide, setSlide] = useState(0);
   const [fading, setFading] = useState(false);
 
@@ -24,7 +21,7 @@ export function GallerySection() {
       setSlide(((index % TOTAL_SLIDES) + TOTAL_SLIDES) % TOTAL_SLIDES);
       setFading(false);
     }, 200);
-  }, []);
+  }, [TOTAL_SLIDES]);
 
   useEffect(() => {
     const timer = setInterval(() => goTo(slide + 1), 5000);
@@ -39,10 +36,10 @@ export function GallerySection() {
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-10">
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-3">
-            Атмосфера Академии Панды
+            {block.title}
           </h2>
           <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#6b6b6b] max-w-2xl mx-auto">
-            Реальные моменты из жизни центра — дети в процессе, эмоции и творчество
+            {block.subtitle}
           </p>
         </div>
 
@@ -61,8 +58,8 @@ export function GallerySection() {
             {visible.map((img, i) => (
               <div key={`${slide}-${i}`} className="aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
                 <img
-                  src={img.src}
-                  alt={img.alt}
+                  src={img}
+                  alt=""
                   className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
                 />
               </div>
@@ -73,7 +70,7 @@ export function GallerySection() {
             className="md:hidden aspect-[4/3] overflow-hidden rounded-2xl shadow-md"
             style={{ opacity: fading ? 0.4 : 1, transition: "opacity 0.2s ease" }}
           >
-            <img src={visible[0].src} alt={visible[0].alt} className="w-full h-full object-cover" />
+            <img src={visible[0]} alt="" className="w-full h-full object-cover" />
           </div>
 
           <button

@@ -12,7 +12,16 @@ import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { defaultContent } from "../data/defaults";
 import type {
+  About,
+  AgeFilter,
   Badge,
+  CardsBlock,
+  Contacts,
+  Cta,
+  HomeGallery,
+  IconCard,
+  Point,
+  ProgramsBlock,
   Benefit,
   FaqItem,
   HomeContent,
@@ -43,6 +52,106 @@ function cleanBenefits(raw: unknown): Benefit[] {
       title: String(item.title),
       description: isText(item.description) ? item.description : "",
     }));
+}
+
+function cleanPoints(raw: unknown): Point[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => isText(item.title))
+    .map((item) => ({
+      title: String(item.title),
+      text: isText(item.text) ? item.text : "",
+    }));
+}
+
+function cleanIconCards(raw: unknown): IconCard[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => isText(item.title))
+    .map((item) => ({
+      image: isText(item.image) ? item.image : "",
+      title: String(item.title),
+      text: isText(item.text) ? item.text : "",
+    }));
+}
+
+function cleanFilters(raw: unknown): AgeFilter[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => isText(item.label))
+    .map((item) => ({
+      label: String(item.label),
+      min: Number(item.min) || 0,
+      max: Number(item.max) || 99,
+    }));
+}
+
+function cleanCardsBlock(raw: unknown, base: CardsBlock): CardsBlock {
+  const data = (raw || {}) as Record<string, unknown>;
+  const items = cleanIconCards(data.items);
+  return {
+    title: isText(data.title) ? data.title : base.title,
+    subtitle: isText(data.subtitle) ? data.subtitle : "",
+    items: items.length > 0 ? items : base.items,
+  };
+}
+
+function cleanAbout(raw: unknown, base: About): About {
+  const data = (raw || {}) as Record<string, unknown>;
+  const points = cleanPoints(data.points);
+  return {
+    title: isText(data.title) ? data.title : base.title,
+    subtitle: isText(data.subtitle) ? data.subtitle : "",
+    paragraphs: isText(data.paragraphs) ? data.paragraphs : base.paragraphs,
+    points: points.length > 0 ? points : base.points,
+    footnote: isText(data.footnote) ? data.footnote : "",
+    image: isText(data.image) ? data.image : base.image,
+  };
+}
+
+function cleanProgramsBlock(raw: unknown, base: ProgramsBlock): ProgramsBlock {
+  const data = (raw || {}) as Record<string, unknown>;
+  const filters = cleanFilters(data.filters);
+  return {
+    title: isText(data.title) ? data.title : base.title,
+    subtitle: isText(data.subtitle) ? data.subtitle : "",
+    filters: filters.length > 0 ? filters : base.filters,
+  };
+}
+
+function cleanHomeGallery(raw: unknown, base: HomeGallery): HomeGallery {
+  const data = (raw || {}) as Record<string, unknown>;
+  const images = cleanStrings(data.images);
+  return {
+    title: isText(data.title) ? data.title : base.title,
+    subtitle: isText(data.subtitle) ? data.subtitle : "",
+    images: images.length > 0 ? images : base.images,
+  };
+}
+
+function cleanCta(raw: unknown, base: Cta): Cta {
+  const data = (raw || {}) as Record<string, unknown>;
+  return {
+    title: isText(data.title) ? data.title : base.title,
+    text: isText(data.text) ? data.text : base.text,
+    buttonText: isText(data.buttonText) ? data.buttonText : base.buttonText,
+    socialText: isText(data.socialText) ? data.socialText : "",
+  };
+}
+
+function cleanContacts(raw: unknown): Contacts {
+  const base = defaultContent.contacts;
+  const data = (raw || {}) as Record<string, unknown>;
+  return {
+    address: isText(data.address) ? data.address : base.address,
+    phone: isText(data.phone) ? data.phone : base.phone,
+    telegram: isText(data.telegram) ? data.telegram : "",
+    vk: isText(data.vk) ? data.vk : "",
+    whatsapp: isText(data.whatsapp) ? data.whatsapp : "",
+  };
 }
 
 function cleanBadges(raw: unknown): Badge[] {
@@ -108,6 +217,12 @@ function cleanHome(raw: unknown): HomeContent {
       bgColor: color(promoRaw.bgColor, "#1E3A6E"),
       accentColor: color(promoRaw.accentColor, "#F5C842"),
     },
+    about: cleanAbout(data.about, base.about),
+    programsBlock: cleanProgramsBlock(data.programsBlock, base.programsBlock),
+    whyUs: cleanCardsBlock(data.whyUs, base.whyUs),
+    howItWorks: cleanCardsBlock(data.howItWorks, base.howItWorks),
+    gallery: cleanHomeGallery(data.gallery, base.gallery),
+    cta: cleanCta(data.cta, base.cta),
   };
 }
 
@@ -228,6 +343,7 @@ function mergeContent(raw: unknown): SiteContent {
   const data = raw as Record<string, unknown>;
   return {
     home: cleanHome(data.home),
+    contacts: cleanContacts(data.contacts),
     programs: cleanPrograms(data.programs) ?? defaultContent.programs,
     reviews: cleanReviews(data.reviews) ?? defaultContent.reviews,
     faq: cleanFaq(data.faq) ?? defaultContent.faq,

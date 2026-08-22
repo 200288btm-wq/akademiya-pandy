@@ -6,13 +6,17 @@ import type { Program } from "../../data/defaults";
 
 export function ProgramsSection() {
   const [selectedAge, setSelectedAge] = useState<string>("all");
-  const { programs } = useContent();
+  const { programs, home } = useContent();
+  const block = home.programsBlock;
 
   const ageRanges = [
-    { value: "all", label: "Все возрасты" },
-    { value: "4-6", label: "4-6 лет", min: 4, max: 6 },
-    { value: "7-8", label: "7-8 лет", min: 7, max: 8 },
-    { value: "9+", label: "9+ лет", min: 9, max: 14 },
+    { value: "all", label: "Все возрасты", min: 0, max: 0 },
+    ...block.filters.map((filter) => ({
+      value: `${filter.min}-${filter.max}`,
+      label: filter.label,
+      min: filter.min,
+      max: filter.max,
+    })),
   ];
 
   const filteredPrograms = programs.filter((program) => {
@@ -35,9 +39,13 @@ export function ProgramsSection() {
         {/* Заголовок */}
         <div className="text-center mb-12">
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
-            Найдите занятие для вашего ребёнка
+            {block.title}
           </h2>
-
+          {block.subtitle && (
+            <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
+              {block.subtitle}
+            </p>
+          )}
         </div>
 
         {/* Фильтр по возрасту */}

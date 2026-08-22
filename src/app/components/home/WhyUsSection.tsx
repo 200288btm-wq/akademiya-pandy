@@ -1,26 +1,9 @@
+import { useContent } from "../../content/ContentContext";
+
 export function WhyUsSection() {
-  const reasons = [
-    {
-      icon: "https://i.ibb.co/XrZPGN68/a-cute-minimal-watercolor-house-sticker-kin9-Ua-JRQj-WCK1-My-Vv-Pow-B4-U-Zf8c-QK2j-ZZ-OOh-G0-VA-removeb.png",
-      title: "Рядом с домом",
-      description: "В Ботаническом районе, рядом с ТЦ «Дирижабль» — удобно добираться пешком или на машине",
-    },
-    {
-      icon: "https://i.ibb.co/cc8Xtkgm/a-simple-watercolor-heart-sticker-render-h4-Hu24-OSjm-G2-Onoros7h-A-nm-Lt-C0-Mv-Rniu-QOBj-ND5-D1-A-remove.png",
-      title: "Без давления",
-      description: "Мы не требуем быть идеальными. Каждый ребёнок развивается в своём темпе, и это нормально",
-    },
-    {
-      icon: "https://i.ibb.co/tTsthPMF/Gemini-Generated-Image-68jmvd68jmvd68jm-removebg-preview-1.png",
-      title: "Маленькие группы",
-      description: "До 10 детей в группе — педагог видит каждого ребёнка и может уделить внимание всем",
-    },
-    {
-      icon: "https://i.ibb.co/k2dSZvh3/a-cute-minimal-watercolor-sticker-featur-Amh-KYV-TRy8f-Z7tr-ZCBg-Yr-2h-Rq6-RV-vx33g-Mf60rg-removebg-p.png",
-      title: "Педагоги с душой",
-      description: "Наши преподаватели любят детей и своё дело. Они создают атмосферу, куда хочется возвращаться",
-    },
-  ];
+  const { home } = useContent();
+  const block = home.whyUs;
+  const reasons = block.items;
 
   return (
     <section className="py-20 relative bg-[#faf8f3]">
@@ -34,10 +17,10 @@ export function WhyUsSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
-            Почему дети хотят возвращаться?
+            {block.title}
           </h2>
           <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
-            Мы создали место, где каждый ребёнок чувствует себя важным и принятым
+            {block.subtitle}
           </p>
         </div>
 
@@ -62,7 +45,7 @@ export function WhyUsSection() {
                   }}
                 >
                   <img
-                    src={reason.icon}
+                    src={reason.image}
                     alt={reason.title}
                     className="w-28 h-28 object-contain group-hover:scale-110 transition-transform duration-300"
                   />
@@ -72,7 +55,7 @@ export function WhyUsSection() {
                 {reason.title}
               </h3>
               <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed text-center relative z-10">
-                {reason.description}
+                {reason.text}
               </p>
             </div>
           ))}

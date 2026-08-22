@@ -1,4 +1,5 @@
 import { useModal } from "../ModalContext";
+import { useContent } from "../../content/ContentContext";
 
 function TelegramIcon() {
   return (
@@ -21,56 +22,66 @@ function VKIcon() {
 
 export function CTASection() {
   const { openModal } = useModal();
+  const { home, contacts } = useContent();
+  const cta = home.cta;
+  const textLines = cta.text.split("\n").filter((line) => line.trim() !== "");
 
   return (
     <section className="py-20 bg-[#7BAF8E] relative overflow-hidden">
 
       <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
         <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-white mb-4">
-          {"Приходите познакомиться"}
+          {cta.title}
         </h2>
         <p className="font-['Nunito_Sans',sans-serif] text-xl text-white mb-8 opacity-90">
-          {"Первое занятие бесплатно (при покупке абонемента) — без давления и обязательств."}
-          <br />
-          {"Просто приходите и посмотрите, как всё устроено."}
+          {textLines.map((line, i) => (
+            <span key={i}>
+              {i > 0 && <br />}
+              {line}
+            </span>
+          ))}
         </p>
 
         <button
           onClick={() => openModal()}
           className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-5 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-2xl mb-8 cursor-pointer border-none"
         >
-          {"Заказать звонок"}
+          {cta.buttonText}
         </button>
 
         <div className="flex flex-col items-center gap-4">
           <p className="font-['Nunito_Sans',sans-serif] text-white font-bold text-xl opacity-95">
-            {"Или напишите нам:"}
+            {cta.socialText}
           </p>
           <div className="flex flex-wrap justify-center gap-4">
-            <a
-              href="https://t.me/olechkamom"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform text-base"
-            >
-              <TelegramIcon />
-              {"Написать в Telegram"}
-            </a>
-            <a
-              href="https://vk.com/im/convo/-231900253?entrypoint=community_page&tab=all"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform text-base"
-            >
-              <VKIcon />
-              {"Написать ВКонтакте"}
-            </a>
+            {contacts.telegram && (
+              <a
+                href={contacts.telegram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform text-base"
+              >
+                <TelegramIcon />
+                {"Написать в Telegram"}
+              </a>
+            )}
+            {contacts.vk && (
+              <a
+                href={contacts.vk}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform text-base"
+              >
+                <VKIcon />
+                {"Написать ВКонтакте"}
+              </a>
+            )}
           </div>
         </div>
 
         <div className="mt-8 pt-8 border-t border-white border-opacity-20">
           <p className="font-['Nunito_Sans',sans-serif] text-white opacity-80">
-            {"📍 г. Екатеринбург, ул. Онежская, 4 — Ботанический район"}
+            {`📍 ${contacts.address}`}
           </p>
         </div>
       </div>
