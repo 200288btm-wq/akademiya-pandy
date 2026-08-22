@@ -1,0 +1,74 @@
+name: Sync content from site
+
+# Забирает актуальный content.json с acpanda.ru и кладёт в репозиторий
+# как content.snapshot.json. Благодаря этому:
+#   1. в git появляется история правок контента (кто и когда что менял),
+#   2. резервная копия в сборке сайта не устаревает.
+#
+# Сам сайт при этом не меняется: на Beget content.json защищён исключением
+# в deploy-beget.yml.
+
+on:
+  schedule:
+    # каждое воскресенье в 03:00 UTC (08:00 в Екатеринбурге)
+    - cron: '0 3 * * 0'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+
+      - name: Download content.json
+        run: |
+          curl --fail --silent --show-error --max-time 30 \
+            -H 'Cache-Control: no-cache' \
+            https://acpanda.ru/content.json -o downloaded.json
+          echo "Размер: $(wc -c < downloaded.json) байт"
+
+      - name: Validate
+        run: |
+          python3 - <<'PY'
+          import json, sys
+
+          with open('downloaded.json', encoding='utf-8') as f:
+              data = json.load(f)          # упадёт, если файл повреждён
+
+          if not isinstance(data, dict):
+              sys.exit('Ожидался объект JSON')
+
+          # Простая проверка на вменяемость: пустой или обрезанный файл
+          # сохранять в резерв нельзя.
+          programs = data.get('programs') or []
+          reviews  = data.get('reviews') or []
+          faq      = data.get('faq') or []
+          if not programs and not reviews and not faq:
+              sys.exit('Контент пуст — сохранять такое в резерв не будем')
+
+          print(f'Направлений: {len(programs)}, отзывов: {len(reviews)}, вопросов: {len(faq)}')
+
+          # Записываем с одинаковым форматированием, чтобы в истории git
+          # были видны только настоящие изменения, а не перестановки пробелов.
+          with open('content.snapshot.json', 'w', encoding='utf-8') as f:
+              json.dump(data, f, ensure_ascii=False, indent=2, sort_keys=True)
+              f.write('\n')
+          PY
+
+      - name: Commit if changed
+        run: |
+          rm -f downloaded.json
+          if git diff --quiet -- content.snapshot.json; then
+            echo "Изменений нет — коммит не нужен"
+            exit 0
+          fi
+          git config user.name "content-sync"
+          git config user.email "actions@github.com"
+          git add content.snapshot.json
+          git commit -m "Обновление контента с сайта ($(date -u '+%Y-%m-%d'))"
+          git push

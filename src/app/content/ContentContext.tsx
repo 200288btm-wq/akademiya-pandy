@@ -11,6 +11,10 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { defaultContent } from "../data/defaults";
+// Снимок контента с сайта. Обновляется автоматически раз в неделю
+// (см. .github/workflows/sync-content.yml) и попадает в сборку.
+// Нужен на случай, если content.json на сервере недоступен.
+import contentSnapshot from "../../../content.snapshot.json";
 import type {
   About,
   AgeFilter,
@@ -410,8 +414,11 @@ function mergeContent(raw: unknown): SiteContent {
   };
 }
 
+// Порядок источников: файл на сервере → снимок из сборки → данные в коде.
+const fallbackContent: SiteContent = mergeContent(contentSnapshot);
+
 export function ContentProvider({ children }: { children: ReactNode }) {
-  const [content, setContent] = useState<SiteContent>(defaultContent);
+  const [content, setContent] = useState<SiteContent>(fallbackContent);
 
   useEffect(() => {
     let cancelled = false;
