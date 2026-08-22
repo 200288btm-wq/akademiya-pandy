@@ -11,7 +11,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { defaultContent } from "../data/defaults";
-import type { Benefit, FaqItem, Program, Review, SiteContent } from "../data/defaults";
+import type { Benefit, FaqItem, Program, Review, Section, SectionItem, SiteContent } from "../data/defaults";
 
 const ContentContext = createContext<SiteContent>(defaultContent);
 
@@ -34,9 +34,53 @@ function cleanBenefits(raw: unknown): Benefit[] {
     }));
 }
 
-function cleanGallery(raw: unknown): string[] {
+function cleanStrings(raw: unknown): string[] {
   if (!Array.isArray(raw)) return [];
-  return raw.filter(isText).map((url) => String(url));
+  return raw.filter(isText).map((value) => String(value));
+}
+
+function cleanSectionItems(raw: unknown): SectionItem[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .map((item) => ({
+      icon: isText(item.icon) ? item.icon : "",
+      title: isText(item.title) ? item.title : "",
+      text: isText(item.text) ? item.text : "",
+      list: cleanStrings(item.list),
+      label: isText(item.label) ? item.label : "",
+      value: isText(item.value) ? item.value : "",
+    }));
+}
+
+function cleanSections(raw: unknown): Section[] {
+  if (!Array.isArray(raw)) return [];
+  const types = ["text", "cards", "facts", "gallery"];
+  const styles = ["emoji", "number", "plain", "badge"];
+  const backgrounds = ["tint", "white", "none"];
+
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => typeof item.type === "string" && types.includes(item.type))
+    .map((item, index) => ({
+      id: isText(item.id) ? item.id : `section-${index}`,
+      type: item.type as Section["type"],
+      enabled: item.enabled !== false,
+      title: isText(item.title) ? item.title : "",
+      subtitle: isText(item.subtitle) ? item.subtitle : "",
+      body: isText(item.body) ? item.body : "",
+      style:
+        typeof item.style === "string" && styles.includes(item.style)
+          ? (item.style as Section["style"])
+          : "plain",
+      columns: Number(item.columns) === 3 ? 3 : Number(item.columns) === 4 ? 4 : 2,
+      background:
+        typeof item.background === "string" && backgrounds.includes(item.background)
+          ? (item.background as Section["background"])
+          : "tint",
+      images: cleanStrings(item.images),
+      items: cleanSectionItems(item.items),
+    }));
 }
 
 function cleanPrograms(raw: unknown): Program[] | null {
@@ -65,8 +109,8 @@ function cleanPrograms(raw: unknown): Program[] | null {
         duration: isText(item.duration) ? item.duration : "",
         groupSize: isText(item.groupSize) ? item.groupSize : "",
         image: isText(item.image) ? item.image : "",
-        gallery: cleanGallery(item.gallery),
         benefits: cleanBenefits(item.benefits),
+        sections: cleanSections(item.sections),
       } as Program;
     });
   return items.length > 0 ? items : null;
