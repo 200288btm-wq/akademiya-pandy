@@ -1,8 +1,9 @@
+import { useState } from "react";
 import { useParams, Link } from "react-router";
 import { Layout } from "../components/Layout";
 import { useModal } from "../components/ModalContext";
 import { useContent } from "../content/ContentContext";
-import { ArrowLeft, Clock, Users, CheckCircle } from "lucide-react";
+import { ArrowLeft, Clock, Users, CheckCircle, ChevronLeft, ChevronRight } from "lucide-react";
 import { useSEO } from "../hooks/useSEO";
 
 export function ProgramDetail() {
@@ -166,6 +167,18 @@ export function ProgramDetail() {
           </div>
         </div>
       </section>
+
+      {/* Фотогалерея */}
+      {program.gallery.length > 0 && (
+        <section className="py-20 bg-[#F0EDD8]">
+          <div className="max-w-5xl mx-auto px-6">
+            <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#3D3D3D] mb-12 text-center">
+              Как проходят занятия
+            </h2>
+            <ProgramGallery photos={program.gallery} name={program.name} color={program.color} />
+          </div>
+        </section>
+      )}
 
       {/* Описание программы — Смышлёная Панда */}
       {program.slug === "smyshlennaya-panda" && (
@@ -443,6 +456,82 @@ export function ProgramDetail() {
         </div>
       </section>
     </Layout>
+  );
+}
+
+function ProgramGallery({
+  photos,
+  name,
+  color,
+}: {
+  photos: string[];
+  name: string;
+  color: string;
+}) {
+  const [index, setIndex] = useState(0);
+  const [touchStart, setTouchStart] = useState<number | null>(null);
+
+  const total = photos.length;
+  const go = (step: number) => setIndex((current) => (current + step + total) % total);
+
+  const onTouchEnd = (endX: number) => {
+    if (touchStart === null) return;
+    const delta = touchStart - endX;
+    if (Math.abs(delta) > 50) go(delta > 0 ? 1 : -1);
+    setTouchStart(null);
+  };
+
+  return (
+    <div>
+      <div
+        className="relative rounded-3xl overflow-hidden shadow-xl bg-white"
+        onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
+        onTouchEnd={(e) => onTouchEnd(e.changedTouches[0].clientX)}
+      >
+        <img
+          src={photos[index]}
+          alt={`${name} — фото ${index + 1}`}
+          className="w-full h-[300px] md:h-[500px] object-cover"
+        />
+
+        {total > 1 && (
+          <>
+            <button
+              onClick={() => go(-1)}
+              aria-label="Предыдущее фото"
+              className="absolute left-3 md:left-5 top-1/2 -translate-y-1/2 w-11 h-11 md:w-14 md:h-14 rounded-full bg-white/85 hover:bg-white flex items-center justify-center shadow-lg transition-all border-none cursor-pointer"
+            >
+              <ChevronLeft size={26} color="#3D3D3D" />
+            </button>
+            <button
+              onClick={() => go(1)}
+              aria-label="Следующее фото"
+              className="absolute right-3 md:right-5 top-1/2 -translate-y-1/2 w-11 h-11 md:w-14 md:h-14 rounded-full bg-white/85 hover:bg-white flex items-center justify-center shadow-lg transition-all border-none cursor-pointer"
+            >
+              <ChevronRight size={26} color="#3D3D3D" />
+            </button>
+          </>
+        )}
+      </div>
+
+      {total > 1 && (
+        <div className="flex justify-center gap-2 mt-6">
+          {photos.map((_, i) => (
+            <button
+              key={i}
+              onClick={() => setIndex(i)}
+              aria-label={`Фото ${i + 1}`}
+              className="rounded-full transition-all border-none cursor-pointer p-0"
+              style={{
+                width: i === index ? 28 : 10,
+                height: 10,
+                backgroundColor: i === index ? color : "#3D3D3D33",
+              }}
+            />
+          ))}
+        </div>
+      )}
+    </div>
   );
 }
 

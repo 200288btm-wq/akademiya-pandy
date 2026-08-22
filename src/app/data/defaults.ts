@@ -43,6 +43,7 @@ export interface Program {
   duration: string;
   groupSize: string;
   image: string;
+  gallery: string[];
   benefits: Benefit[];
 }
 
@@ -69,6 +70,7 @@ export const defaultContent: SiteContent = {
       duration: "60 минут",
       groupSize: "до 10 детей",
       image: "https://i.ibb.co/G4BTpQck/951b69af-3773-d9d1-addd-61b200c988f6.jpg",
+      gallery: [],
       benefits: [
         { title: "Концентрация внимания", description: "Ребёнок учится удерживать внимание на задаче дольше" },
         { title: "Мелкая моторика", description: "Развиваем через игру и творческие задания" },
@@ -91,6 +93,7 @@ export const defaultContent: SiteContent = {
       duration: "60 минут",
       groupSize: "до 10 детей",
       image: "https://i.ibb.co/cKK28JvZ/Generated-Image-March-22-2026-3-47-PM.png",
+      gallery: [],
       benefits: [
         { title: "Построение композиции", description: "Основы композиции и пространственного мышления" },
         { title: "Теория цвета", description: "Как работать с цветом и создавать гармонию" },
@@ -113,6 +116,7 @@ export const defaultContent: SiteContent = {
       duration: "60 минут",
       groupSize: "до 10 детей",
       image: "https://i.ibb.co/W43Gwb1z/3bab08d3-e731-40d7-954f-a066580388f6.jpg",
+      gallery: [],
       benefits: [
         { title: "Пространственное мышление", description: "Учимся видеть объёмные формы и планировать конструкцию" },
         { title: "Планирование", description: "От идеи до реализации — полный цикл создания макета" },
@@ -136,6 +140,7 @@ export const defaultContent: SiteContent = {
       duration: "60 минут",
       groupSize: "до 10 детей",
       image: "https://i.ibb.co/Ldy9r4R0/4af909d3-e731-40d7-954f-a066580388f6.jpg",
+      gallery: [],
       benefits: [
         { title: "Естественное восприятие языка", description: "Английский усваивается как родной — через контекст" },
         { title: "Базовый словарный запас", description: "Через игру и общение, без зубрёжки" },
@@ -158,6 +163,7 @@ export const defaultContent: SiteContent = {
       duration: "90 минут",
       groupSize: "до 10 человек",
       image: "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg",
+      gallery: [],
       benefits: [
         { title: "Стратегическое мышление", description: "Учимся планировать ходы и предвидеть последствия" },
         { title: "Командная работа", description: "Навыки общения и сотрудничества" },

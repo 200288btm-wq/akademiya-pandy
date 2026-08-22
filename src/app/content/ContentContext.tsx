@@ -34,6 +34,11 @@ function cleanBenefits(raw: unknown): Benefit[] {
     }));
 }
 
+function cleanGallery(raw: unknown): string[] {
+  if (!Array.isArray(raw)) return [];
+  return raw.filter(isText).map((url) => String(url));
+}
+
 function cleanPrograms(raw: unknown): Program[] | null {
   if (!Array.isArray(raw)) return null;
   const items = raw
@@ -60,6 +65,7 @@ function cleanPrograms(raw: unknown): Program[] | null {
         duration: isText(item.duration) ? item.duration : "",
         groupSize: isText(item.groupSize) ? item.groupSize : "",
         image: isText(item.image) ? item.image : "",
+        gallery: cleanGallery(item.gallery),
         benefits: cleanBenefits(item.benefits),
       } as Program;
     });
