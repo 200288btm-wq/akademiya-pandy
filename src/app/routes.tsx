@@ -5,6 +5,7 @@ import { Contacts } from "./pages/Contacts";
 import { FAQ } from "./pages/FAQ";
 import { ProgramDetail } from "./pages/ProgramDetail";
 import { Privacy } from "./pages/Privacy";
+import { Workshops } from "./pages/Workshops";
 
 export const router = createBrowserRouter([
   {
@@ -18,6 +19,10 @@ export const router = createBrowserRouter([
   {
     path: "/programs/:slug",
     Component: ProgramDetail,
+  },
+  {
+    path: "/workshops",
+    Component: Workshops,
   },
   {
     path: "/contacts",

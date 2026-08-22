@@ -3,6 +3,7 @@ import { useSEO } from "../hooks/useSEO";
 import { HeroSection } from "../components/home/HeroSection";
 import { CampBannerSection } from "../components/home/CampBannerSection";
 import { ProgramsSection } from "../components/home/ProgramsSection";
+import { WorkshopsSection } from "../components/home/WorkshopsSection";
 import { AboutSection } from "../components/home/AboutSection";
 import { WhyUsSection } from "../components/home/WhyUsSection";
 import { HowItWorksSection } from "../components/home/HowItWorksSection";
@@ -25,13 +26,14 @@ function PaperSection({ children, index }: { children: React.ReactNode; index: n
 export function Home() {
   useSEO({
     title: "Академия Панды — развивающий центр для детей в Ботаническом районе Екатеринбурга",
-    description: "Развивающие занятия для детей 4–14 лет в Ботаническом районе Екатеринбурга. Подготовка к школе, рисование, английский, настольные игры. Первое занятие бесплатно. Рядом с ТЦ Дирижабль.",
+    description: "Развивающие занятия для детей 4–14 лет в Ботаническом районе Екатеринбурга. Подготовка к школе, рисование, английский, настольные игры, танцы. Первое занятие бесплатно. Рядом с ТЦ Дирижабль.",
     keywords: "развивающие занятия Екатеринбург, детский центр Ботанический район, подготовка к школе Екатеринбург, занятия для детей Чкаловский район, центр развития детей Екатеринбург, детские кружки Ботанический, развивающий центр Екатеринбург",
   });
 
   const sections = [
     <CampBannerSection />,
     <ProgramsSection />,
+    <WorkshopsSection />,
     <AboutSection />,
     <WhyUsSection />,
     <HowItWorksSection />,

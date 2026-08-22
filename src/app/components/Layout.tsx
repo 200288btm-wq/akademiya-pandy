@@ -56,7 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 function Header({ scrolled }: { scrolled: boolean }) {
   const { openModal } = useModal();
-  const { home, reviews, faq } = useContent();
+  const { home, reviews, faq, workshops } = useContent();
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -67,6 +67,7 @@ function Header({ scrolled }: { scrolled: boolean }) {
   const menu = [
     { label: "О центре", anchor: "about", show: home.about.enabled },
     { label: "Направления", to: "/programs", show: true },
+    { label: "Мастер-классы", to: "/workshops", show: workshops.enabled && workshops.items.length > 0 },
     { label: "Отзывы", anchor: "reviews", show: reviews.length > 0 },
     { label: "Вопросы", to: "/faq", show: faq.length > 0 },
     { label: "Контакты", to: "/contacts", show: true },
@@ -208,12 +209,13 @@ function Header({ scrolled }: { scrolled: boolean }) {
 
 function Footer() {
   const { openModal } = useModal();
-  const { contacts, faq } = useContent();
+  const { contacts, faq, workshops } = useContent();
   const footer = contacts.footer;
 
   const links = [
     { label: "Главная", to: "/", show: true },
     { label: "Программы", to: "/programs", show: true },
+    { label: "Мастер-классы", to: "/workshops", show: workshops.enabled && workshops.items.length > 0 },
     { label: "Контакты", to: "/contacts", show: true },
     { label: "Вопросы и ответы", to: "/faq", show: faq.length > 0 },
   ].filter((item) => item.show);

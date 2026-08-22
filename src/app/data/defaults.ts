@@ -236,10 +236,35 @@ export interface LeadForm {
   fields: FormField[];
 }
 
+export interface Workshop {
+  id: string;
+  name: string;
+  description: string;
+  price: string;
+  duration: string;
+  age: string;
+  maxParticipants: string;
+  badge: string;
+  badgeStyle: string;
+  images: string[];
+  enabled: boolean;
+}
+
+export interface WorkshopsBlock {
+  enabled: boolean;
+  title: string;
+  subtitle: string;
+  pageTitle: string;
+  pageSubtitle: string;
+  buttonText: string;
+  items: Workshop[];
+}
+
 export interface SiteContent {
   home: HomeContent;
   contacts: Contacts;
   form: LeadForm;
+  workshops: WorkshopsBlock;
   programs: Program[];
   reviews: Review[];
   faq: FaqItem[];
@@ -386,6 +411,15 @@ export const defaultContent: SiteContent = {
       buttonText: "Заказать звонок",
       socialText: "Или напишите нам:",
     },
+  },
+  workshops: {
+    enabled: true,
+    title: "Мастер-классы",
+    subtitle: "Разовые занятия, на которые можно прийти без абонемента",
+    pageTitle: "Мастер-классы в Академии Панды",
+    pageSubtitle: "Приходите попробовать что-то новое — одно занятие, без обязательств",
+    buttonText: "Записаться",
+    items: [],
   },
   form: {
     title: "Заказать звонок",

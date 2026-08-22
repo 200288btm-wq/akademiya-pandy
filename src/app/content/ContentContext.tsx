@@ -26,6 +26,8 @@ import type {
   FormField,
   LeadForm,
   Way,
+  Workshop,
+  WorkshopsBlock,
   Cta,
   HomeGallery,
   IconCard,
@@ -153,6 +155,45 @@ function cleanCta(raw: unknown, base: Cta): Cta {
     text: isText(data.text) ? data.text : base.text,
     buttonText: isText(data.buttonText) ? data.buttonText : base.buttonText,
     socialText: isText(data.socialText) ? data.socialText : "",
+  };
+}
+
+function cleanWorkshops(raw: unknown): WorkshopsBlock {
+  const base = defaultContent.workshops;
+  const data = (raw || {}) as Record<string, unknown>;
+  const styles = ["accent", "green", "purple", "gray"];
+
+  const items: Workshop[] = Array.isArray(data.items)
+    ? data.items
+        .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+        .filter((item) => isText(item.name))
+        .filter((item) => item.enabled !== false)
+        .map((item, index) => ({
+          id: isText(item.id) ? item.id : `workshop-${index}`,
+          name: String(item.name),
+          description: isText(item.description) ? item.description : "",
+          price: isText(item.price) ? item.price : "",
+          duration: isText(item.duration) ? item.duration : "",
+          age: isText(item.age) ? item.age : "",
+          maxParticipants: isText(item.maxParticipants) ? item.maxParticipants : "",
+          badge: isText(item.badge) ? item.badge : "",
+          badgeStyle:
+            typeof item.badgeStyle === "string" && styles.includes(item.badgeStyle)
+              ? item.badgeStyle
+              : "accent",
+          images: cleanStrings(item.images),
+          enabled: true,
+        }))
+    : [];
+
+  return {
+    enabled: data.enabled !== false,
+    title: isText(data.title) ? data.title : base.title,
+    subtitle: isText(data.subtitle) ? data.subtitle : "",
+    pageTitle: isText(data.pageTitle) ? data.pageTitle : base.pageTitle,
+    pageSubtitle: isText(data.pageSubtitle) ? data.pageSubtitle : "",
+    buttonText: isText(data.buttonText) ? data.buttonText : base.buttonText,
+    items,
   };
 }
 
@@ -451,6 +492,7 @@ function mergeContent(raw: unknown): SiteContent {
     home: cleanHome(data.home),
     contacts: cleanContacts(data.contacts),
     form: cleanForm(data.form),
+    workshops: cleanWorkshops(data.workshops),
     programs: cleanPrograms(data.programs) ?? defaultContent.programs,
     reviews: cleanReviews(data.reviews) ?? defaultContent.reviews,
     faq: cleanFaq(data.faq) ?? defaultContent.faq,
