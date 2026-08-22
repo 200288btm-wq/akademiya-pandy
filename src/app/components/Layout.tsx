@@ -1,6 +1,7 @@
 import { Link, useNavigate, useLocation } from "react-router";
 import { useEffect, useState } from "react";
 import { useModal } from "./ModalContext";
+import { phoneHref, useContent } from "../content/ContentContext";
 import svgPaths from "../../imports/svg-sfs6t7friq";
 import { Phone, ArrowLeft, ArrowUp } from "lucide-react";
 
@@ -167,6 +168,8 @@ function Header({ scrolled }: { scrolled: boolean }) {
 
 function Footer() {
   const { openModal } = useModal();
+  const { contacts } = useContent();
+  const footer = contacts.footer;
   return (
     <footer className="bg-white mt-20">
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -175,7 +178,7 @@ function Footer() {
           <div className="col-span-1">
             <img src="/logo.svg" alt="Академия Панды" className="h-[60px] w-auto object-contain mb-4" />
             <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm leading-relaxed">
-              Тёплое место рядом с домом, куда дети хотят возвращаться
+              {footer.tagline}
             </p>
           </div>
 
@@ -226,17 +229,21 @@ function Footer() {
               Контакты
             </h4>
             <ul className="space-y-2">
-              <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D]">
-                <a href="tel:+79226570142" className="hover:text-[#7BAF8E] transition-colors">
-                  +7 (922) 657-01-42
-                </a>
-              </li>
+              {contacts.phone && (
+                <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D]">
+                  <a href={phoneHref(contacts.phone)} className="hover:text-[#7BAF8E] transition-colors">
+                    {contacts.phone}
+                  </a>
+                </li>
+              )}
               <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm">
-                г. Екатеринбург, ул. Онежская, 4
+                {contacts.address}
               </li>
-              <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm">
-                Ботанический район
-              </li>
+              {contacts.addressExtra && (
+                <li className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm">
+                  {contacts.addressExtra}
+                </li>
+              )}
             </ul>
           </div>
 
@@ -246,24 +253,28 @@ function Footer() {
               Мы в соцсетях
             </h4>
             <div className="flex gap-3">
-              <a
-                href="https://vk.com/akademypanda"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#7BAF8E] hover:bg-[#6a9e7d] rounded-full flex items-center justify-center text-white transition-colors font-bold text-sm"
-                aria-label="VK"
-              >
-                VK
-              </a>
-              <a
-                href="https://t.me/AcPanda"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-10 h-10 bg-[#7BAF8E] hover:bg-[#6a9e7d] rounded-full flex items-center justify-center text-white transition-colors font-bold text-sm"
-                aria-label="Telegram"
-              >
-                TG
-              </a>
+              {contacts.vkPublic && (
+                <a
+                  href={contacts.vkPublic}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-[#7BAF8E] hover:bg-[#6a9e7d] rounded-full flex items-center justify-center text-white transition-colors font-bold text-sm"
+                  aria-label="VK"
+                >
+                  VK
+                </a>
+              )}
+              {contacts.telegramPublic && (
+                <a
+                  href={contacts.telegramPublic}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-10 h-10 bg-[#7BAF8E] hover:bg-[#6a9e7d] rounded-full flex items-center justify-center text-white transition-colors font-bold text-sm"
+                  aria-label="Telegram"
+                >
+                  TG
+                </a>
+              )}
               <button
                 onClick={() => openModal()}
                 className="w-10 h-10 bg-[#F2A65A] hover:bg-[#e89542] rounded-full flex items-center justify-center text-white transition-colors border-none cursor-pointer"
@@ -277,7 +288,7 @@ function Footer() {
 
         <div className="border-t border-gray-200 mt-8 pt-8 flex flex-col md:flex-row items-center justify-center gap-2 md:gap-6">
           <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm text-center">
-            © 2026 Академия Панды. Все права защищены
+            {footer.copyright}
           </p>
           <Link
             to="/privacy"

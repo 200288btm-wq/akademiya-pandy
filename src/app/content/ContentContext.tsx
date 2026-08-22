@@ -17,6 +17,9 @@ import type {
   Badge,
   CardsBlock,
   Contacts,
+  ContactsPage,
+  Footer,
+  Way,
   Cta,
   HomeGallery,
   IconCard,
@@ -147,16 +150,68 @@ function cleanCta(raw: unknown, base: Cta): Cta {
   };
 }
 
+function cleanWays(raw: unknown): Way[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => isText(item.title))
+    .map((item) => ({
+      icon: isText(item.icon) ? item.icon : "",
+      title: String(item.title),
+      text: isText(item.text) ? item.text : "",
+    }));
+}
+
+function cleanContactsPage(raw: unknown, base: ContactsPage): ContactsPage {
+  const data = (raw || {}) as Record<string, unknown>;
+  const ways = cleanWays(data.ways);
+  return {
+    title: isText(data.title) ? data.title : base.title,
+    subtitle: isText(data.subtitle) ? data.subtitle : base.subtitle,
+    addressTitle: isText(data.addressTitle) ? data.addressTitle : base.addressTitle,
+    phoneTitle: isText(data.phoneTitle) ? data.phoneTitle : base.phoneTitle,
+    hoursTitle: isText(data.hoursTitle) ? data.hoursTitle : base.hoursTitle,
+    mapTitle: isText(data.mapTitle) ? data.mapTitle : base.mapTitle,
+    ways: ways.length > 0 ? ways : base.ways,
+    socialTitle: isText(data.socialTitle) ? data.socialTitle : "",
+    socialSubtitle: isText(data.socialSubtitle) ? data.socialSubtitle : "",
+    buttonText: isText(data.buttonText) ? data.buttonText : base.buttonText,
+    socialText: isText(data.socialText) ? data.socialText : "",
+  };
+}
+
+function cleanFooter(raw: unknown, base: Footer): Footer {
+  const data = (raw || {}) as Record<string, unknown>;
+  return {
+    tagline: isText(data.tagline) ? data.tagline : base.tagline,
+    copyright: isText(data.copyright) ? data.copyright : base.copyright,
+  };
+}
+
 function cleanContacts(raw: unknown): Contacts {
   const base = defaultContent.contacts;
   const data = (raw || {}) as Record<string, unknown>;
   return {
     address: isText(data.address) ? data.address : base.address,
+    addressExtra: isText(data.addressExtra) ? data.addressExtra : "",
     phone: isText(data.phone) ? data.phone : base.phone,
+    workHours: isText(data.workHours) ? data.workHours : "",
+    mapLink: isText(data.mapLink) ? data.mapLink : "",
+    mapEmbed: isText(data.mapEmbed) ? data.mapEmbed : "",
     telegram: isText(data.telegram) ? data.telegram : "",
     vk: isText(data.vk) ? data.vk : "",
     whatsapp: isText(data.whatsapp) ? data.whatsapp : "",
+    vkPublic: isText(data.vkPublic) ? data.vkPublic : "",
+    telegramPublic: isText(data.telegramPublic) ? data.telegramPublic : "",
+    page: cleanContactsPage(data.page, base.page),
+    footer: cleanFooter(data.footer, base.footer),
   };
+}
+
+// Телефон для ссылки tel: — оставляем только цифры и плюс.
+export function phoneHref(phone: string): string {
+  const digits = phone.replace(/[^\d+]/g, "");
+  return digits ? `tel:${digits}` : "";
 }
 
 function cleanBadges(raw: unknown): Badge[] {

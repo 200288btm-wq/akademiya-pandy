@@ -2,6 +2,7 @@ import { useSEO } from "../hooks/useSEO";
 import { Layout } from "../components/Layout";
 import { MapPin, Phone, Clock } from "lucide-react";
 import { useModal } from "../components/ModalContext";
+import { phoneHref, useContent } from "../content/ContentContext";
 
 function TelegramIcon() {
   return (
@@ -29,17 +30,24 @@ export function Contacts() {
     keywords: "Академия Панды адрес, детский центр Ботанический район адрес, развивающий центр Екатеринбург контакты, детские занятия Онежская Екатеринбург",
   });
   const { openModal } = useModal();
+  const { contacts } = useContent();
+  const page = contacts.page;
+  const subtitleLines = page.subtitle.split("\n").filter((line) => line.trim() !== "");
+
   return (
     <Layout>
       <section className="py-20 bg-gradient-to-b from-white to-[#F0EDD8]">
         <div className="max-w-4xl mx-auto px-6 text-center">
           <h1 className="font-['Nunito',sans-serif] font-bold text-5xl md:text-6xl text-[#3D3D3D] mb-6">
-            {"Приходите познакомиться"}
+            {page.title}
           </h1>
           <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed">
-            {"Мы в Екатеринбурге, ул. Онежская, 4, рядом с домом, в Ботаническом районе."}
-            <br />
-            {"Будем рады вас видеть!"}
+            {subtitleLines.map((line, i) => (
+              <span key={i}>
+                {i > 0 && <br />}
+                {line}
+              </span>
+            ))}
           </p>
         </div>
       </section>
@@ -49,33 +57,35 @@ export function Contacts() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-16">
             <ContactCard
               icon={<MapPin size={28} />}
-              title={"Адрес"}
-              content={"г. Екатеринбург, ул. Онежская, 4"}
+              title={page.addressTitle}
+              content={contacts.address}
               color="#7BAF8E"
-              link="https://yandex.ru/maps/?text=Екатеринбург+Онежская+4"
+              link={contacts.mapLink}
             />
             <ContactCard
               icon={<Phone size={28} />}
-              title={"Телефон"}
-              content={"+7 (922) 657-01-42"}
+              title={page.phoneTitle}
+              content={contacts.phone}
               color="#F2A65A"
-              link="tel:+79226570142"
+              link={phoneHref(contacts.phone)}
             />
-            <ContactCard
-              icon={<Clock size={28} />}
-              title={"Часы работы"}
-              content={"Пн-Вс: 9:00 - 20:00"}
-              color="#7BAF8E"
-            />
+            {contacts.workHours && (
+              <ContactCard
+                icon={<Clock size={28} />}
+                title={page.hoursTitle}
+                content={contacts.workHours}
+                color="#7BAF8E"
+              />
+            )}
           </div>
 
           <div className="bg-white rounded-3xl p-8 shadow-xl">
             <h2 className="font-['Nunito',sans-serif] font-bold text-3xl text-[#3D3D3D] mb-6">
-              {"Как нас найти"}
+              {page.mapTitle}
             </h2>
             <div className="aspect-video bg-[#F0EDD8] rounded-2xl overflow-hidden mb-6">
               <iframe
-                src="https://yandex.ru/map-widget/v1/?ll=60.636497%2C56.799586&z=17&pt=60.636497%2C56.799586%2Cpm2rdm"
+                src={contacts.mapEmbed}
                 width="100%"
                 height="100%"
                 frameBorder="0"
@@ -84,27 +94,15 @@ export function Contacts() {
               />
             </div>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              <div className="bg-[#F0EDD8] rounded-2xl p-6">
-                <div className="text-2xl mb-2">{"🚗"}</div>
-                <h3 className="font-['Nunito',sans-serif] font-bold mb-2">{"На машине"}</h3>
-                <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D]">
-                  {"Удобная парковка рядом с центром"}
-                </p>
-              </div>
-              <div className="bg-[#F0EDD8] rounded-2xl p-6">
-                <div className="text-2xl mb-2">{"🚌"}</div>
-                <h3 className="font-['Nunito',sans-serif] font-bold mb-2">{"На автобусе"}</h3>
-                <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D]">
-                  {"От остановки «Саввы Белых» спокойным шагом с ребёнком 10 минут"}
-                </p>
-              </div>
-              <div className="bg-[#F0EDD8] rounded-2xl p-6">
-                <div className="text-2xl mb-2">{"👟"}</div>
-                <h3 className="font-['Nunito',sans-serif] font-bold mb-2">{"Пешком"}</h3>
-                <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D]">
-                  {"Безопасный район для прогулок"}
-                </p>
-              </div>
+              {page.ways.map((way, i) => (
+                <div key={i} className="bg-[#F0EDD8] rounded-2xl p-6">
+                  <div className="text-2xl mb-2">{way.icon}</div>
+                  <h3 className="font-['Nunito',sans-serif] font-bold mb-2">{way.title}</h3>
+                  <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D]">
+                    {way.text}
+                  </p>
+                </div>
+              ))}
             </div>
           </div>
         </div>
@@ -113,41 +111,45 @@ export function Contacts() {
       <section id="social" className="py-20 bg-[#7BAF8E]">
         <div className="max-w-2xl mx-auto px-6 text-center">
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-white mb-2">
-            {"Чтобы познакомиться,"}
+            {page.socialTitle}
           </h2>
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-white mb-8">
-            {"просто приходите на пробное занятие"}
+            {page.socialSubtitle}
           </h2>
           <button
             onClick={() => openModal()}
             className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg border-none cursor-pointer mb-10"
           >
-            {"Записаться"}
+            {page.buttonText}
           </button>
 
           <div className="border-t border-white border-opacity-20 pt-10">
             <p className="font-['Nunito_Sans',sans-serif] text-white font-bold text-xl mb-6">
-              {"Или напишите нам:"}
+              {page.socialText}
             </p>
             <div className="flex flex-wrap justify-center gap-4">
-              <a
-                href="https://t.me/olechkamom"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
-              >
-                <TelegramIcon />
-                {"Написать в Telegram"}
-              </a>
-              <a
-                href="https://vk.com/im/convo/-231900253?entrypoint=community_page&tab=all"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
-              >
-                <VKIcon />
-                {"Написать ВКонтакте"}
-              </a>
+              {contacts.telegram && (
+                <a
+                  href={contacts.telegram}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
+                >
+                  <TelegramIcon />
+                  {"Написать в Telegram"}
+                </a>
+              )}
+              {contacts.vk && (
+                <a
+                  href={contacts.vk}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 bg-white text-[#3D7A52] hover:bg-opacity-90 px-6 py-3 rounded-xl transition-all font-['Nunito_Sans',sans-serif] font-bold shadow-md hover:scale-105 transform"
+                >
+                  <VKIcon />
+                  {"Написать ВКонтакте"}
+                </a>
+              )}
             </div>
           </div>
         </div>

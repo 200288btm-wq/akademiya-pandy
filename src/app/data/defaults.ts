@@ -162,12 +162,45 @@ export interface Cta {
   socialText: string;
 }
 
+export interface Way {
+  icon: string;
+  title: string;
+  text: string;
+}
+
+export interface ContactsPage {
+  title: string;
+  subtitle: string;
+  addressTitle: string;
+  phoneTitle: string;
+  hoursTitle: string;
+  mapTitle: string;
+  ways: Way[];
+  socialTitle: string;
+  socialSubtitle: string;
+  buttonText: string;
+  socialText: string;
+}
+
+export interface Footer {
+  tagline: string;
+  copyright: string;
+}
+
 export interface Contacts {
   address: string;
+  addressExtra: string;
   phone: string;
+  workHours: string;
+  mapLink: string;
+  mapEmbed: string;
   telegram: string;
   vk: string;
   whatsapp: string;
+  vkPublic: string;
+  telegramPublic: string;
+  page: ContactsPage;
+  footer: Footer;
 }
 
 export interface HomeContent {
@@ -332,11 +365,38 @@ export const defaultContent: SiteContent = {
     },
   },
   contacts: {
-    address: "г. Екатеринбург, ул. Онежская, 4 — Ботанический район",
-    phone: "+7 922 657-01-42",
+    address: "г. Екатеринбург, ул. Онежская, 4",
+    addressExtra: "Ботанический район",
+    phone: "+7 (922) 657-01-42",
+    workHours: "Пн-Вс: 9:00 - 20:00",
+    mapLink: "https://yandex.ru/maps/?text=Екатеринбург+Онежская+4",
+    mapEmbed: "https://yandex.ru/map-widget/v1/?ll=60.636497%2C56.799586&z=17&pt=60.636497%2C56.799586%2Cpm2rdm",
     telegram: "https://t.me/olechkamom",
     vk: "https://vk.com/im/convo/-231900253?entrypoint=community_page&tab=all",
     whatsapp: "",
+    vkPublic: "https://vk.com/akademypanda",
+    telegramPublic: "https://t.me/AcPanda",
+    page: {
+      title: "Приходите познакомиться",
+      subtitle: "Мы в Екатеринбурге, ул. Онежская, 4, рядом с домом, в Ботаническом районе.\nБудем рады вас видеть!",
+      addressTitle: "Адрес",
+      phoneTitle: "Телефон",
+      hoursTitle: "Часы работы",
+      mapTitle: "Как нас найти",
+      ways: [
+        { icon: "🚗", title: "На машине", text: "Удобная парковка рядом с центром" },
+        { icon: "🚌", title: "На автобусе", text: "От остановки «Саввы Белых» спокойным шагом с ребёнком 10 минут" },
+        { icon: "👟", title: "Пешком", text: "Безопасный район для прогулок" },
+      ],
+      socialTitle: "Чтобы познакомиться,",
+      socialSubtitle: "просто приходите на пробное занятие",
+      buttonText: "Записаться",
+      socialText: "Или напишите нам:",
+    },
+    footer: {
+      tagline: "Тёплое место рядом с домом, куда дети хотят возвращаться",
+      copyright: "© 2026 Академия Панды. Все права защищены",
+    },
   },
   programs: [
     {
