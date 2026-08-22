@@ -95,21 +95,5 @@ export const programs: Program[] = [
     duration: "90 минут",
     groupSize: "до 10 человек",
     image: "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg"
-  },
-  {
-    id: "6",
-    slug: "myagkie-lapki",
-    name: "Мягкие лапки",
-    shortName: "Танцы",
-    age: "5-8 лет",
-    ageMin: 5,
-    ageMax: 8,
-    description: "Пластика, ритм и радость движения — без строгих правил и требования быть идеальным",
-    color: "#F0B8A0",
-    status: "soon",
-    statusText: "Скоро",
-    duration: "45 минут",
-    groupSize: "до 10 детей",
-    image: "https://i.ibb.co/99s2sGkW/71e486d5-f03e-636c-674c-17d67b7088f6.jpgal"
   }
 ];
