@@ -1,5 +1,6 @@
 import { Layout } from "../components/Layout";
 import { useSEO } from "../hooks/useSEO";
+import { useContent } from "../content/ContentContext";
 import { HeroSection } from "../components/home/HeroSection";
 import { CampBannerSection } from "../components/home/CampBannerSection";
 import { ProgramsSection } from "../components/home/ProgramsSection";
@@ -23,34 +24,41 @@ function PaperSection({ children, index }: { children: React.ReactNode; index: n
   );
 }
 
+// Порядок секций задаётся в админке, здесь — соответствие имени и блока.
+const SECTIONS: Record<string, () => React.ReactElement> = {
+  promo: CampBannerSection,
+  about: AboutSection,
+  programsBlock: ProgramsSection,
+  workshops: WorkshopsSection,
+  whyUs: WhyUsSection,
+  howItWorks: HowItWorksSection,
+  gallery: GallerySection,
+  reviews: ReviewsSection,
+  faq: FAQSection,
+  cta: CTASection,
+};
+
 export function Home() {
+  const { home } = useContent();
+
   useSEO({
     title: "Академия Панды — развивающий центр для детей в Ботаническом районе Екатеринбурга",
     description: "Развивающие занятия для детей 4–14 лет в Ботаническом районе Екатеринбурга. Подготовка к школе, рисование, английский, настольные игры, танцы. Первое занятие бесплатно. Рядом с ТЦ Дирижабль.",
     keywords: "развивающие занятия Екатеринбург, детский центр Ботанический район, подготовка к школе Екатеринбург, занятия для детей Чкаловский район, центр развития детей Екатеринбург, детские кружки Ботанический, развивающий центр Екатеринбург",
   });
 
-  const sections = [
-    <CampBannerSection />,
-    <ProgramsSection />,
-    <WorkshopsSection />,
-    <AboutSection />,
-    <WhyUsSection />,
-    <HowItWorksSection />,
-    <GallerySection />,
-    <ReviewsSection />,
-    <FAQSection />,
-    <CTASection />,
-  ];
-
   return (
     <Layout>
       <HeroSection />
-      {sections.map((section, i) => (
-        <PaperSection key={i} index={i}>
-          {section}
-        </PaperSection>
-      ))}
+      {home.order.map((name, i) => {
+        const Section = SECTIONS[name];
+        if (!Section) return null;
+        return (
+          <PaperSection key={name} index={i}>
+            <Section />
+          </PaperSection>
+        );
+      })}
     </Layout>
   );
 }

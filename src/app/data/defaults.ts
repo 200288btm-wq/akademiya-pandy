@@ -204,6 +204,8 @@ export interface Contacts {
 }
 
 export interface HomeContent {
+  // Порядок секций на главной. Первый экран всегда сверху и в список не входит.
+  order: string[];
   hero: Hero;
   promo: Promo;
   about: About;
@@ -272,6 +274,18 @@ export interface SiteContent {
 
 export const defaultContent: SiteContent = {
   home: {
+    order: [
+      "promo",
+      "about",
+      "programsBlock",
+      "workshops",
+      "whyUs",
+      "howItWorks",
+      "gallery",
+      "reviews",
+      "faq",
+      "cta",
+    ],
     hero: {
       title: "Тёплое место рядом с домом, куда дети хотят возвращаться",
       text: "Рисование, английский, развитие, настольные игры и не только. С нами дети пробуют, ищут своё и увлекаются. Всё это рядом с домом, в Ботаническом районе.",

@@ -328,6 +328,29 @@ function color(value: unknown, fallback: string): string {
   return typeof value === "string" && /^#[0-9A-Fa-f]{6}$/.test(value) ? value : fallback;
 }
 
+// Список секций главной. Неизвестные имена отбрасываем, недостающие
+// дописываем в конец — так добавление новой секции не ломает старый файл.
+function cleanOrder(raw: unknown, base: string[]): string[] {
+  const known = new Set(base);
+  const seen = new Set<string>();
+  const result: string[] = [];
+
+  if (Array.isArray(raw)) {
+    raw.forEach((name) => {
+      if (typeof name === "string" && known.has(name) && !seen.has(name)) {
+        seen.add(name);
+        result.push(name);
+      }
+    });
+  }
+
+  base.forEach((name) => {
+    if (!seen.has(name)) result.push(name);
+  });
+
+  return result;
+}
+
 function cleanHome(raw: unknown): HomeContent {
   const base = defaultContent.home;
   if (!raw || typeof raw !== "object") return base;
@@ -341,6 +364,7 @@ function cleanHome(raw: unknown): HomeContent {
   const cards = cleanPromoCards(promoRaw.cards);
 
   return {
+    order: cleanOrder(data.order, base.order),
     hero: {
       title: isText(heroRaw.title) ? heroRaw.title : base.hero.title,
       text: isText(heroRaw.text) ? heroRaw.text : base.hero.text,
