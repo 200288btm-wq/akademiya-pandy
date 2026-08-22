@@ -34,7 +34,7 @@ jobs:
           local-dir: ./dist/
           server-dir: ./
           protocol: ftp
-          dry-run: true
+          dry-run: false
           exclude: |
             **/.htaccess
             **/api/**
