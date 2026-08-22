@@ -93,6 +93,7 @@ function cleanCardsBlock(raw: unknown, base: CardsBlock): CardsBlock {
   const data = (raw || {}) as Record<string, unknown>;
   const items = cleanIconCards(data.items);
   return {
+    enabled: data.enabled !== false,
     title: isText(data.title) ? data.title : base.title,
     subtitle: isText(data.subtitle) ? data.subtitle : "",
     items: items.length > 0 ? items : base.items,
@@ -103,6 +104,7 @@ function cleanAbout(raw: unknown, base: About): About {
   const data = (raw || {}) as Record<string, unknown>;
   const points = cleanPoints(data.points);
   return {
+    enabled: data.enabled !== false,
     title: isText(data.title) ? data.title : base.title,
     subtitle: isText(data.subtitle) ? data.subtitle : "",
     paragraphs: isText(data.paragraphs) ? data.paragraphs : base.paragraphs,
@@ -116,6 +118,7 @@ function cleanProgramsBlock(raw: unknown, base: ProgramsBlock): ProgramsBlock {
   const data = (raw || {}) as Record<string, unknown>;
   const filters = cleanFilters(data.filters);
   return {
+    enabled: data.enabled !== false,
     title: isText(data.title) ? data.title : base.title,
     subtitle: isText(data.subtitle) ? data.subtitle : "",
     filters: filters.length > 0 ? filters : base.filters,
@@ -126,6 +129,7 @@ function cleanHomeGallery(raw: unknown, base: HomeGallery): HomeGallery {
   const data = (raw || {}) as Record<string, unknown>;
   const images = cleanStrings(data.images);
   return {
+    enabled: data.enabled !== false,
     title: isText(data.title) ? data.title : base.title,
     subtitle: isText(data.subtitle) ? data.subtitle : "",
     images: images.length > 0 ? images : base.images,
@@ -135,6 +139,7 @@ function cleanHomeGallery(raw: unknown, base: HomeGallery): HomeGallery {
 function cleanCta(raw: unknown, base: Cta): Cta {
   const data = (raw || {}) as Record<string, unknown>;
   return {
+    enabled: data.enabled !== false,
     title: isText(data.title) ? data.title : base.title,
     text: isText(data.text) ? data.text : base.text,
     buttonText: isText(data.buttonText) ? data.buttonText : base.buttonText,

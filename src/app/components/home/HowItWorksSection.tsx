@@ -1,35 +1,24 @@
 import { useModal } from "../ModalContext";
+import { useContent } from "../../content/ContentContext";
 
 export function HowItWorksSection() {
   const { openModal } = useModal();
 
-  const steps = [
-    {
-      image: "https://i.ibb.co/4wjS96ks/Gemini-Generated-Image-95p8bf95p8bf95p8-removebg-preview-1.png",
-      title: "Выберите направление",
-      description: "Посмотрите наши программы и выберите то, что интересно вашему ребёнку. Не уверены? Мы поможем!",
-    },
-    {
-      image: "https://i.ibb.co/rf3CV4Sm/Gemini-Generated-Image-st7kqqst7kqqst7k-removebg-preview-1.png",
-      title: "Придите на пробное",
-      description: "Первое занятие бесплатно (при покупке абонемента) — приходите, познакомьтесь с педагогом и почувствуйте атмосферу.",
-    },
-    {
-      image: "https://i.ibb.co/6R5wHQbW/Gemini-Generated-Image-sipu2ssipu2ssipu-removebg-preview-1.png",
-      title: "Решите сами",
-      description: "Никакого давления. Если ребёнку понравилось — отлично! Если нет — тоже нормально.",
-    },
-  ];
+  const { home } = useContent();
+  const block = home.howItWorks;
+  const steps = block.items;
+
+  if (!block.enabled) return null;
 
   return (
     <section className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-16">
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
-            {"Как это работает?"}
+            {block.title}
           </h2>
           <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
-            {"Три простых шага до первого занятия"}
+            {block.subtitle}
           </p>
         </div>
 
@@ -58,7 +47,7 @@ export function HowItWorksSection() {
                   {step.title}
                 </h3>
                 <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
-                  {step.description}
+                  {step.text}
                 </p>
               </div>
             </div>
@@ -70,7 +59,7 @@ export function HowItWorksSection() {
             onClick={() => openModal()}
             className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg border-none cursor-pointer"
           >
-            {"Записаться на пробное занятие"}
+            {home.hero.primaryButton}
           </button>
         </div>
       </div>

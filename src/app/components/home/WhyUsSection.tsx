@@ -5,6 +5,8 @@ export function WhyUsSection() {
   const block = home.whyUs;
   const reasons = block.items;
 
+  if (!block.enabled) return null;
+
   return (
     <section className="py-20 relative bg-[#faf8f3]">
       <div className="absolute inset-0 overflow-hidden opacity-5">

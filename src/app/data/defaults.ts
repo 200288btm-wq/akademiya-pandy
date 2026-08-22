@@ -124,6 +124,7 @@ export interface AgeFilter {
 }
 
 export interface About {
+  enabled: boolean;
   title: string;
   subtitle: string;
   paragraphs: string;
@@ -133,24 +134,28 @@ export interface About {
 }
 
 export interface CardsBlock {
+  enabled: boolean;
   title: string;
   subtitle: string;
   items: IconCard[];
 }
 
 export interface ProgramsBlock {
+  enabled: boolean;
   title: string;
   subtitle: string;
   filters: AgeFilter[];
 }
 
 export interface HomeGallery {
+  enabled: boolean;
   title: string;
   subtitle: string;
   images: string[];
 }
 
 export interface Cta {
+  enabled: boolean;
   title: string;
   text: string;
   buttonText: string;
@@ -221,6 +226,7 @@ export const defaultContent: SiteContent = {
       accentColor: "#F5C842",
     },
     about: {
+      enabled: true,
       title: "Академия Панды,",
       subtitle: "больше чем просто занятия",
       paragraphs: "К нам дети приходят с интересом, а уходят с новыми навыками и счастливыми глазами.\n\nМы создаём тёплую атмосферу, где каждый ребёнок чувствует себя важным и принятым, со своим темпом, своими интересами и своими маленькими победами.",
@@ -246,6 +252,7 @@ export const defaultContent: SiteContent = {
       image: "https://i.ibb.co/Jw1ZxgYP/photo-2025-10-10-19-59-29.jpg",
     },
     programsBlock: {
+      enabled: true,
       title: "Найдите занятие для вашего ребёнка",
       subtitle: "",
       filters: [
@@ -255,6 +262,7 @@ export const defaultContent: SiteContent = {
       ],
     },
     whyUs: {
+      enabled: true,
       title: "Почему дети хотят возвращаться?",
       subtitle: "Мы создали место, где каждый ребёнок чувствует себя важным и принятым",
       items: [
@@ -281,6 +289,7 @@ export const defaultContent: SiteContent = {
       ],
     },
     howItWorks: {
+      enabled: true,
       title: "Как это работает?",
       subtitle: "Три простых шага до первого занятия",
       items: [
@@ -302,6 +311,7 @@ export const defaultContent: SiteContent = {
       ],
     },
     gallery: {
+      enabled: true,
       title: "Атмосфера Академии Панды",
       subtitle: "Реальные моменты из жизни центра — дети в процессе, эмоции и творчество",
       images: [
@@ -314,6 +324,7 @@ export const defaultContent: SiteContent = {
       ],
     },
     cta: {
+      enabled: true,
       title: "Приходите познакомиться",
       text: "Первое занятие бесплатно (при покупке абонемента) — без давления и обязательств.\nПросто приходите и посмотрите, как всё устроено.",
       buttonText: "Заказать звонок",

@@ -24,6 +24,9 @@ export function CTASection() {
   const { openModal } = useModal();
   const { home, contacts } = useContent();
   const cta = home.cta;
+
+  if (!cta.enabled) return null;
+
   const textLines = cta.text.split("\n").filter((line) => line.trim() !== "");
 
   return (

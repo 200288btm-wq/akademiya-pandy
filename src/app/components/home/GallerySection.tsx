@@ -28,6 +28,8 @@ export function GallerySection() {
     return () => clearInterval(timer);
   }, [slide, goTo]);
 
+  if (!block.enabled || images.length === 0) return null;
+
   const start = slide * STEP;
   const visible = images.slice(start, start + STEP);
 

@@ -16,6 +16,9 @@ function PawIcon({ color = "#7BAF8E" }: { color?: string }) {
 export function AboutSection() {
   const { home } = useContent();
   const about = home.about;
+
+  if (!about.enabled) return null;
+
   const paragraphs = about.paragraphs.split("\n").filter((line) => line.trim() !== "");
 
   return (

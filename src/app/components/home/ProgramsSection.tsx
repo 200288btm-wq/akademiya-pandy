@@ -19,6 +19,8 @@ export function ProgramsSection() {
     })),
   ];
 
+  if (!block.enabled) return null;
+
   const filteredPrograms = programs.filter((program) => {
     if (selectedAge === "all") return true;
     
