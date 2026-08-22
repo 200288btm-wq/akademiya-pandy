@@ -1,13 +1,14 @@
 import { useParams, Link } from "react-router";
 import { Layout } from "../components/Layout";
 import { useModal } from "../components/ModalContext";
-import { programs } from "../data/programs";
+import { useContent } from "../content/ContentContext";
 import { ArrowLeft, Clock, Users, CheckCircle } from "lucide-react";
 import { useSEO } from "../hooks/useSEO";
 
 export function ProgramDetail() {
   const { openModal } = useModal();
   const { slug } = useParams();
+  const { programs } = useContent();
   const program = programs.find((p) => p.slug === slug);
 
   if (!program) {
@@ -144,7 +145,7 @@ export function ProgramDetail() {
             Что развивает программа
           </h2>
           <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-            {getBenefits(program.slug).map((benefit, index) => (
+            {program.benefits.map((benefit, index) => (
               <div key={index} className="flex gap-4 bg-[#F0EDD8] rounded-2xl p-6">
                 <div
                   className="w-12 h-12 rounded-full flex items-center justify-center flex-shrink-0"
@@ -460,42 +461,4 @@ function FormatCard({ icon, title, value, color }: any) {
       <p className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D]">{value}</p>
     </div>
   );
-}
-
-function getBenefits(slug: string) {
-  const benefitsMap: Record<string, Array<{ title: string; description: string }>> = {
-    "smyshlennaya-panda": [
-      { title: "Концентрация внимания", description: "Ребёнок учится удерживать внимание на задаче дольше" },
-      { title: "Мелкая моторика", description: "Развиваем через игру и творческие задания" },
-      { title: "Познание мира", description: "Узнаём новое через наблюдение и эксперименты" },
-      { title: "Эмоциональная устойчивость", description: "Учимся понимать и выражать свои эмоции" },
-    ],
-    "pushistye-hudozhniki": [
-      { title: "Построение композиции", description: "Основы композиции и пространственного мышления" },
-      { title: "Теория цвета", description: "Как работать с цветом и создавать гармонию" },
-      { title: "Разные техники, жанры, направления", description: "От реализма до абстракции, от живописи до графики" },
-      { title: "Уверенность в себе", description: "Творчество без оценок и сравнений" },
-    ],
-    "sekrety-miniatyurista": [
-      { title: "Пространственное мышление", description: "Учимся видеть объёмные формы и планировать конструкцию" },
-      { title: "Планирование", description: "От идеи до реализации — полный цикл создания макета" },
-      { title: "Инженерное мышление", description: "Прочность, материалы, оптимальные решения, работа с ошибками" },
-      { title: "Усидчивость", description: "Внимание к деталям и терпение в работе" },
-      { title: "Гордость за результат", description: "Настоящий макет, созданный своими руками" },
-    ],
-    "eksploriki": [
-      { title: "Естественное восприятие языка", description: "Английский усваивается как родной — через контекст" },
-      { title: "Базовый словарный запас", description: "Через игру и общение, без зубрёжки" },
-      { title: "Уверенность в коммуникации", description: "Говорим без страха ошибок" },
-      { title: "Любопытство к миру", description: "Интерес к другим культурам и традициям" },
-    ],
-    "shtab-pandy": [
-      { title: "Стратегическое мышление", description: "Учимся планировать ходы и предвидеть последствия" },
-      { title: "Командная работа", description: "Навыки общения и сотрудничества" },
-      { title: "Принятие решений", description: "Учимся делать выбор и нести ответственность" },
-      { title: "Лидерство и уважение", description: "Умение вести и уважать других игроков" },
-    ],
-  };
-
-  return benefitsMap[slug] || [];
 }

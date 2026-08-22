@@ -1,10 +1,12 @@
 import { useState } from "react";
 import { Link } from "react-router";
-import { programs } from "../../data/programs";
+import { useContent } from "../../content/ContentContext";
 import { ChevronRight } from "lucide-react";
+import type { Program } from "../../data/defaults";
 
 export function ProgramsSection() {
   const [selectedAge, setSelectedAge] = useState<string>("all");
+  const { programs } = useContent();
 
   const ageRanges = [
     { value: "all", label: "Все возрасты" },
@@ -68,7 +70,7 @@ export function ProgramsSection() {
   );
 }
 
-function ProgramCard({ program }: { program: typeof programs[0] }) {
+function ProgramCard({ program }: { program: Program }) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all transform hover:-translate-y-2 group">
       {/* Изображение */}

@@ -1,8 +1,9 @@
 import { useSEO } from "../hooks/useSEO";
 import { Layout } from "../components/Layout";
 import { Link } from "react-router";
-import { programs } from "../data/programs";
+import { useContent } from "../content/ContentContext";
 import { ChevronRight } from "lucide-react";
+import type { Program } from "../data/defaults";
 
 export function Programs() {
   useSEO({
@@ -10,6 +11,9 @@ export function Programs() {
     description: "Все направления Академии Панды: подготовка к школе, рисование, английский язык, настольные игры, архитектурное моделирование. Дети 4–14 лет. Ботанический район Екатеринбурга.",
     keywords: "кружки для детей Екатеринбург, рисование для детей Екатеринбург, английский для детей Ботанический район, подготовка к школе Екатеринбург, настольные игры для детей Екатеринбург",
   });
+
+  const { programs } = useContent();
+
   return (
     <Layout>
       {/* Заголовок */}
@@ -77,7 +81,7 @@ export function Programs() {
   );
 }
 
-function ProgramCard({ program }: { program: typeof programs[0] }) {
+function ProgramCard({ program }: { program: Program }) {
   return (
     <div className="bg-white rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all transform hover:-translate-y-2 group">
       {/* Изображение */}

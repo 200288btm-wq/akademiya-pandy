@@ -11,7 +11,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import type { ReactNode } from "react";
 import { defaultContent } from "../data/defaults";
-import type { FaqItem, Review, SiteContent } from "../data/defaults";
+import type { Benefit, FaqItem, Program, Review, SiteContent } from "../data/defaults";
 
 const ContentContext = createContext<SiteContent>(defaultContent);
 
@@ -21,6 +21,49 @@ export function useContent(): SiteContent {
 
 function isText(value: unknown): value is string {
   return typeof value === "string" && value.trim().length > 0;
+}
+
+function cleanBenefits(raw: unknown): Benefit[] {
+  if (!Array.isArray(raw)) return [];
+  return raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => isText(item.title))
+    .map((item) => ({
+      title: String(item.title),
+      description: isText(item.description) ? item.description : "",
+    }));
+}
+
+function cleanPrograms(raw: unknown): Program[] | null {
+  if (!Array.isArray(raw)) return null;
+  const items = raw
+    .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
+    .filter((item) => isText(item.name) && isText(item.slug))
+    .filter((item) => item.status !== "hidden")
+    .map((item, index) => {
+      const status = item.status;
+      return {
+        id: isText(item.id) ? item.id : `program-${index}`,
+        slug: String(item.slug),
+        name: String(item.name),
+        shortName: isText(item.shortName) ? item.shortName : "",
+        age: isText(item.age) ? item.age : "",
+        ageMin: Number(item.ageMin) || 0,
+        ageMax: Number(item.ageMax) || 99,
+        description: isText(item.description) ? item.description : "",
+        color: isText(item.color) ? item.color : "#7BAF8E",
+        status:
+          status === "active" || status === "launching" || status === "soon"
+            ? status
+            : ("active" as const),
+        statusText: isText(item.statusText) ? item.statusText : "Идёт набор",
+        duration: isText(item.duration) ? item.duration : "",
+        groupSize: isText(item.groupSize) ? item.groupSize : "",
+        image: isText(item.image) ? item.image : "",
+        benefits: cleanBenefits(item.benefits),
+      } as Program;
+    });
+  return items.length > 0 ? items : null;
 }
 
 function cleanReviews(raw: unknown): Review[] | null {
@@ -57,6 +100,7 @@ function mergeContent(raw: unknown): SiteContent {
   if (!raw || typeof raw !== "object") return defaultContent;
   const data = raw as Record<string, unknown>;
   return {
+    programs: cleanPrograms(data.programs) ?? defaultContent.programs,
     reviews: cleanReviews(data.reviews) ?? defaultContent.reviews,
     faq: cleanFaq(data.faq) ?? defaultContent.faq,
   };

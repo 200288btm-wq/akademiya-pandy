@@ -23,12 +23,148 @@ export interface FaqItem {
   showOnHome: boolean;
 }
 
+export interface Benefit {
+  title: string;
+  description: string;
+}
+
+export interface Program {
+  id: string;
+  slug: string;
+  name: string;
+  shortName: string;
+  age: string;
+  ageMin: number;
+  ageMax: number;
+  description: string;
+  color: string;
+  status: "active" | "launching" | "soon" | "hidden";
+  statusText: string;
+  duration: string;
+  groupSize: string;
+  image: string;
+  benefits: Benefit[];
+}
+
 export interface SiteContent {
+  programs: Program[];
   reviews: Review[];
   faq: FaqItem[];
 }
 
 export const defaultContent: SiteContent = {
+  programs: [
+    {
+      id: "1",
+      slug: "smyshlennaya-panda",
+      name: "Смышлёная Панда",
+      shortName: "Развивающие занятия",
+      age: "4-6 лет",
+      ageMin: 4,
+      ageMax: 6,
+      description: "Мягкая подготовка к школе через игру, нейрогимнастику и движение — без давления, стресса и завышенных ожиданий",
+      color: "#7BAF8E",
+      status: "active",
+      statusText: "Идёт набор",
+      duration: "60 минут",
+      groupSize: "до 10 детей",
+      image: "https://i.ibb.co/G4BTpQck/951b69af-3773-d9d1-addd-61b200c988f6.jpg",
+      benefits: [
+        { title: "Концентрация внимания", description: "Ребёнок учится удерживать внимание на задаче дольше" },
+        { title: "Мелкая моторика", description: "Развиваем через игру и творческие задания" },
+        { title: "Познание мира", description: "Узнаём новое через наблюдение и эксперименты" },
+        { title: "Эмоциональная устойчивость", description: "Учимся понимать и выражать свои эмоции" },
+      ],
+    },
+    {
+      id: "2",
+      slug: "pushistye-hudozhniki",
+      name: "Пушистые художники",
+      shortName: "Рисование",
+      age: "9+ лет",
+      ageMin: 9,
+      ageMax: 14,
+      description: "Построение рисунка, теория цвета и разные техники — в тёплой творческой атмосфере без оценок и сравнений",
+      color: "#F2A65A",
+      status: "active",
+      statusText: "Идёт набор",
+      duration: "60 минут",
+      groupSize: "до 10 детей",
+      image: "https://i.ibb.co/cKK28JvZ/Generated-Image-March-22-2026-3-47-PM.png",
+      benefits: [
+        { title: "Построение композиции", description: "Основы композиции и пространственного мышления" },
+        { title: "Теория цвета", description: "Как работать с цветом и создавать гармонию" },
+        { title: "Разные техники, жанры, направления", description: "От реализма до абстракции, от живописи до графики" },
+        { title: "Уверенность в себе", description: "Творчество без оценок и сравнений" },
+      ],
+    },
+    {
+      id: "3",
+      slug: "sekrety-miniatyurista",
+      name: "Секреты миниатюриста",
+      shortName: "Архитектурное моделирование",
+      age: "9-10+ лет",
+      ageMin: 9,
+      ageMax: 14,
+      description: "Проектируем и строим настоящие архитектурные макеты из бумаги — от идеи до готовой модели",
+      color: "#7B9FBA",
+      status: "active",
+      statusText: "Идёт набор",
+      duration: "60 минут",
+      groupSize: "до 10 детей",
+      image: "https://i.ibb.co/W43Gwb1z/3bab08d3-e731-40d7-954f-a066580388f6.jpg",
+      benefits: [
+        { title: "Пространственное мышление", description: "Учимся видеть объёмные формы и планировать конструкцию" },
+        { title: "Планирование", description: "От идеи до реализации — полный цикл создания макета" },
+        { title: "Инженерное мышление", description: "Прочность, материалы, оптимальные решения, работа с ошибками" },
+        { title: "Усидчивость", description: "Внимание к деталям и терпение в работе" },
+        { title: "Гордость за результат", description: "Настоящий макет, созданный своими руками" },
+      ],
+    },
+    {
+      id: "4",
+      slug: "eksploriki",
+      name: "Эксплорики",
+      shortName: "Английский язык",
+      age: "7-8 лет",
+      ageMin: 7,
+      ageMax: 8,
+      description: "Не уроки и не зубрёжка — дети исследуют мир на английском как на родном языке",
+      color: "#B8A9D4",
+      status: "soon",
+      statusText: "Скоро",
+      duration: "60 минут",
+      groupSize: "до 10 детей",
+      image: "https://i.ibb.co/Ldy9r4R0/4af909d3-e731-40d7-954f-a066580388f6.jpg",
+      benefits: [
+        { title: "Естественное восприятие языка", description: "Английский усваивается как родной — через контекст" },
+        { title: "Базовый словарный запас", description: "Через игру и общение, без зубрёжки" },
+        { title: "Уверенность в коммуникации", description: "Говорим без страха ошибок" },
+        { title: "Любопытство к миру", description: "Интерес к другим культурам и традициям" },
+      ],
+    },
+    {
+      id: "5",
+      slug: "shtab-pandy",
+      name: "Стратеги",
+      shortName: "Настольные игры",
+      age: "7-8 лет",
+      ageMin: 7,
+      ageMax: 8,
+      description: "Новые друзья, стратегия, логика и море удовольствия — в тёплой компании единомышленников",
+      color: "#D4826A",
+      status: "active",
+      statusText: "Идёт набор",
+      duration: "90 минут",
+      groupSize: "до 10 человек",
+      image: "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg",
+      benefits: [
+        { title: "Стратегическое мышление", description: "Учимся планировать ходы и предвидеть последствия" },
+        { title: "Командная работа", description: "Навыки общения и сотрудничества" },
+        { title: "Принятие решений", description: "Учимся делать выбор и нести ответственность" },
+        { title: "Лидерство и уважение", description: "Умение вести и уважать других игроков" },
+      ],
+    },  ],
   reviews: [
     {
       id: "r1",
