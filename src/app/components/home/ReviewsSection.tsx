@@ -4,6 +4,8 @@ import { useContent } from "../../content/ContentContext";
 export function ReviewsSection() {
   const { reviews } = useContent();
 
+  if (reviews.length === 0) return null;
+
   return (
     <section id="reviews" className="py-20 bg-white">
       <div className="max-w-7xl mx-auto px-6">

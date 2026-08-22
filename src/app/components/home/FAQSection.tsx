@@ -8,6 +8,8 @@ export function FAQSection() {
   const { faq } = useContent();
   const faqs = faq.filter((item) => item.showOnHome);
 
+  if (faqs.length === 0) return null;
+
   return (
     <section className="py-20 relative bg-[#F0EDD8]">
       {/* Декоративные элементы */}

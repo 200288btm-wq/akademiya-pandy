@@ -56,10 +56,21 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 function Header({ scrolled }: { scrolled: boolean }) {
   const { openModal } = useModal();
+  const { home, reviews, faq } = useContent();
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
   const [mobileOpen, setMobileOpen] = useState(false);
+
+  // Пункты меню. Якорные ссылки показываются только если соответствующая
+  // секция включена и не пуста — иначе клик уводил бы в никуда.
+  const menu = [
+    { label: "О центре", anchor: "about", show: home.about.enabled },
+    { label: "Направления", to: "/programs", show: true },
+    { label: "Отзывы", anchor: "reviews", show: reviews.length > 0 },
+    { label: "Вопросы", to: "/faq", show: faq.length > 0 },
+    { label: "Контакты", to: "/contacts", show: true },
+  ].filter((item) => item.show);
 
   const scrollTo = (id: string) => {
     setMobileOpen(false);
@@ -99,11 +110,25 @@ function Header({ scrolled }: { scrolled: boolean }) {
 
             {/* Десктоп меню — не трогаем */}
             <nav className="hidden md:flex items-center gap-8">
-              <button onClick={() => scrollTo("about")} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0">О центре</button>
-              <Link to="/programs" className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg">Направления</Link>
-              <button onClick={() => scrollTo("reviews")} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0">Отзывы</button>
-              <Link to="/faq" className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg">Вопросы</Link>
-              <Link to="/contacts" className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg">Контакты</Link>
+              {menu.map((item) =>
+                item.to ? (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.label}
+                    onClick={() => scrollTo(item.anchor!)}
+                    className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors text-lg bg-transparent border-none cursor-pointer p-0"
+                  >
+                    {item.label}
+                  </button>
+                )
+              )}
             </nav>
 
             <div className="flex items-center gap-2">
@@ -143,11 +168,26 @@ function Header({ scrolled }: { scrolled: boolean }) {
             </div>
             {/* Ссылки */}
             <nav className="flex flex-col px-6 py-6 gap-5 flex-1">
-              <button onClick={() => scrollTo("about")} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl text-left bg-transparent border-none cursor-pointer p-0 hover:text-[#7BAF8E] transition-colors">О центре</button>
-              <Link to="/programs" onClick={() => setMobileOpen(false)} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl hover:text-[#7BAF8E] transition-colors">Направления</Link>
-              <button onClick={() => scrollTo("reviews")} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl text-left bg-transparent border-none cursor-pointer p-0 hover:text-[#7BAF8E] transition-colors">Отзывы</button>
-              <Link to="/faq" onClick={() => setMobileOpen(false)} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl hover:text-[#7BAF8E] transition-colors">Вопросы</Link>
-              <Link to="/contacts" onClick={() => setMobileOpen(false)} className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl hover:text-[#7BAF8E] transition-colors">Контакты</Link>
+              {menu.map((item) =>
+                item.to ? (
+                  <Link
+                    key={item.label}
+                    to={item.to}
+                    onClick={() => setMobileOpen(false)}
+                    className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl hover:text-[#7BAF8E] transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={item.label}
+                    onClick={() => scrollTo(item.anchor!)}
+                    className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-xl text-left bg-transparent border-none cursor-pointer p-0 hover:text-[#7BAF8E] transition-colors"
+                  >
+                    {item.label}
+                  </button>
+                )
+              )}
             </nav>
             {/* Кнопка записаться */}
             <div className="px-6 pb-8">
@@ -168,8 +208,15 @@ function Header({ scrolled }: { scrolled: boolean }) {
 
 function Footer() {
   const { openModal } = useModal();
-  const { contacts } = useContent();
+  const { contacts, faq } = useContent();
   const footer = contacts.footer;
+
+  const links = [
+    { label: "Главная", to: "/", show: true },
+    { label: "Программы", to: "/programs", show: true },
+    { label: "Контакты", to: "/contacts", show: true },
+    { label: "Вопросы и ответы", to: "/faq", show: faq.length > 0 },
+  ].filter((item) => item.show);
   return (
     <footer className="bg-white mt-20">
       <div className="max-w-7xl mx-auto px-6 py-12">
@@ -188,38 +235,16 @@ function Footer() {
               Меню
             </h4>
             <ul className="space-y-2">
-              <li>
-                <Link
-                  to="/"
-                  className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors"
-                >
-                  Главная
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/programs"
-                  className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors"
-                >
-                  Программы
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/contacts"
-                  className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors"
-                >
-                  Контакты
-                </Link>
-              </li>
-              <li>
-                <Link
-                  to="/faq"
-                  className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors"
-                >
-                  Вопросы и ответы
-                </Link>
-              </li>
+              {links.map((item) => (
+                <li key={item.to}>
+                  <Link
+                    to={item.to}
+                    className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] hover:text-[#7BAF8E] transition-colors"
+                  >
+                    {item.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
