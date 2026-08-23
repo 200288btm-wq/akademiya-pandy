@@ -272,6 +272,7 @@ function cleanFooter(raw: unknown, base: Footer): Footer {
   return {
     tagline: isText(data.tagline) ? data.tagline : base.tagline,
     copyright: isText(data.copyright) ? data.copyright : base.copyright,
+    requisites: isText(data.requisites) ? data.requisites : "",
   };
 }
 
@@ -472,6 +473,9 @@ function cleanPrograms(raw: unknown): Program[] | null {
         duration: isText(item.duration) ? item.duration : "",
         groupSize: isText(item.groupSize) ? item.groupSize : "",
         image: isText(item.image) ? item.image : "",
+        formatTitle: isText(item.formatTitle) ? item.formatTitle : "Формат занятий",
+        formatExtraLabel: isText(item.formatExtraLabel) ? item.formatExtraLabel : "",
+        formatExtraValue: isText(item.formatExtraValue) ? item.formatExtraValue : "",
         benefits: cleanBenefits(item.benefits),
         sections: cleanSections(item.sections),
       } as Program;

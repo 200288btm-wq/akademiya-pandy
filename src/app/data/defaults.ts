@@ -66,6 +66,9 @@ export interface Program {
   duration: string;
   groupSize: string;
   image: string;
+  formatTitle: string;
+  formatExtraLabel: string;
+  formatExtraValue: string;
   benefits: Benefit[];
   sections: Section[];
 }
@@ -185,6 +188,7 @@ export interface ContactsPage {
 export interface Footer {
   tagline: string;
   copyright: string;
+  requisites: string;
 }
 
 export interface Contacts {
@@ -538,6 +542,7 @@ export const defaultContent: SiteContent = {
     footer: {
       tagline: "Тёплое место рядом с домом, куда дети хотят возвращаться",
       copyright: "© 2026 Академия Панды. Все права защищены",
+      requisites: "",
     },
   },
   programs: [
@@ -556,6 +561,9 @@ export const defaultContent: SiteContent = {
       duration: "60 минут",
       groupSize: "до 10 детей",
       image: "https://i.ibb.co/G4BTpQck/951b69af-3773-d9d1-addd-61b200c988f6.jpg",
+      formatTitle: "Формат занятий",
+      formatExtraLabel: "Пробное",
+      formatExtraValue: "Бесплатно",
       benefits: [
         { title: "Концентрация внимания", description: "Ребёнок учится удерживать внимание на задаче дольше" },
         { title: "Мелкая моторика", description: "Развиваем через игру и творческие задания" },
@@ -662,6 +670,9 @@ export const defaultContent: SiteContent = {
       duration: "60 минут",
       groupSize: "до 10 детей",
       image: "https://i.ibb.co/cKK28JvZ/Generated-Image-March-22-2026-3-47-PM.png",
+      formatTitle: "Формат занятий",
+      formatExtraLabel: "Пробное",
+      formatExtraValue: "Бесплатно",
       benefits: [
         { title: "Построение композиции", description: "Основы композиции и пространственного мышления" },
         { title: "Теория цвета", description: "Как работать с цветом и создавать гармонию" },
@@ -841,6 +852,9 @@ export const defaultContent: SiteContent = {
       duration: "60 минут",
       groupSize: "до 10 детей",
       image: "https://i.ibb.co/W43Gwb1z/3bab08d3-e731-40d7-954f-a066580388f6.jpg",
+      formatTitle: "Формат занятий",
+      formatExtraLabel: "Пробное",
+      formatExtraValue: "Бесплатно",
       benefits: [
         { title: "Пространственное мышление", description: "Учимся видеть объёмные формы и планировать конструкцию" },
         { title: "Планирование", description: "От идеи до реализации — полный цикл создания макета" },
@@ -979,6 +993,9 @@ export const defaultContent: SiteContent = {
       duration: "60 минут",
       groupSize: "до 10 детей",
       image: "https://i.ibb.co/Ldy9r4R0/4af909d3-e731-40d7-954f-a066580388f6.jpg",
+      formatTitle: "Формат занятий",
+      formatExtraLabel: "Пробное",
+      formatExtraValue: "Бесплатно",
       benefits: [
         { title: "Естественное восприятие языка", description: "Английский усваивается как родной — через контекст" },
         { title: "Базовый словарный запас", description: "Через игру и общение, без зубрёжки" },
@@ -1002,6 +1019,9 @@ export const defaultContent: SiteContent = {
       duration: "90 минут",
       groupSize: "до 10 человек",
       image: "https://i.ibb.co/ymJpLyzW/photo-2025-12-16-13-46-13.jpg",
+      formatTitle: "Формат занятий",
+      formatExtraLabel: "Пробное",
+      formatExtraValue: "Бесплатно",
       benefits: [
         { title: "Стратегическое мышление", description: "Учимся планировать ходы и предвидеть последствия" },
         { title: "Командная работа", description: "Навыки общения и сотрудничества" },

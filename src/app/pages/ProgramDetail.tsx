@@ -107,9 +107,11 @@ export function ProgramDetail() {
       {/* Формат */}
       <section className="py-20">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#3D3D3D] mb-12 text-center">
-            Формат занятий
-          </h2>
+          {program.formatTitle && (
+            <h2 className="font-['Nunito',sans-serif] font-bold text-4xl text-[#3D3D3D] mb-12 text-center">
+              {program.formatTitle}
+            </h2>
+          )}
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
             <FormatCard
               icon={<Users size={32} />}
@@ -129,12 +131,14 @@ export function ProgramDetail() {
               value={program.groupSize}
               color={program.color}
             />
-            <FormatCard
-              icon={<CheckCircle size={32} />}
-              title="Пробное"
-              value="Бесплатно"
-              color={program.color}
-            />
+            {program.formatExtraValue && (
+              <FormatCard
+                icon={<CheckCircle size={32} />}
+                title={program.formatExtraLabel}
+                value={program.formatExtraValue}
+                color={program.color}
+              />
+            )}
           </div>
         </div>
       </section>

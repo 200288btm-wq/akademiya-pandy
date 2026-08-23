@@ -317,6 +317,11 @@ function Footer() {
           <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm text-center">
             {footer.copyright}
           </p>
+          {footer.requisites && (
+            <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm opacity-60 mt-2">
+              {footer.requisites}
+            </p>
+          )}
           <Link
             to="/privacy"
             className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-sm hover:text-[#7BAF8E] transition-colors text-center"
