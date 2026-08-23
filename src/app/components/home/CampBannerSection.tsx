@@ -31,14 +31,17 @@ export function CampBannerSection() {
         )}
 
         <h2 className="font-['Nunito',sans-serif] font-extrabold text-4xl md:text-5xl lg:text-6xl leading-[1.05] mb-3 md:mb-4">
-          {promo.title && <span className="text-white">{promo.title} </span>}
+          {promo.title && <span style={{ color: promo.titleColor }}>{promo.title} </span>}
           {promo.titleAccent && (
             <span style={{ color: promo.accentColor }}>{promo.titleAccent}</span>
           )}
         </h2>
 
         {promo.text && (
-          <p className="font-['Nunito_Sans',sans-serif] text-white/80 text-base md:text-lg leading-relaxed mb-6 md:mb-7 max-w-md">
+          <p
+            className="font-['Nunito_Sans',sans-serif] text-base md:text-lg leading-relaxed mb-6 md:mb-7 max-w-md"
+            style={{ color: promo.textColor, opacity: 0.85 }}
+          >
             {promo.text}
           </p>
         )}
@@ -48,7 +51,8 @@ export function CampBannerSection() {
             {promo.features.map((feature, i) => (
               <div
                 key={i}
-                className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-lg px-3 md:px-3.5 py-2 text-white font-['Nunito_Sans',sans-serif] font-semibold text-sm"
+                className="inline-flex items-center gap-2 bg-white/10 border border-white/15 rounded-lg px-3 md:px-3.5 py-2 font-['Nunito_Sans',sans-serif] font-semibold text-sm"
+                style={{ color: promo.textColor }}
               >
                 {feature.icon && (
                   <span style={{ color: promo.accentColor }}>{feature.icon}</span>
@@ -62,7 +66,7 @@ export function CampBannerSection() {
         {promo.buttonText && (
           <div
             className="inline-flex items-center gap-3 self-start font-['Nunito',sans-serif] font-extrabold text-base md:text-lg px-6 md:px-8 py-3 md:py-4 rounded-xl transition-opacity hover:opacity-90"
-            style={{ backgroundColor: promo.accentColor, color: promo.bgColor }}
+            style={{ backgroundColor: promo.buttonBgColor, color: promo.buttonTextColor }}
           >
             {promo.buttonText}
             <ArrowRight className="w-5 h-5" />
@@ -83,11 +87,17 @@ export function CampBannerSection() {
                 {card.badge}
               </div>
             )}
-            <p className="font-['Nunito',sans-serif] font-extrabold text-white text-xl md:text-2xl leading-tight mb-2">
+            <p
+              className="font-['Nunito',sans-serif] font-extrabold text-xl md:text-2xl leading-tight mb-2"
+              style={{ color: promo.titleColor }}
+            >
               {card.title}
             </p>
             {card.text && (
-              <p className="font-['Nunito_Sans',sans-serif] text-white/70 text-sm md:text-base leading-snug">
+              <p
+                className="font-['Nunito_Sans',sans-serif] text-sm md:text-base leading-snug"
+                style={{ color: promo.textColor, opacity: 0.75 }}
+              >
                 {card.text}
               </p>
             )}

@@ -107,6 +107,10 @@ export interface Promo {
   images: string[];
   bgColor: string;
   accentColor: string;
+  titleColor: string;
+  textColor: string;
+  buttonBgColor: string;
+  buttonTextColor: string;
 }
 
 export interface Point {
@@ -323,6 +327,10 @@ export const defaultContent: SiteContent = {
       images: [],
       bgColor: "#1E3A6E",
       accentColor: "#F5C842",
+      titleColor: "#FFFFFF",
+      textColor: "#FFFFFF",
+      buttonBgColor: "#F5C842",
+      buttonTextColor: "#1E3A6E",
     },
     about: {
       enabled: true,
