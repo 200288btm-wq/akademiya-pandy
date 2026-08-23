@@ -20,7 +20,7 @@ export function Programs() {
       <section className="py-20 bg-gradient-to-b from-white to-[#F0EDD8]">
         <div className="max-w-7xl mx-auto px-6">
           <div className="text-center max-w-4xl mx-auto">
-            <h1 className="font-['Nunito',sans-serif] font-bold text-5xl md:text-6xl text-[#3D3D3D] mb-6">
+            <h1 className="font-['Nunito',sans-serif] font-bold text-3xl md:text-5xl text-[#3D3D3D] mb-6">
               Все направления Академии Панды
             </h1>
             <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed">

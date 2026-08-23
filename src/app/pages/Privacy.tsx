@@ -13,7 +13,7 @@ export function Privacy() {
       {/* Заголовок */}
       <section className="py-16 bg-gradient-to-b from-white to-[#F0EDD8]">
         <div className="max-w-4xl mx-auto px-6 text-center">
-          <h1 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
+          <h1 className="font-['Nunito',sans-serif] font-bold text-3xl md:text-4xl text-[#3D3D3D] mb-4">
             Политика обработки персональных данных
           </h1>
           <p className="font-['Nunito_Sans',sans-serif] text-[#4a4a4a] text-lg">

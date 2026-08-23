@@ -74,7 +74,7 @@ export function ProgramDetail() {
                   {program.statusText}
                 </span>
               </div>
-              <h1 className="font-['Nunito',sans-serif] font-bold text-5xl text-[#3D3D3D] mb-4">
+              <h1 className="font-['Nunito',sans-serif] font-bold text-3xl md:text-4xl text-[#3D3D3D] mb-4">
                 {program.name}
               </h1>
               <p className="font-['Nunito_Sans',sans-serif] text-2xl text-[#3D3D3D] mb-6 opacity-80">
