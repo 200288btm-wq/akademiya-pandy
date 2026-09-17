@@ -158,8 +158,10 @@ function cleanCta(raw: unknown, base: Cta): Cta {
   };
 }
 
-function cleanWorkshops(raw: unknown): WorkshopsBlock {
-  const base = defaultContent.workshops;
+// Мастер-классы и мероприятия устроены одинаково: список карточек
+// с одними и теми же полями. Разбор у них общий — отличается только то,
+// откуда брать тексты, когда в файле их нет.
+function cleanCards(raw: unknown, base: WorkshopsBlock): WorkshopsBlock {
   const data = (raw || {}) as Record<string, unknown>;
   const styles = ["accent", "green", "purple", "gray"];
 
@@ -532,7 +534,8 @@ function mergeContent(raw: unknown): SiteContent {
     home: cleanHome(data.home),
     contacts: cleanContacts(data.contacts),
     form: cleanForm(data.form),
-    workshops: cleanWorkshops(data.workshops),
+    workshops: cleanCards(data.workshops, defaultContent.workshops),
+    events: cleanCards(data.events, defaultContent.events),
     programs: cleanPrograms(data.programs) ?? defaultContent.programs,
     reviews: cleanReviews(data.reviews) ?? defaultContent.reviews,
     faq: cleanFaq(data.faq) ?? defaultContent.faq,

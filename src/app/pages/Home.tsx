@@ -5,6 +5,7 @@ import { HeroSection } from "../components/home/HeroSection";
 import { CampBannerSection } from "../components/home/CampBannerSection";
 import { ProgramsSection } from "../components/home/ProgramsSection";
 import { WorkshopsSection } from "../components/home/WorkshopsSection";
+import { EventsSection } from "../components/home/EventsSection";
 import { AboutSection } from "../components/home/AboutSection";
 import { WhyUsSection } from "../components/home/WhyUsSection";
 import { HowItWorksSection } from "../components/home/HowItWorksSection";
@@ -30,6 +31,7 @@ const SECTIONS: Record<string, () => React.ReactElement> = {
   about: AboutSection,
   programsBlock: ProgramsSection,
   workshops: WorkshopsSection,
+  events: EventsSection,
   whyUs: WhyUsSection,
   howItWorks: HowItWorksSection,
   gallery: GallerySection,

@@ -23,10 +23,15 @@ export function WorkshopCard({
   workshop,
   buttonText,
   compact = false,
+  // Как запись называется в пометке к заявке: «Мастер-класс «…»»
+  // или «Мероприятие «…»». Разделы устроены одинаково и используют
+  // одну карточку, отличается только это слово.
+  leadPrefix = "Мастер-класс",
 }: {
   workshop: Workshop;
   buttonText: string;
   compact?: boolean;
+  leadPrefix?: string;
 }) {
   const { openModal } = useModal();
   const [photo, setPhoto] = useState(0);
@@ -57,7 +62,7 @@ export function WorkshopCard({
   const signUp = (event: React.MouseEvent) => {
     stop(event);
     setFull(false);
-    openModal(`Мастер-класс «${workshop.name}»`);
+    openModal(`${leadPrefix} «${workshop.name}»`);
   };
 
   return (

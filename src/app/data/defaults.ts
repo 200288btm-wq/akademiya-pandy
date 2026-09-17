@@ -285,6 +285,9 @@ export interface SiteContent {
   contacts: Contacts;
   form: LeadForm;
   workshops: WorkshopsBlock;
+  // Мероприятия устроены точно так же, как мастер-классы, и используют
+  // тот же тип: список карточек с теми же полями.
+  events: WorkshopsBlock;
   programs: Program[];
   reviews: Review[];
   faq: FaqItem[];
@@ -297,6 +300,7 @@ export const defaultContent: SiteContent = {
       "about",
       "programsBlock",
       "workshops",
+      "events",
       "whyUs",
       "howItWorks",
       "gallery",
@@ -454,6 +458,15 @@ export const defaultContent: SiteContent = {
     subtitle: "Разовые занятия, на которые можно прийти без абонемента",
     pageTitle: "Мастер-классы в Академии Панды",
     pageSubtitle: "Приходите попробовать что-то новое — одно занятие, без обязательств",
+    buttonText: "Записаться",
+    items: [],
+  },
+  events: {
+    enabled: true,
+    title: "Мероприятия",
+    subtitle: "Праздники, дни рождения и события, на которые можно прийти",
+    pageTitle: "Мероприятия в Академии Панды",
+    pageSubtitle: "Что у нас происходит в ближайшее время",
     buttonText: "Записаться",
     items: [],
   },
