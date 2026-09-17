@@ -1,4 +1,5 @@
 import { useContent } from "../../content/ContentContext";
+import { RichText } from "../RichText";
 
 function PawIcon({ color = "#7BAF8E" }: { color?: string }) {
   return (
@@ -19,8 +20,6 @@ export function AboutSection() {
 
   if (!about.enabled) return null;
 
-  const paragraphs = about.paragraphs.split("\n").filter((line) => line.trim() !== "");
-
   return (
     <section id="about" className="py-20 bg-white relative">
       <div className="absolute -top-20 -left-20 w-64 h-64 bg-[#7BAF8E] opacity-5 rounded-full" />
@@ -40,10 +39,8 @@ export function AboutSection() {
               )}
             </h2>
 
-            <div className="space-y-4 font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] leading-relaxed">
-              {paragraphs.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
+            <div className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] leading-relaxed">
+              <RichText text={about.paragraphs} />
             </div>
 
             <div className="space-y-4">

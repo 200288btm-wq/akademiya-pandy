@@ -426,6 +426,7 @@ function cleanSections(raw: unknown): Section[] {
   const types = ["text", "cards", "facts", "gallery"];
   const styles = ["emoji", "number", "plain", "badge"];
   const backgrounds = ["tint", "white", "none"];
+  const aligns = ["left", "center"];
 
   return raw
     .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
@@ -437,6 +438,10 @@ function cleanSections(raw: unknown): Section[] {
       title: isText(item.title) ? item.title : "",
       subtitle: isText(item.subtitle) ? item.subtitle : "",
       body: isText(item.body) ? item.body : "",
+      align:
+        typeof item.align === "string" && aligns.includes(item.align)
+          ? (item.align as Section["align"])
+          : "center",
       style:
         typeof item.style === "string" && styles.includes(item.style)
           ? (item.style as Section["style"])
@@ -480,6 +485,9 @@ function cleanPrograms(raw: unknown): Program[] | null {
         formatTitle: isText(item.formatTitle) ? item.formatTitle : "Формат занятий",
         formatExtraLabel: isText(item.formatExtraLabel) ? item.formatExtraLabel : "",
         formatExtraValue: isText(item.formatExtraValue) ? item.formatExtraValue : "",
+        // Пусто — страница подставит текст по умолчанию сама.
+        buttonText: isText(item.buttonText) ? item.buttonText : "",
+        buttonNote: isText(item.buttonNote) ? item.buttonNote : "",
         benefits: cleanBenefits(item.benefits),
         sections: cleanSections(item.sections),
       } as Program;

@@ -10,6 +10,7 @@
 
 import { useState } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
+import { RichText, alignClass } from "./RichText";
 import type { Section, SectionItem } from "../data/defaults";
 
 const TITLE_FONT = "font-['Nunito',sans-serif]";
@@ -40,25 +41,21 @@ function SectionHeading({ title, subtitle }: { title: string; subtitle: string }
 }
 
 function TextSection({ section }: { section: Section }) {
-  const paragraphs = (section.body || "").split("\n").filter((line) => line.trim() !== "");
+  const hasText = (section.body || "").trim() !== "";
   const hasImages = section.images.length > 0;
 
   return (
     <div className="max-w-5xl mx-auto px-6">
       <SectionHeading title={section.title} subtitle={section.subtitle} />
-      {(paragraphs.length > 0 || hasImages) && (
+      {(hasText || hasImages) && (
         <div className="bg-white rounded-3xl overflow-hidden shadow-md">
-          <div className="p-8 md:p-12 text-center">
-            {paragraphs.map((paragraph, i) => (
-              <p
-                key={i}
-                className={`${TEXT_FONT} text-base md:text-lg text-[#3D3D3D] leading-relaxed ${
-                  i === 0 ? "" : "mt-4"
-                }`}
-              >
-                {paragraph}
-              </p>
-            ))}
+          {/* Выравнивание задаётся в админке. Пусто — по центру, как было
+              у всех блоков до появления этого поля. */}
+          <div className={`p-8 md:p-12 ${alignClass(section.align)}`}>
+            <RichText
+              text={section.body}
+              className={`${TEXT_FONT} text-base md:text-lg text-[#3D3D3D] leading-relaxed`}
+            />
           </div>
           {hasImages && (
             <div className="flex items-end justify-between px-4 pb-2">
@@ -139,9 +136,10 @@ function CardsSection({ section, color }: { section: Section; color: string }) {
             )}
 
             {item.text && (
-              <p className={`${TEXT_FONT} text-[#3D3D3D] leading-relaxed ${isBadge ? "" : "mb-2"}`}>
-                {item.text}
-              </p>
+              <RichText
+                text={item.text}
+                className={`${TEXT_FONT} text-[#3D3D3D] leading-relaxed ${isBadge ? "" : "mb-2"}`}
+              />
             )}
 
             {item.list.length > 0 && (

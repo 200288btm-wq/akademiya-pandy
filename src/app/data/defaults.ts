@@ -44,6 +44,10 @@ export interface Section {
   title: string;
   subtitle: string;
   body: string;
+  // Выравнивание текста блока. Поле необязательное: в старых блоках и в этом
+  // файле-страховке его нет, и тогда текст идёт по центру — как было
+  // у всех блоков до появления поля.
+  align?: "left" | "center";
   style: "emoji" | "number" | "plain" | "badge";
   columns: number;
   background: "tint" | "white" | "none";
@@ -69,6 +73,12 @@ export interface Program {
   formatTitle: string;
   formatExtraLabel: string;
   formatExtraValue: string;
+  // Надпись на кнопке записи и подпись под ней на странице направления.
+  // Поля необязательные: пусто — берётся текст по умолчанию (BUTTON_TEXT
+  // и BUTTON_NOTE в ProgramDetail), тот же, что был зашит в коде.
+  // Условия у направлений разные, поэтому у каждого может быть своя надпись.
+  buttonText?: string;
+  buttonNote?: string;
   benefits: Benefit[];
   sections: Section[];
 }

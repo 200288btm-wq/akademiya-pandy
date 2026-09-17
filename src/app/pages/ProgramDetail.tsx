@@ -6,6 +6,12 @@ import { ArrowLeft, Clock, Users, CheckCircle } from "lucide-react";
 import { useSEO } from "../hooks/useSEO";
 import { ProgramSections } from "../components/ProgramSections";
 
+// Текст кнопки записи и подпись под ней, если в админке у направления
+// не задано своё. Раньше эти строки были зашиты здесь и были одинаковыми
+// у всех направлений — а условия пробного у них разные.
+const BUTTON_TEXT = "Записаться на пробное занятие";
+const BUTTON_NOTE = "✨ Первое занятие — бесплатно (при покупке абонемента)";
+
 export function ProgramDetail() {
   const { openModal } = useModal();
   const { slug } = useParams();
@@ -87,10 +93,12 @@ export function ProgramDetail() {
                 onClick={() => openModal(program.name)}
                 className="inline-block bg-[#F2A65A] hover:bg-[#e89542] text-white px-10 py-4 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold text-lg transition-all transform hover:scale-105 shadow-lg border-none cursor-pointer"
               >
-                Записаться на пробное занятие
+                {program.buttonText || BUTTON_TEXT}
               </button>
+              {/* Пусто — текст по умолчанию. Совсем убрать подпись сейчас
+                  нельзя: для этого нужен отдельный выключатель. */}
               <p className="font-['Nunito_Sans',sans-serif] text-[#7BAF8E] font-semibold mt-3">
-                ✨ Первое занятие — бесплатно (при покупке абонемента)
+                {program.buttonNote || BUTTON_NOTE}
               </p>
             </div>
             <div className="relative">
