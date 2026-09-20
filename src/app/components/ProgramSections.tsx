@@ -208,15 +208,19 @@ function GallerySection({ section, color }: { section: Section; color: string })
   return (
     <div className="max-w-5xl mx-auto px-6">
       <SectionHeading title={section.title} subtitle={section.subtitle} />
+      {/* Высота карусели постоянная, а фотография вписывается в неё целиком
+          и в своих пропорциях: вертикальный кадр раньше обрезался до
+          горизонтального. Поля по бокам белые, как и сама карточка,
+          поэтому их не видно. */}
       <div
-        className="relative rounded-3xl overflow-hidden shadow-xl bg-white"
+        className="relative rounded-3xl overflow-hidden shadow-xl bg-white flex items-center justify-center h-[320px] md:h-[520px]"
         onTouchStart={(e) => setTouchStart(e.touches[0].clientX)}
         onTouchEnd={(e) => onTouchEnd(e.changedTouches[0].clientX)}
       >
         <img
           src={photos[safeIndex]}
           alt=""
-          className="w-full h-[300px] md:h-[500px] object-cover"
+          className="max-h-full max-w-full w-auto h-auto object-contain"
         />
         {total > 1 && (
           <>

@@ -226,11 +226,16 @@ function WorkshopFull({
       >
         <div className="relative">
           {total > 0 ? (
-            <img
-              src={workshop.images[Math.min(photo, total - 1)]}
-              alt={workshop.name}
-              className="w-full h-56 md:h-72 object-cover"
-            />
+            // В окне фотографию смотрят, а не узнают по краю карточки,
+            // поэтому здесь она показывается целиком и в своих пропорциях.
+            // На самой карточке остаётся обрезка: там важнее ровная сетка.
+            <div className="w-full h-56 md:h-72 bg-[#F0EDD8] flex items-center justify-center">
+              <img
+                src={workshop.images[Math.min(photo, total - 1)]}
+                alt={workshop.name}
+                className="max-h-full max-w-full w-auto h-auto object-contain"
+              />
+            </div>
           ) : (
             <div className="w-full h-40 bg-[#F0EDD8] flex items-center justify-center text-5xl opacity-40">
               🎨

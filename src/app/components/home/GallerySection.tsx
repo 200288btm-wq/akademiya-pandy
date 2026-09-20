@@ -53,26 +53,36 @@ export function GallerySection() {
             <ChevronLeft size={22} />
           </button>
 
+          {/* Фотографии показываются в своих пропорциях.
+              Раньше здесь была рамка 4:3 с object-cover: вертикальный кадр
+              обрезался до горизонтального, и у детей отрезало головы.
+              Теперь у ячейки задана только высота, а фотография вписывается
+              в неё целиком. Пустое место по бокам совпадает с фоном секции,
+              поэтому полей не видно, а тень лежит по краю самого снимка. */}
           <div
             className="hidden md:grid grid-cols-3 gap-4"
             style={{ opacity: fading ? 0.4 : 1, transition: "opacity 0.2s ease" }}
           >
             {visible.map((img, i) => (
-              <div key={`${slide}-${i}`} className="aspect-[4/3] overflow-hidden rounded-2xl shadow-md">
+              <div key={`${slide}-${i}`} className="h-[300px] flex items-center justify-center">
                 <img
                   src={img}
                   alt=""
-                  className="w-full h-full object-cover hover:scale-105 transition-transform duration-500"
+                  className="max-h-full max-w-full w-auto h-auto object-contain rounded-2xl shadow-md hover:scale-105 transition-transform duration-500"
                 />
               </div>
             ))}
           </div>
 
           <div
-            className="md:hidden aspect-[4/3] overflow-hidden rounded-2xl shadow-md"
+            className="md:hidden h-[280px] flex items-center justify-center"
             style={{ opacity: fading ? 0.4 : 1, transition: "opacity 0.2s ease" }}
           >
-            <img src={visible[0]} alt="" className="w-full h-full object-cover" />
+            <img
+              src={visible[0]}
+              alt=""
+              className="max-h-full max-w-full w-auto h-auto object-contain rounded-2xl shadow-md"
+            />
           </div>
 
           <button

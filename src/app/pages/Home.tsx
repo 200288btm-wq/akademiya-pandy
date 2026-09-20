@@ -26,7 +26,8 @@ function PaperSection({ children, index }: { children: React.ReactNode; index: n
 }
 
 // Порядок секций задаётся в админке, здесь — соответствие имени и блока.
-const SECTIONS: Record<string, () => React.ReactElement> = {
+// Секция может ничего не нарисовать (выключена или пуста) — отсюда null в типе.
+const SECTIONS: Record<string, () => React.ReactElement | null> = {
   promo: CampBannerSection,
   about: AboutSection,
   programsBlock: ProgramsSection,
