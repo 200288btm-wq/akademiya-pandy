@@ -33,6 +33,7 @@ import type {
   IconCard,
   Point,
   ProgramsBlock,
+  Promo,
   Benefit,
   FaqItem,
   HomeContent,
@@ -354,17 +355,54 @@ function cleanOrder(raw: unknown, base: string[]): string[] {
   return result;
 }
 
+// Один промо-баннер.
+function cleanPromo(raw: unknown, index: number): Promo {
+  const p = (raw || {}) as Record<string, unknown>;
+  return {
+    id: isText(p.id) ? p.id : `promo-${index}`,
+    enabled: p.enabled === true,
+    label: isText(p.label) ? p.label : "",
+    title: isText(p.title) ? p.title : "",
+    titleAccent: isText(p.titleAccent) ? p.titleAccent : "",
+    text: isText(p.text) ? p.text : "",
+    link: isText(p.link) ? p.link : "",
+    buttonText: isText(p.buttonText) ? p.buttonText : "",
+    features: cleanBadges(p.features),
+    cards: cleanPromoCards(p.cards),
+    images: cleanStrings(p.images),
+    bgColor: color(p.bgColor, "#1E3A6E"),
+    accentColor: color(p.accentColor, "#F5C842"),
+    titleColor: color(p.titleColor, "#FFFFFF"),
+    textColor: color(p.textColor, "#FFFFFF"),
+    buttonBgColor: color(p.buttonBgColor, color(p.accentColor, "#F5C842")),
+    buttonTextColor: color(p.buttonTextColor, color(p.bgColor, "#1E3A6E")),
+  };
+}
+
+/**
+ * Список баннеров.
+ *
+ * До версии 15 баннер был один и лежал в `home.promo` объектом. Старый файл
+ * читается по-прежнему: если ключа `promos` нет, одиночный баннер становится
+ * первым в списке. Пустой список — это «баннеров нет», и подменять его
+ * старым объектом нельзя, иначе удалённый баннер возвращался бы.
+ */
+function cleanPromos(data: Record<string, unknown>): Promo[] {
+  if (Array.isArray(data.promos)) {
+    return data.promos.map((item, i) => cleanPromo(item, i));
+  }
+  const legacy = data.promo;
+  if (legacy && typeof legacy === "object") return [cleanPromo(legacy, 0)];
+  return [];
+}
+
 function cleanHome(raw: unknown): HomeContent {
   const base = defaultContent.home;
   if (!raw || typeof raw !== "object") return base;
   const data = raw as Record<string, unknown>;
 
   const heroRaw = (data.hero || {}) as Record<string, unknown>;
-  const promoRaw = (data.promo || {}) as Record<string, unknown>;
-
   const badges = cleanBadges(heroRaw.badges);
-  const features = cleanBadges(promoRaw.features);
-  const cards = cleanPromoCards(promoRaw.cards);
 
   return {
     order: cleanOrder(data.order, base.order),
@@ -377,24 +415,7 @@ function cleanHome(raw: unknown): HomeContent {
       secondaryLink: isText(heroRaw.secondaryLink) ? heroRaw.secondaryLink : "/programs",
       image: isText(heroRaw.image) ? heroRaw.image : base.hero.image,
     },
-    promo: {
-      enabled: promoRaw.enabled === true,
-      label: isText(promoRaw.label) ? promoRaw.label : "",
-      title: isText(promoRaw.title) ? promoRaw.title : "",
-      titleAccent: isText(promoRaw.titleAccent) ? promoRaw.titleAccent : "",
-      text: isText(promoRaw.text) ? promoRaw.text : "",
-      link: isText(promoRaw.link) ? promoRaw.link : "",
-      buttonText: isText(promoRaw.buttonText) ? promoRaw.buttonText : "",
-      features,
-      cards,
-      images: cleanStrings(promoRaw.images),
-      bgColor: color(promoRaw.bgColor, "#1E3A6E"),
-      accentColor: color(promoRaw.accentColor, "#F5C842"),
-      titleColor: color(promoRaw.titleColor, "#FFFFFF"),
-      textColor: color(promoRaw.textColor, "#FFFFFF"),
-      buttonBgColor: color(promoRaw.buttonBgColor, color(promoRaw.accentColor, "#F5C842")),
-      buttonTextColor: color(promoRaw.buttonTextColor, color(promoRaw.bgColor, "#1E3A6E")),
-    },
+    promos: cleanPromos(data),
     about: cleanAbout(data.about, base.about),
     programsBlock: cleanProgramsBlock(data.programsBlock, base.programsBlock),
     whyUs: cleanCardsBlock(data.whyUs, base.whyUs),

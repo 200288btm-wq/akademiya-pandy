@@ -1,18 +1,39 @@
-// Промо-баннер на главной. Универсальный: сегодня лагерь, завтра ясельная
+// Промо-баннеры на главной. Универсальные: сегодня лагерь, завтра ясельная
 // группа — меняются только тексты, ссылка и цвета в админке.
+//
+// Баннеров может быть несколько. Показываются все включённые, сверху вниз
+// в том порядке, в каком они стоят в админке. Выключенный не рисуется,
+// но остаётся в контенте со всем содержимым.
 
 import { useState } from "react";
 import { ArrowRight, ChevronLeft, ChevronRight } from "lucide-react";
 import { useContent } from "../../content/ContentContext";
 import type { Promo } from "../../data/defaults";
 
+// Пустой баннер не рисуем: без заголовка и текста это просто цветной
+// прямоугольник посреди главной.
+function hasSomethingToShow(promo: Promo): boolean {
+  return !!(promo.title || promo.titleAccent || promo.text);
+}
+
 export function CampBannerSection() {
   const { home } = useContent();
-  const promo = home.promo;
+  const visible = home.promos.filter((promo) => promo.enabled && hasSomethingToShow(promo));
 
-  if (!promo.enabled) return null;
-  if (!promo.title && !promo.titleAccent && !promo.text) return null;
+  if (visible.length === 0) return null;
 
+  return (
+    <section className="py-12 md:py-16 bg-[#F0EDD8]">
+      <div className="max-w-7xl mx-auto px-4 md:px-6 flex flex-col gap-8 md:gap-10">
+        {visible.map((promo) => (
+          <PromoBanner key={promo.id} promo={promo} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function PromoBanner({ promo }: { promo: Promo }) {
   const inner = (
     <div className="grid md:grid-cols-[1.1fr_1fr] gap-6 md:gap-8 p-6 md:p-12 items-center">
       <div>
@@ -110,26 +131,24 @@ export function CampBannerSection() {
   const boxClass =
     "block rounded-3xl md:rounded-[40px] overflow-hidden shadow-2xl transition-transform duration-300";
 
+  if (promo.link) {
+    return (
+      <a
+        href={promo.link}
+        target={promo.link.startsWith("http") ? "_blank" : undefined}
+        rel="noopener noreferrer"
+        className={`${boxClass} hover:scale-[1.01]`}
+        style={{ backgroundColor: promo.bgColor }}
+      >
+        {inner}
+      </a>
+    );
+  }
+
   return (
-    <section className="py-12 md:py-16 bg-[#F0EDD8]">
-      <div className="max-w-7xl mx-auto px-4 md:px-6">
-        {promo.link ? (
-          <a
-            href={promo.link}
-            target={promo.link.startsWith("http") ? "_blank" : undefined}
-            rel="noopener noreferrer"
-            className={`${boxClass} hover:scale-[1.01]`}
-            style={{ backgroundColor: promo.bgColor }}
-          >
-            {inner}
-          </a>
-        ) : (
-          <div className={boxClass} style={{ backgroundColor: promo.bgColor }}>
-            {inner}
-          </div>
-        )}
-      </div>
-    </section>
+    <div className={boxClass} style={{ backgroundColor: promo.bgColor }}>
+      {inner}
+    </div>
   );
 }
 
@@ -144,11 +163,18 @@ function PromoGallery({ promo }: { promo: Promo }) {
 
   return (
     <div className="relative rounded-2xl overflow-hidden border border-white/15">
-      <img
-        src={promo.images[index]}
-        alt=""
-        className="w-full h-48 md:h-56 object-cover"
-      />
+      {/* Фотография показывается целиком, в своих пропорциях — как в галереях.
+          Поля по краям затемнены под фон баннера, поэтому их не видно. */}
+      <div
+        className="w-full h-48 md:h-56 flex items-center justify-center"
+        style={{ backgroundColor: promo.bgColor }}
+      >
+        <img
+          src={promo.images[index]}
+          alt=""
+          className="max-h-full max-w-full w-auto h-auto object-contain"
+        />
+      </div>
       {total > 1 && (
         <>
           <button

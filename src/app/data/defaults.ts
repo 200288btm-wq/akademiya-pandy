@@ -105,6 +105,7 @@ export interface Hero {
 }
 
 export interface Promo {
+  id: string;
   enabled: boolean;
   label: string;
   title: string;
@@ -225,7 +226,10 @@ export interface HomeContent {
   // Порядок секций на главной. Первый экран всегда сверху и в список не входит.
   order: string[];
   hero: Hero;
-  promo: Promo;
+  // Баннеров может быть несколько — лагерь, ясли, новый набор.
+  // До версии 15 баннер был один и лежал в `promo` объектом; старые файлы
+  // переезжают сами при чтении (см. cleanHome в ContentContext).
+  promos: Promo[];
   about: About;
   programsBlock: ProgramsBlock;
   whyUs: CardsBlock;
@@ -321,31 +325,34 @@ export const defaultContent: SiteContent = {
       secondaryLink: "/programs",
       image: "https://i.ibb.co/mCY4BGhr/photo-2025-10-10-19-59-34.jpg",
     },
-    promo: {
-      enabled: true,
-      label: "Летний лагерь",
-      title: "Лето",
-      titleAccent: "в вашем ритме",
-      text: "Творческий лагерь от Академии Панды в Екатеринбурге — без фиксированных смен, приходите когда удобно вам",
-      link: "https://akademiya-kanikul.ru",
-      buttonText: "Узнать подробнее",
-      features: [
-        { icon: "🍽", text: "Питание включено" },
-        { icon: "🗓", text: "Запись за 2 дня" },
-        { icon: "📉", text: "Больше дней — выгоднее" },
-      ],
-      cards: [
-        { badge: "от 7 лет", title: "Зелёная мастерская", text: "Нейрогимнастика и развивающие занятия" },
-        { badge: "от 9 лет", title: "Городские художники", text: "Городской скетчинг, прогулки по Екатеринбургу" },
-      ],
-      images: [],
-      bgColor: "#1E3A6E",
-      accentColor: "#F5C842",
-      titleColor: "#FFFFFF",
-      textColor: "#FFFFFF",
-      buttonBgColor: "#F5C842",
-      buttonTextColor: "#1E3A6E",
-    },
+    promos: [
+      {
+        id: "promo-camp",
+        enabled: true,
+        label: "Летний лагерь",
+        title: "Лето",
+        titleAccent: "в вашем ритме",
+        text: "Творческий лагерь от Академии Панды в Екатеринбурге — без фиксированных смен, приходите когда удобно вам",
+        link: "https://akademiya-kanikul.ru",
+        buttonText: "Узнать подробнее",
+        features: [
+          { icon: "🍽", text: "Питание включено" },
+          { icon: "🗓", text: "Запись за 2 дня" },
+          { icon: "📉", text: "Больше дней — выгоднее" },
+        ],
+        cards: [
+          { badge: "от 7 лет", title: "Зелёная мастерская", text: "Нейрогимнастика и развивающие занятия" },
+          { badge: "от 9 лет", title: "Городские художники", text: "Городской скетчинг, прогулки по Екатеринбургу" },
+        ],
+        images: [],
+        bgColor: "#1E3A6E",
+        accentColor: "#F5C842",
+        titleColor: "#FFFFFF",
+        textColor: "#FFFFFF",
+        buttonBgColor: "#F5C842",
+        buttonTextColor: "#1E3A6E",
+      },
+    ],
     about: {
       enabled: true,
       title: "Академия Панды,",
