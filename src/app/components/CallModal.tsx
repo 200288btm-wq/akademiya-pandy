@@ -5,10 +5,15 @@
 // уходят в соответствующие поля заявки. Все остальные добавляются в текст
 // комментария строками вида «Вопрос: ответ» — так их видно в уведомлении,
 // и при этом не нужно менять обработчик.
+//
+// «Спасибо» показывается ТОЛЬКО после ответа сервера «принято» (С-03).
+// Раньше экран успеха выходил при любом исходе — даже когда заявка
+// не дошла никуда, — и родитель ждал звонка, которого не будет.
+// При сбое форма остаётся заполненной, рядом телефон студии.
 
 import { useState } from "react";
 import { X, Check } from "lucide-react";
-import { useContent } from "../content/ContentContext";
+import { phoneHref, useContent } from "../content/ContentContext";
 import type { FormField } from "../data/defaults";
 import { buildLeadPayload, isRequired } from "./leadPayload";
 
@@ -19,13 +24,17 @@ interface CallModalProps {
 }
 
 export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
-  const { form } = useContent();
+  const { form, contacts } = useContent();
   const fields = form.fields.filter((field) => field.enabled);
 
   const [values, setValues] = useState<Record<string, string>>({});
   const [agreed, setAgreed] = useState(false);
   const [sent, setSent] = useState(false);
   const [sending, setSending] = useState(false);
+  // Ошибка отправки: текст для родителя. null — ошибки нет
+  const [failure, setFailure] = useState<string | null>(null);
+  // Скрытое поле-ловушка для ботов (С-09). Человек его не видит и не заполняет
+  const [trap, setTrap] = useState("");
 
   const valueOf = (field: FormField) => values[field.id] ?? "";
 
@@ -37,6 +46,8 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
     setValues({});
     setAgreed(false);
     setSending(false);
+    setFailure(null);
+    setTrap("");
   };
 
   const handleSubmit = async (e?: React.MouseEvent) => {
@@ -44,17 +55,33 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
     if (!isComplete || sending) return;
 
     setSending(true);
+    setFailure(null);
 
-    const payload = buildLeadPayload(fields, values, programName);
+    const payload = { ...buildLeadPayload(fields, values, programName), website: trap || null };
 
+    let accepted = false;
+    let invalid = false;
     try {
-      await fetch("/api/submit-lead.php", {
+      const response = await fetch("/api/submit-lead.php", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(payload),
       });
+      const data = await response.json().catch(() => null);
+      accepted = response.ok && data?.ok === true;
+      invalid = response.status === 400 && data?.error === "validation";
     } catch (error) {
-      console.log("Lead submit error", error);
+      console.error("Lead submit error", error);
+    }
+
+    if (!accepted) {
+      setSending(false);
+      setFailure(
+        invalid
+          ? "Проверьте, пожалуйста, имя и номер телефона."
+          : "Не получилось отправить заявку — это ошибка на нашей стороне."
+      );
+      return;
     }
 
     setSent(true);
@@ -133,6 +160,38 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
                   </a>
                 </span>
               </label>
+
+              {/* Ловушка для ботов: нулевой высоты, без фокуса, без автозаполнения.
+                  Не сдвигаем за край экрана — у окна есть прокрутка, и сбоку
+                  появилась бы лишняя горизонтальная полоса */}
+              <div aria-hidden="true" style={{ height: 0, overflow: "hidden" }}>
+                <input
+                  type="text"
+                  name="website"
+                  value={trap}
+                  onChange={(e) => setTrap(e.target.value)}
+                  tabIndex={-1}
+                  autoComplete="off"
+                />
+              </div>
+
+              {failure && (
+                <div
+                  role="alert"
+                  className="rounded-lg bg-[#fde8e8] text-[#b42318] px-4 py-3 font-['Nunito_Sans',sans-serif] text-sm"
+                >
+                  {failure}
+                  {contacts.phone && (
+                    <>
+                      {" "}Позвоните нам:{" "}
+                      <a href={phoneHref(contacts.phone)} className="font-semibold underline whitespace-nowrap">
+                        {contacts.phone}
+                      </a>
+                      {" "}— или попробуйте ещё раз.
+                    </>
+                  )}
+                </div>
+              )}
 
               <button
                 onClick={(e) => handleSubmit(e)}
