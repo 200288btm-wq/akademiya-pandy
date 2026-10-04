@@ -40,7 +40,7 @@ export function GallerySection() {
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-3">
             {block.title}
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#6b6b6b] max-w-2xl mx-auto">
+          <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-lg text-[#6b6b6b] max-w-2xl mx-auto">
             {block.subtitle}
           </p>
         </div>

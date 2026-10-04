@@ -117,7 +117,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
             <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-2">
               {form.successTitle}
             </h3>
-            <p className="font-['Nunito_Sans',sans-serif] text-[#4a4a4a]">{form.successText}</p>
+            <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-[#4a4a4a]">{form.successText}</p>
           </div>
         ) : (
           <>
@@ -125,7 +125,7 @@ export function CallModal({ isOpen, onClose, programName }: CallModalProps) {
               {form.title}
             </h3>
             {form.subtitle && (
-              <p className="font-['Nunito_Sans',sans-serif] text-[#4a4a4a] mb-6">{form.subtitle}</p>
+              <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-[#4a4a4a] mb-6">{form.subtitle}</p>
             )}
 
             <div className="space-y-4">

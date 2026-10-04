@@ -41,7 +41,7 @@ export function ReviewsSection() {
                 <p className="font-['Nunito_Sans',sans-serif] text-sm text-[#3D3D3D] opacity-60 mb-3">
                   {review.child} • {review.program}
                 </p>
-                <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed italic text-sm">
+                <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed italic text-sm">
                   "{review.text}"
                 </p>
               </div>

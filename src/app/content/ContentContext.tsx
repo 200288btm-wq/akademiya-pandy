@@ -28,6 +28,8 @@ import type {
   Way,
   Workshop,
   WorkshopsBlock,
+  CardKind,
+  ShopStatus,
   Cta,
   HomeGallery,
   IconCard,
@@ -162,11 +164,41 @@ function cleanCta(raw: unknown, base: Cta): Cta {
 // Мастер-классы и мероприятия устроены одинаково: список карточек
 // с одними и теми же полями. Разбор у них общий — отличается только то,
 // откуда брать тексты, когда в файле их нет.
-function cleanCards(raw: unknown, base: WorkshopsBlock): WorkshopsBlock {
+// Сегодня по календарю студии (Екатеринбург), ГГГГ-ММ-ДД. Админка считает так же.
+export function studioToday(now: Date = new Date()): string {
+  try {
+    return new Intl.DateTimeFormat("en-CA", { timeZone: "Asia/Yekaterinburg" }).format(now);
+  } catch {
+    return now.toISOString().slice(0, 10);
+  }
+}
+
+const DATE_RE = /^\d{4}-\d{2}-\d{2}$/;
+const cleanDate = (value: unknown): string =>
+  typeof value === "string" && DATE_RE.test(value) ? value : "";
+
+// Акция на сайте: с даты начала по дату окончания включительно.
+export function promoIsLive(item: Pick<Workshop, "startDate" | "endDate">, today: string): boolean {
+  if (item.startDate && today < item.startDate) return false;
+  if (item.endDate && today > item.endDate) return false;
+  return true;
+}
+
+const SHOP_ORDER: Record<ShopStatus, number> = { available: 0, reserved: 1, sold: 2 };
+
+// kind: "card" — мастер-классы и мероприятия; "shop" — витрина работ
+// (автор, материал, размер, статус); "promo" — акции (даты показа).
+function cleanCards(
+  raw: unknown,
+  base: WorkshopsBlock,
+  kind: CardKind = "card",
+  today: string = studioToday(),
+): WorkshopsBlock {
   const data = (raw || {}) as Record<string, unknown>;
   const styles = ["accent", "green", "purple", "gray"];
+  const statuses: ShopStatus[] = ["available", "reserved", "sold"];
 
-  const items: Workshop[] = Array.isArray(data.items)
+  let items: Workshop[] = Array.isArray(data.items)
     ? data.items
         .filter((item): item is Record<string, unknown> => !!item && typeof item === "object")
         .filter((item) => isText(item.name))
@@ -186,8 +218,32 @@ function cleanCards(raw: unknown, base: WorkshopsBlock): WorkshopsBlock {
               : "accent",
           images: cleanStrings(item.images),
           enabled: true,
+          ...(kind === "shop"
+            ? {
+                author: isText(item.author) ? item.author : "",
+                material: isText(item.material) ? item.material : "",
+                size: isText(item.size) ? item.size : "",
+                status:
+                  typeof item.status === "string" && statuses.includes(item.status as ShopStatus)
+                    ? (item.status as ShopStatus)
+                    : "available",
+              }
+            : {}),
+          ...(kind === "promo"
+            ? { startDate: cleanDate(item.startDate), endDate: cleanDate(item.endDate) }
+            : {}),
         }))
     : [];
+
+  // Акция видна только в свои даты: закончилась — исчезает сама, без админки.
+  if (kind === "promo") items = items.filter((item) => promoIsLive(item, today));
+  // На витрине сначала то, что можно купить; проданное — в конце.
+  // Внутри статуса — порядок из админки (сортировка устойчивая).
+  if (kind === "shop") {
+    items = [...items].sort(
+      (a, b) => SHOP_ORDER[a.status || "available"] - SHOP_ORDER[b.status || "available"],
+    );
+  }
 
   return {
     enabled: data.enabled !== false,
@@ -557,6 +613,8 @@ function mergeContent(raw: unknown): SiteContent {
     form: cleanForm(data.form),
     workshops: cleanCards(data.workshops, defaultContent.workshops),
     events: cleanCards(data.events, defaultContent.events),
+    shop: cleanCards(data.shop, defaultContent.shop, "shop"),
+    promotions: cleanCards(data.promotions, defaultContent.promotions, "promo"),
     programs: cleanPrograms(data.programs) ?? defaultContent.programs,
     reviews: cleanReviews(data.reviews) ?? defaultContent.reviews,
     faq: cleanFaq(data.faq) ?? defaultContent.faq,

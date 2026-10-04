@@ -6,13 +6,14 @@
 // с разметкой описаний.
 //
 // Отличаются только адрес страницы, слово в пометке к заявке
-// и тексты SEO.
+// и тексты SEO. Витрина работ и акции — те же карточки с дополнительными
+// полями (kind): автор и статус продажи у витрины, сроки у акций.
 
 import { useRef } from "react";
 import { Link, useNavigate } from "react-router";
 import { ChevronLeft, ChevronRight, ArrowRight } from "lucide-react";
 import { WorkshopCard } from "./WorkshopCard";
-import type { WorkshopsBlock } from "../data/defaults";
+import type { CardKind, WorkshopsBlock } from "../data/defaults";
 
 // Лента карточек на главной.
 export function CardsHomeSection({
@@ -21,12 +22,14 @@ export function CardsHomeSection({
   href,
   moreLabel,
   leadPrefix,
+  kind = "card",
 }: {
   block: WorkshopsBlock;
   anchor: string;
   href: string;
   moreLabel: string;
   leadPrefix: string;
+  kind?: CardKind;
 }) {
   const navigate = useNavigate();
   const trackRef = useRef<HTMLDivElement>(null);
@@ -52,7 +55,7 @@ export function CardsHomeSection({
               {block.title}
             </h2>
             {block.subtitle && (
-              <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] opacity-70 max-w-2xl">
+              <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] opacity-70 max-w-2xl">
                 {block.subtitle}
               </p>
             )}
@@ -94,6 +97,7 @@ export function CardsHomeSection({
                 workshop={item}
                 buttonText={block.buttonText}
                 leadPrefix={leadPrefix}
+                kind={kind}
                 compact
               />
             </div>
@@ -119,10 +123,12 @@ export function CardsPageBody({
   block,
   emptyText,
   leadPrefix,
+  kind = "card",
 }: {
   block: WorkshopsBlock;
   emptyText: string;
   leadPrefix: string;
+  kind?: CardKind;
 }) {
   return (
     <>
@@ -133,7 +139,7 @@ export function CardsPageBody({
               {block.pageTitle}
             </h1>
             {block.pageSubtitle && (
-              <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed">
+              <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed">
                 {block.pageSubtitle}
               </p>
             )}
@@ -156,6 +162,7 @@ export function CardsPageBody({
                     workshop={item}
                     buttonText={block.buttonText}
                     leadPrefix={leadPrefix}
+                    kind={kind}
                   />
                 </div>
               ))}

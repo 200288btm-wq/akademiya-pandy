@@ -51,7 +51,7 @@ export function AboutSection() {
                     <p className="font-['Nunito',sans-serif] font-bold text-[#3D3D3D]">
                       {point.title}
                     </p>
-                    <p className="font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
+                    <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-base text-[#4a4a4a]">
                       {point.text}
                     </p>
                   </div>

@@ -7,6 +7,8 @@ import { ProgramDetail } from "./pages/ProgramDetail";
 import { Privacy } from "./pages/Privacy";
 import { Workshops } from "./pages/Workshops";
 import { Events } from "./pages/Events";
+import { Promotions } from "./pages/Promotions";
+import { Shop } from "./pages/Shop";
 
 export const router = createBrowserRouter([
   {
@@ -28,6 +30,14 @@ export const router = createBrowserRouter([
   {
     path: "/events",
     Component: Events,
+  },
+  {
+    path: "/promotions",
+    Component: Promotions,
+  },
+  {
+    path: "/shop",
+    Component: Shop,
   },
   {
     path: "/contacts",

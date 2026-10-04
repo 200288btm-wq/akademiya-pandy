@@ -56,7 +56,7 @@ export function Layout({ children }: { children: React.ReactNode }) {
 
 function Header({ scrolled }: { scrolled: boolean }) {
   const { openModal } = useModal();
-  const { home, reviews, faq, workshops, events } = useContent();
+  const { home, reviews, faq, workshops, events, promotions, shop } = useContent();
   const navigate = useNavigate();
   const location = useLocation();
   const isHome = location.pathname === "/";
@@ -69,6 +69,11 @@ function Header({ scrolled }: { scrolled: boolean }) {
     { label: "Направления", to: "/programs", show: true },
     { label: "Мастер-классы", to: "/workshops", show: workshops.enabled && workshops.items.length > 0 },
     { label: "Мероприятия", to: "/events", show: events.enabled && events.items.length > 0 },
+    // Акции и витрина — только в мобильном меню и в подвале: в верхней строке
+    // десктопа места нет, при всех разделах пункты переносятся на две строки.
+    // На главной у обоих своя секция, на страницах — ссылка в подвале.
+    { label: "Акции", to: "/promotions", show: promotions.enabled && promotions.items.length > 0, desktop: false },
+    { label: "Витрина", to: "/shop", show: shop.enabled && shop.items.length > 0, desktop: false },
     { label: "Отзывы", anchor: "reviews", show: reviews.length > 0 },
     { label: "Вопросы", to: "/faq", show: faq.length > 0 },
     { label: "Контакты", to: "/contacts", show: true },
@@ -112,7 +117,7 @@ function Header({ scrolled }: { scrolled: boolean }) {
 
             {/* Десктоп меню — не трогаем */}
             <nav className="hidden md:flex items-center gap-8">
-              {menu.map((item) =>
+              {menu.filter((item) => item.desktop !== false).map((item) =>
                 item.to ? (
                   <Link
                     key={item.label}
@@ -210,7 +215,7 @@ function Header({ scrolled }: { scrolled: boolean }) {
 
 function Footer() {
   const { openModal } = useModal();
-  const { contacts, faq, workshops, events } = useContent();
+  const { contacts, faq, workshops, events, promotions, shop } = useContent();
   const footer = contacts.footer;
 
   const links = [
@@ -218,6 +223,8 @@ function Footer() {
     { label: "Программы", to: "/programs", show: true },
     { label: "Мастер-классы", to: "/workshops", show: workshops.enabled && workshops.items.length > 0 },
     { label: "Мероприятия", to: "/events", show: events.enabled && events.items.length > 0 },
+    { label: "Акции", to: "/promotions", show: promotions.enabled && promotions.items.length > 0 },
+    { label: "Витрина", to: "/shop", show: shop.enabled && shop.items.length > 0 },
     { label: "Контакты", to: "/contacts", show: true },
     { label: "Вопросы и ответы", to: "/faq", show: faq.length > 0 },
   ].filter((item) => item.show);

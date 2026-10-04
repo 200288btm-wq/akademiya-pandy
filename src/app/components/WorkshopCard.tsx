@@ -7,10 +7,10 @@
 
 import { useEffect, useState } from "react";
 import { createPortal } from "react-dom";
-import { Clock, Users, ChevronLeft, ChevronRight, X } from "lucide-react";
+import { Clock, Users, ChevronLeft, ChevronRight, X, CalendarDays, Palette, Ruler, User } from "lucide-react";
 import { useModal } from "./ModalContext";
 import { ClampedText, RichText } from "./RichText";
-import type { Workshop } from "../data/defaults";
+import type { CardKind, Workshop } from "../data/defaults";
 
 const BADGE_COLORS: Record<string, string> = {
   accent: "#F2A65A",
@@ -18,6 +18,103 @@ const BADGE_COLORS: Record<string, string> = {
   purple: "#B8A9D4",
   gray: "#9A9A9A",
 };
+
+// Витрина: забронированную и проданную работу видно сразу по плашке,
+// она заменяет обычную.
+const STATUS_BADGE: Record<string, { text: string; color: string }> = {
+  reserved: { text: "Забронировано", color: BADGE_COLORS.purple },
+  sold: { text: "Продано", color: BADGE_COLORS.gray },
+};
+
+const MONTHS = [
+  "января", "февраля", "марта", "апреля", "мая", "июня",
+  "июля", "августа", "сентября", "октября", "ноября", "декабря",
+];
+
+function dayMonth(iso: string): { d: number; m: string; y: number } | null {
+  const m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || "");
+  return m ? { d: Number(m[3]), m: MONTHS[Number(m[2]) - 1], y: Number(m[1]) } : null;
+}
+
+// Срок акции словами: «до 31 октября», «с 1 по 31 октября»,
+// «с 25 октября по 5 ноября», «с 1 ноября».
+export function promoPeriod(start?: string, end?: string): string {
+  const a = dayMonth(start || "");
+  const b = dayMonth(end || "");
+  if (a && b) {
+    if (a.m === b.m && a.y === b.y) return `с ${a.d} по ${b.d} ${b.m}`;
+    return `с ${a.d} ${a.m} по ${b.d} ${b.m}`;
+  }
+  if (b) return `до ${b.d} ${b.m}`;
+  if (a) return `с ${a.d} ${a.m}`;
+  return "";
+}
+
+// Пометка к заявке: по ней Ольга понимает, откуда пришёл человек.
+export function leadNote(kind: CardKind, prefix: string, item: Workshop): string {
+  if (kind === "shop") return `${prefix}: «${item.name}»${item.price ? ` — ${item.price}` : ""}`;
+  return `${prefix} «${item.name}»`;
+}
+
+// Строки под описанием: у витрины — автор, материал, размер;
+// у акции — срок; у мастер-классов — длительность и сколько человек.
+function CardMeta({ item, kind }: { item: Workshop; kind: CardKind }) {
+  const rows: { icon: React.ReactNode; text: string }[] = [];
+  if (kind === "shop") {
+    if (item.author) rows.push({ icon: <User size={15} />, text: item.author });
+    if (item.material) rows.push({ icon: <Palette size={15} />, text: item.material });
+    if (item.size) rows.push({ icon: <Ruler size={15} />, text: item.size });
+  } else if (kind === "promo") {
+    const period = promoPeriod(item.startDate, item.endDate);
+    if (period) rows.push({ icon: <CalendarDays size={15} />, text: period });
+  } else {
+    if (item.duration) rows.push({ icon: <Clock size={15} />, text: item.duration });
+    if (item.maxParticipants) rows.push({ icon: <Users size={15} />, text: item.maxParticipants });
+  }
+  if (rows.length === 0) return null;
+  return (
+    <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-70">
+      {rows.map((r, i) => (
+        <span key={i} className="flex items-center gap-1">
+          {r.icon} {r.text}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+// Кнопка записи или покупки. Проданную работу купить нельзя —
+// вместо кнопки надпись; забронированную — тоже, но можно спросить.
+function ActionButton({
+  item,
+  kind,
+  buttonText,
+  onClick,
+  big = false,
+}: {
+  item: Workshop;
+  kind: CardKind;
+  buttonText: string;
+  onClick: (event: React.MouseEvent) => void;
+  big?: boolean;
+}) {
+  if (kind === "shop" && item.status === "sold") {
+    return (
+      <span className="ml-auto font-['Nunito_Sans',sans-serif] font-semibold text-[#9A9A9A] whitespace-nowrap">
+        Продано
+      </span>
+    );
+  }
+  const reserved = kind === "shop" && item.status === "reserved";
+  return (
+    <button
+      onClick={onClick}
+      className={`ml-auto ${reserved ? "bg-[#B8A9D4] hover:bg-[#a797c7]" : "bg-[#F2A65A] hover:bg-[#e89542]"} text-white ${big ? "px-6 py-3" : "px-5 py-2.5"} rounded-lg font-['Nunito_Sans',sans-serif] font-semibold transition-colors border-none cursor-pointer whitespace-nowrap`}
+    >
+      {reserved ? "Спросить о работе" : buttonText}
+    </button>
+  );
+}
 
 export function WorkshopCard({
   workshop,
@@ -27,11 +124,14 @@ export function WorkshopCard({
   // или «Мероприятие «…»». Разделы устроены одинаково и используют
   // одну карточку, отличается только это слово.
   leadPrefix = "Мастер-класс",
+  // Раздел: мастер-классы и мероприятия, витрина работ или акции.
+  kind = "card",
 }: {
   workshop: Workshop;
   buttonText: string;
   compact?: boolean;
   leadPrefix?: string;
+  kind?: CardKind;
 }) {
   const { openModal } = useModal();
   const [photo, setPhoto] = useState(0);
@@ -39,7 +139,9 @@ export function WorkshopCard({
 
   const images = workshop.images;
   const total = images.length;
-  const badgeColor = BADGE_COLORS[workshop.badgeStyle] || BADGE_COLORS.accent;
+  const status = kind === "shop" ? STATUS_BADGE[workshop.status || ""] : undefined;
+  const badgeText = status ? status.text : workshop.badge;
+  const badgeColor = status ? status.color : BADGE_COLORS[workshop.badgeStyle] || BADGE_COLORS.accent;
 
   const flip = (step: number, event: React.MouseEvent) => {
     event.preventDefault();
@@ -62,7 +164,7 @@ export function WorkshopCard({
   const signUp = (event: React.MouseEvent) => {
     stop(event);
     setFull(false);
-    openModal(`${leadPrefix} «${workshop.name}»`);
+    openModal(leadNote(kind, leadPrefix, workshop));
   };
 
   return (
@@ -98,13 +200,13 @@ export function WorkshopCard({
           </>
         )}
 
-        {workshop.badge && (
+        {badgeText && (
           <div className="absolute top-3 left-3">
             <span
               className="px-3 py-1 rounded-full text-xs font-['Nunito_Sans',sans-serif] font-bold text-white shadow"
               style={{ backgroundColor: badgeColor }}
             >
-              {workshop.badge}
+              {badgeText}
             </span>
           </div>
         )}
@@ -131,37 +233,25 @@ export function WorkshopCard({
           />
         )}
 
-        <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-70">
-          {workshop.duration && (
-            <span className="flex items-center gap-1">
-              <Clock size={15} /> {workshop.duration}
-            </span>
-          )}
-          {workshop.maxParticipants && (
-            <span className="flex items-center gap-1">
-              <Users size={15} /> {workshop.maxParticipants}
-            </span>
-          )}
-        </div>
+        <CardMeta item={workshop} kind={kind} />
 
         <div className="flex items-center justify-between gap-3 pt-1">
           {workshop.price && (
-            <span className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] whitespace-nowrap">
+            <span
+              className={`font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] ${kind === "promo" ? "" : "whitespace-nowrap"} ${kind === "shop" && workshop.status === "sold" ? "line-through opacity-50" : ""}`}
+            >
               {workshop.price}
             </span>
           )}
-          <button
-            onClick={signUp}
-            className="ml-auto bg-[#F2A65A] hover:bg-[#e89542] text-white px-5 py-2.5 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold transition-colors border-none cursor-pointer whitespace-nowrap"
-          >
-            {buttonText}
-          </button>
+          <ActionButton item={workshop} kind={kind} buttonText={buttonText} onClick={signUp} />
         </div>
       </div>
 
       {full && (
         <WorkshopFull
           workshop={workshop}
+          kind={kind}
+          badgeText={badgeText}
           buttonText={buttonText}
           badgeColor={badgeColor}
           onClose={() => setFull(false)}
@@ -178,12 +268,16 @@ export function WorkshopCard({
 // прокруткой, и окно, оставленное внутри неё, уезжало бы вместе с лентой.
 function WorkshopFull({
   workshop,
+  kind,
+  badgeText,
   buttonText,
   badgeColor,
   onClose,
   onSignUp,
 }: {
   workshop: Workshop;
+  kind: CardKind;
+  badgeText: string;
   buttonText: string;
   badgeColor: string;
   onClose: () => void;
@@ -272,12 +366,12 @@ function WorkshopFull({
             <X size={18} color="#3D3D3D" />
           </button>
 
-          {workshop.badge && (
+          {badgeText && (
             <span
               className="absolute top-3 left-3 px-3 py-1 rounded-full text-xs font-['Nunito_Sans',sans-serif] font-bold text-white shadow"
               style={{ backgroundColor: badgeColor }}
             >
-              {workshop.badge}
+              {badgeText}
             </span>
           )}
         </div>
@@ -287,18 +381,13 @@ function WorkshopFull({
             {workshop.name}
           </h3>
 
-          <div className="flex flex-wrap gap-x-4 gap-y-1 text-sm font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-70 mb-4">
-            {workshop.age && <span>{workshop.age}</span>}
-            {workshop.duration && (
-              <span className="flex items-center gap-1">
-                <Clock size={15} /> {workshop.duration}
-              </span>
-            )}
-            {workshop.maxParticipants && (
-              <span className="flex items-center gap-1">
-                <Users size={15} /> {workshop.maxParticipants}
-              </span>
-            )}
+          {workshop.age && (
+            <div className="text-sm font-['Nunito_Sans',sans-serif] text-[#3D3D3D] opacity-70 mb-2">
+              {workshop.age}
+            </div>
+          )}
+          <div className="mb-4">
+            <CardMeta item={workshop} kind={kind} />
           </div>
 
           <RichText
@@ -308,16 +397,13 @@ function WorkshopFull({
 
           <div className="flex items-center justify-between gap-3 mt-6">
             {workshop.price && (
-              <span className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] whitespace-nowrap">
+              <span
+                className={`font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] ${kind === "shop" && workshop.status === "sold" ? "line-through opacity-50" : ""}`}
+              >
                 {workshop.price}
               </span>
             )}
-            <button
-              onClick={onSignUp}
-              className="ml-auto bg-[#F2A65A] hover:bg-[#e89542] text-white px-6 py-3 rounded-lg font-['Nunito_Sans',sans-serif] font-semibold transition-colors border-none cursor-pointer"
-            >
-              {buttonText}
-            </button>
+            <ActionButton item={workshop} kind={kind} buttonText={buttonText} onClick={onSignUp} big />
           </div>
         </div>
       </div>

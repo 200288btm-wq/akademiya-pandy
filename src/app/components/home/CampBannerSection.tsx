@@ -60,7 +60,7 @@ function PromoBanner({ promo }: { promo: Promo }) {
 
         {promo.text && (
           <p
-            className="font-['Nunito_Sans',sans-serif] text-base md:text-lg leading-relaxed mb-6 md:mb-7 max-w-md"
+            className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-base md:text-lg leading-relaxed mb-6 md:mb-7 max-w-md"
             style={{ color: promo.textColor, opacity: 0.85 }}
           >
             {promo.text}
@@ -116,7 +116,7 @@ function PromoBanner({ promo }: { promo: Promo }) {
             </p>
             {card.text && (
               <p
-                className="font-['Nunito_Sans',sans-serif] text-sm md:text-base leading-snug"
+                className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-sm md:text-base leading-snug"
                 style={{ color: promo.textColor, opacity: 0.75 }}
               >
                 {card.text}

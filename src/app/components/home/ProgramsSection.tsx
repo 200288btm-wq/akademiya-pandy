@@ -127,7 +127,7 @@ function ProgramCard({ program }: { program: Program }) {
           </p>
         </div>
 
-        <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
+        <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
           {program.description}
         </p>
 

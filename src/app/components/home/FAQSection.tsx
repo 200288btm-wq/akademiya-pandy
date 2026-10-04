@@ -50,7 +50,7 @@ export function FAQSection() {
               </button>
               {openIndex === index && (
                 <div className="px-6 pb-6">
-                  <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
+                  <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
                     {faq.answer}
                   </p>
                 </div>

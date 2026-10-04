@@ -21,7 +21,7 @@ export function WhyUsSection() {
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
             {block.title}
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
+          <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
             {block.subtitle}
           </p>
         </div>
@@ -56,7 +56,7 @@ export function WhyUsSection() {
               <h3 className="font-['Nunito',sans-serif] font-bold text-xl text-[#3D3D3D] mb-3 text-center relative z-10">
                 {reason.title}
               </h3>
-              <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed text-center relative z-10">
+              <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed text-center relative z-10">
                 {reason.text}
               </p>
             </div>

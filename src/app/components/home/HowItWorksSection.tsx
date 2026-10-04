@@ -17,7 +17,7 @@ export function HowItWorksSection() {
           <h2 className="font-['Nunito',sans-serif] font-bold text-4xl md:text-5xl text-[#3D3D3D] mb-4">
             {block.title}
           </h2>
-          <p className="font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
+          <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-lg text-[#3D3D3D] max-w-2xl mx-auto">
             {block.subtitle}
           </p>
         </div>
@@ -46,7 +46,7 @@ export function HowItWorksSection() {
                 <h3 className="font-['Nunito',sans-serif] font-bold text-2xl text-[#3D3D3D] mb-3">
                   {step.title}
                 </h3>
-                <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
+                <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-[#3D3D3D] leading-relaxed">
                   {step.text}
                 </p>
               </div>

@@ -19,10 +19,10 @@ export function HeroSection() {
       <div className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
           <div className="space-y-5">
-            <h1 className="font-['Nunito',sans-serif] font-extrabold text-4xl md:text-5xl text-white leading-tight">
+            <h1 className="whitespace-pre-line font-['Nunito',sans-serif] font-extrabold text-4xl md:text-5xl text-white leading-tight">
               {hero.title}
             </h1>
-            <p className="font-['Nunito_Sans',sans-serif] text-lg text-white/90 leading-relaxed">
+            <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-lg text-white/90 leading-relaxed">
               {hero.text}
             </p>
 

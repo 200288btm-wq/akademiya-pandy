@@ -272,7 +272,20 @@ export interface Workshop {
   badgeStyle: string;
   images: string[];
   enabled: boolean;
+  // Витрина работ (shop)
+  author?: string;
+  material?: string;
+  size?: string;
+  status?: ShopStatus;
+  // Акции (promotions): ГГГГ-ММ-ДД, пусто — без ограничения
+  startDate?: string;
+  endDate?: string;
 }
+
+export type ShopStatus = "available" | "reserved" | "sold";
+
+// Какой это раздел карточек: от него зависят поля карточки и кнопка.
+export type CardKind = "card" | "shop" | "promo";
 
 export interface WorkshopsBlock {
   enabled: boolean;
@@ -292,6 +305,9 @@ export interface SiteContent {
   // Мероприятия устроены точно так же, как мастер-классы, и используют
   // тот же тип: список карточек с теми же полями.
   events: WorkshopsBlock;
+  // Витрина готовых работ и акции — те же карточки с дополнительными полями.
+  shop: WorkshopsBlock;
+  promotions: WorkshopsBlock;
   programs: Program[];
   reviews: Review[];
   faq: FaqItem[];
@@ -311,6 +327,8 @@ export const defaultContent: SiteContent = {
       "reviews",
       "faq",
       "cta",
+      "promotions",
+      "shop",
     ],
     hero: {
       title: "Тёплое место рядом с домом, куда дети хотят возвращаться",
@@ -475,6 +493,24 @@ export const defaultContent: SiteContent = {
     pageTitle: "Мероприятия в Академии Панды",
     pageSubtitle: "Что у нас происходит в ближайшее время",
     buttonText: "Записаться",
+    items: [],
+  },
+  promotions: {
+    enabled: true,
+    title: "Акции",
+    subtitle: "",
+    pageTitle: "Акции Академии Панды",
+    pageSubtitle: "",
+    buttonText: "Узнать подробнее",
+    items: [],
+  },
+  shop: {
+    enabled: true,
+    title: "Витрина работ",
+    subtitle: "Работы наших учеников и педагогов, которые можно купить",
+    pageTitle: "Витрина работ",
+    pageSubtitle: "",
+    buttonText: "Хочу купить",
     items: [],
   },
   form: {

@@ -86,7 +86,7 @@ export function ProgramDetail() {
               <p className="font-['Nunito_Sans',sans-serif] text-2xl text-[#3D3D3D] mb-6 opacity-80">
                 {program.shortName}
               </p>
-              <p className="font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed mb-8">
+              <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-xl text-[#3D3D3D] leading-relaxed mb-8">
                 {program.description}
               </p>
               <button

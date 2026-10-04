@@ -69,7 +69,7 @@ export function FAQ() {
                 </button>
                 {openIndex === index && (
                   <div className="px-6 pb-6">
-                    <p className="font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-lg leading-relaxed">
+                    <p className="whitespace-pre-line font-['Nunito_Sans',sans-serif] text-[#3D3D3D] text-lg leading-relaxed">
                       {faq.answer}
                     </p>
                   </div>
